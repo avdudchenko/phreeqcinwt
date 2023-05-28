@@ -2,7 +2,8 @@ from phreeqcinwt.phreeqc_wt_api import phreeqcWTapi
 
 
 if __name__ == "__main__":
-    phreeqcWT = phreeqcWTapi()
+    phreeqcWT = phreeqcWTapi(database="phreeqc.dat")
+    # phreeqcWT = phreeqcWTapi(database="minteq.v4.dat")
     # basic brackish water
     input_composotion = {
         "Na": 0.739,
@@ -42,8 +43,12 @@ if __name__ == "__main__":
     phreeqcWT.perform_reaction(evaporate_water_mass_percent=72.2)
     phreeqcWT.get_solution_state(report=True)
     # phreeqcWT.get_vapor_pressure(report=True)
-    # phreeqcWT.perform_reaction(temperature=90)
-    # phreeqcWT.get_vapor_pressure(report=True)
+    print("-----------------------heat up solution to 90 C-----------------------")
+
+    phreeqcWT.perform_reaction(temperature=50)
+    phreeqcWT.get_vapor_pressure(report=True)
+    phreeqcWT.get_solution_state(report=True)
+
     # phreeqcWT.get_solution_state(report=True)
     # phreeqcWT.perform_reaction(reactants={"CO2": 145.26}, report=True)
     # phreeqcWT.get_solution_state(report=True)

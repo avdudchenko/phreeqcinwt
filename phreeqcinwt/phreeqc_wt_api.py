@@ -568,7 +568,7 @@ class phreeqcWTapi(dataBaseManagment):
     def get_vapor_pressure(self, report):
         gas_phases = []
         gas_header = []
-        temperture = 10
+
         for phase in list(self.db_metadata["PHASES"].keys()):
             if "(g)" in phase:
                 gas_phases.append(phase)
