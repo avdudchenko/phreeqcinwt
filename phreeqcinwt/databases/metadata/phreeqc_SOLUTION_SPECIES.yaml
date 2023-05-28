@@ -1,0 +1,676 @@
+H+:
+  formula: H
+  sub_species:
+  - H+
+  - H2O
+  - H4SiO4
+  - H3BO3
+  - OH-
+  - H2
+  - HCO3-
+  - CH4
+  - HSO4-
+  - HS-
+  - H2S
+  - H2Sg
+  - HSg-
+  - NH4+
+  - NH3
+  - NH4SO4-
+  - H2BO3-
+  - BF(OH)3-
+  - BF2(OH)2-
+  - BF3OH-
+  - HPO4-2
+  - H2PO4-
+  - 3H+
+  - H3PO4
+  - HF
+  - HF2-
+  - CaOH+
+  - CaHCO3+
+  - CaHSO4+
+  - CaHPO4
+  - CaH2PO4+
+  - MgOH+
+  - MgHCO3+
+  - MgHPO4
+  - MgH2PO4+
+  - NaOH
+  - NaHCO3
+  - NaHPO4-
+  - KHPO4-
+  - FeOH+
+  - 3H2O
+  - Fe(OH)3-
+  - FeHCO3+
+  - FeHSO4+
+  - 2HS-
+  - Fe(HS)2
+  - 3HS-
+  - Fe(HS)3-
+  - FeHPO4
+  - FeH2PO4+
+  - FeOH+2
+  - Fe(OH)2+
+  - Fe(OH)3
+  - Fe(OH)4-
+  - 2H2O
+  - Fe(OH)2
+  - 2H+
+  - Fe2(OH)2+4
+  - Fe3(OH)4+5
+  - FeHSO4+2
+  - FeHPO4+
+  - FeH2PO4+2
+  - MnOH+
+  - Mn(OH)3-
+  - MnHCO3+
+  - AlOH+2
+  - Al(OH)2+
+  - Al(OH)3
+  - Al(OH)4-
+  - AlHSO4+2
+  - H3SiO4-
+  - H2SiO4-2
+  - BaOH+
+  - BaHCO3+
+  - SrOH+
+  - SrHCO3+
+  - CuHCO3+
+  - CuOH+
+  - Cu(OH)2
+  - Cu(OH)3-
+  - Cu(OH)4-2
+  - Cu2(OH)2+2
+  - Cu(HS)3-
+  - ZnOH+
+  - Zn(OH)2
+  - Zn(OH)3-
+  - Zn(OH)4-2
+  - ZnOHCl
+  - Zn(HS)2
+  - Zn(HS)3-
+  - ZnHCO3+
+  - CdOH+
+  - Cd(OH)2
+  - Cd(OH)3-
+  - Cd(OH)4-2
+  - Cd2OH+3
+  - CdOHCl
+  - CdHCO3+
+  - CdHS+
+  - Cd(HS)2
+  - Cd(HS)3-
+  - 4HS-
+  - Cd(HS)4-2
+  - PbOH+
+  - Pb(OH)2
+  - Pb(OH)3-
+  - Pb(OH)4-2
+  - Pb2OH+3
+  - PbHCO3+
+  - Pb(HS)2
+  - Pb(HS)3-
+  - 4H2O
+  - Pb3(OH)4+2
+  - 4H+
+H2:
+  formula: H2
+  sub_species:
+  - H2O
+  - H2
+  - H2S
+  - H2Sg
+  - H2BO3-
+  - H2PO4-
+  - CaH2PO4+
+  - MgH2PO4+
+  - 3H2O
+  - FeH2PO4+
+  - 2H2O
+  - FeH2PO4+2
+  - H2SiO4-2
+  - 4H2O
+H2O:
+  formula: H2O
+  sub_species:
+  - H2O
+  - 3H2O
+  - 2H2O
+  - 4H2O
+O2:
+  formula: O2
+  sub_species:
+  - O2
+  - CO2
+  - NO2-
+Ca+2:
+  formula: Ca
+  sub_species:
+  - Ca+2
+  - CaOH+
+  - CaCO3
+  - CaHCO3+
+  - CaSO4
+  - CaHSO4+
+  - CaPO4-
+  - CaHPO4
+  - CaH2PO4+
+Mg+2:
+  formula: Mg
+  sub_species:
+  - Mg+2
+  - MgOH+
+  - MgCO3
+  - MgHCO3+
+  - MgSO4
+  - MgPO4-
+  - MgHPO4
+  - MgH2PO4+
+  - MgF+
+Na+:
+  formula: Na
+  sub_species:
+  - Na+
+  - NaOH
+  - NaCO3-
+  - NaHCO3
+  - NaSO4-
+  - NaHPO4-
+  - NaF
+K+:
+  formula: K
+  sub_species:
+  - K+
+  - KSO4-
+  - KHPO4-
+Fe+2:
+  formula: Fe
+  sub_species:
+  - Fe+2
+  - FeOH+
+  - Fe(OH)3-
+  - FeCl+
+  - FeCO3
+  - FeHCO3+
+  - FeSO4
+  - FeHSO4+
+  - Fe(HS)2
+  - Fe(HS)3-
+  - FeHPO4
+  - FeH2PO4+
+  - FeF+
+  - Fe+3
+  - FeOH+2
+  - Fe(OH)2+
+  - Fe(OH)3
+  - Fe(OH)4-
+  - Fe(OH)2
+  - Fe2(OH)2+4
+  - Fe3(OH)4+5
+  - FeCl+2
+  - FeCl2+
+  - FeCl3
+  - FeSO4+
+  - FeHSO4+2
+  - Fe(SO4)2-
+  - FeHPO4+
+  - FeH2PO4+2
+  - FeF+2
+  - FeF2+
+  - FeF3
+Fe+3:
+  formula: Fe
+  sub_species:
+  - Fe+2
+  - FeOH+
+  - Fe(OH)3-
+  - FeCl+
+  - FeCO3
+  - FeHCO3+
+  - FeSO4
+  - FeHSO4+
+  - Fe(HS)2
+  - Fe(HS)3-
+  - FeHPO4
+  - FeH2PO4+
+  - FeF+
+  - Fe+3
+  - FeOH+2
+  - Fe(OH)2+
+  - Fe(OH)3
+  - Fe(OH)4-
+  - Fe(OH)2
+  - Fe2(OH)2+4
+  - Fe3(OH)4+5
+  - FeCl+2
+  - FeCl2+
+  - FeCl3
+  - FeSO4+
+  - FeHSO4+2
+  - Fe(SO4)2-
+  - FeHPO4+
+  - FeH2PO4+2
+  - FeF+2
+  - FeF2+
+  - FeF3
+Mn+2:
+  formula: Mn
+  sub_species:
+  - Mn+2
+  - MnOH+
+  - Mn(OH)3-
+  - MnCl+
+  - MnCl2
+  - MnCl3-
+  - MnCO3
+  - MnHCO3+
+  - MnSO4
+  - Mn(NO3)2
+  - MnF+
+  - Mn+3
+Mn+3:
+  formula: Mn
+  sub_species:
+  - Mn+2
+  - MnOH+
+  - Mn(OH)3-
+  - MnCl+
+  - MnCl2
+  - MnCl3-
+  - MnCO3
+  - MnHCO3+
+  - MnSO4
+  - Mn(NO3)2
+  - MnF+
+  - Mn+3
+Al+3:
+  formula: Al
+  sub_species:
+  - Al+3
+  - AlOH+2
+  - Al(OH)2+
+  - Al(OH)3
+  - Al(OH)4-
+  - AlSO4+
+  - Al(SO4)2-
+  - AlHSO4+2
+  - AlF+2
+  - AlF2+
+  - AlF3
+  - AlF4-
+Ba+2:
+  formula: Ba
+  sub_species:
+  - Ba+2
+  - BaOH+
+  - BaCO3
+  - BaHCO3+
+  - BaSO4
+Sr+2:
+  formula: Sr
+  sub_species:
+  - Sr+2
+  - SrOH+
+  - SrHCO3+
+  - SrCO3
+  - SrSO4
+H4SiO4:
+  formula: H4SiO4
+  sub_species:
+  - H4SiO4
+Cl-:
+  formula: Cl
+  sub_species:
+  - Cl-
+  - FeCl+
+  - FeCl+2
+  - FeCl2+
+  - FeCl3
+  - MnCl+
+  - MnCl2
+  - MnCl3-
+  - 2Cl-
+  - CuCl2-
+  - 3Cl-
+  - CuCl3-2
+  - CuCl+
+  - CuCl2
+  - CuCl3-
+  - 4Cl-
+  - CuCl4-2
+  - ZnCl+
+  - ZnCl2
+  - ZnCl3-
+  - ZnCl4-2
+  - ZnOHCl
+  - CdOHCl
+  - CdCl+
+  - CdCl2
+  - CdCl3-
+  - PbCl+
+  - PbCl2
+  - PbCl3-
+  - PbCl4-2
+CO3-2:
+  formula: CO3
+  sub_species:
+  - CO3-2
+  - HCO3-
+  - CaCO3
+  - CaHCO3+
+  - MgCO3
+  - MgHCO3+
+  - NaCO3-
+  - NaHCO3
+  - FeCO3
+  - FeHCO3+
+  - MnCO3
+  - MnHCO3+
+  - BaCO3
+  - BaHCO3+
+  - SrHCO3+
+  - SrCO3
+  - CuCO3
+  - 2CO3-2
+  - Cu(CO3)2-2
+  - CuHCO3+
+  - ZnCO3
+  - Zn(CO3)2-2
+  - ZnHCO3+
+  - CdCO3
+  - Cd(CO3)2-2
+  - CdHCO3+
+  - PbCO3
+  - Pb(CO3)2-2
+  - PbHCO3+
+CH4:
+  formula: CH4
+  sub_species:
+  - CH4
+SO4-2:
+  formula: SO4
+  sub_species:
+  - SO4-2
+  - HSO4-
+  - NH4SO4-
+  - CaSO4
+  - CaHSO4+
+  - MgSO4
+  - NaSO4-
+  - KSO4-
+  - FeSO4
+  - FeHSO4+
+  - FeSO4+
+  - FeHSO4+2
+  - Fe(SO4)2-
+  - MnSO4
+  - AlSO4+
+  - 2SO4-2
+  - Al(SO4)2-
+  - AlHSO4+2
+  - BaSO4
+  - SrSO4
+  - LiSO4-
+  - CuSO4
+  - ZnSO4
+  - Zn(SO4)2-2
+  - CdSO4
+  - Cd(SO4)2-2
+  - PbSO4
+  - Pb(SO4)2-2
+HS-:
+  formula: HS
+  sub_species:
+  - HSO4-
+  - HS-
+  - HSg-
+  - CaHSO4+
+  - FeHSO4+
+  - 2HS-
+  - Fe(HS)2
+  - 3HS-
+  - Fe(HS)3-
+  - FeHSO4+2
+  - AlHSO4+2
+  - Cu(HS)3-
+  - Zn(HS)2
+  - Zn(HS)3-
+  - CdHS+
+  - Cd(HS)2
+  - Cd(HS)3-
+  - 4HS-
+  - Cd(HS)4-2
+  - Pb(HS)2
+  - Pb(HS)3-
+NO3-:
+  formula: NO3
+  sub_species:
+  - NO3-
+  - Mn(NO3)2
+  - CdNO3+
+  - PbNO3+
+NO2-:
+  formula: NO2
+  sub_species:
+  - NO2-
+N2:
+  formula: N2
+  sub_species:
+  - N2
+NH4+:
+  formula: NH4
+  sub_species:
+  - NH4+
+  - NH4SO4-
+H3BO3:
+  formula: H3BO3
+  sub_species:
+  - H3BO3
+PO4-3:
+  formula: PO4
+  sub_species:
+  - PO4-3
+  - HPO4-2
+  - H2PO4-
+  - H3PO4
+  - CaPO4-
+  - CaHPO4
+  - CaH2PO4+
+  - MgPO4-
+  - MgHPO4
+  - MgH2PO4+
+  - NaHPO4-
+  - KHPO4-
+  - FeHPO4
+  - FeH2PO4+
+  - FeHPO4+
+  - FeH2PO4+2
+F-:
+  formula: F
+  sub_species:
+  - Fe+2
+  - F-
+  - BF(OH)3-
+  - BF2(OH)2-
+  - BF3OH-
+  - BF4-
+  - HF
+  - HF2-
+  - MgF+
+  - NaF
+  - FeOH+
+  - Fe(OH)3-
+  - FeCl+
+  - FeCO3
+  - FeHCO3+
+  - FeSO4
+  - FeHSO4+
+  - Fe(HS)2
+  - Fe(HS)3-
+  - FeHPO4
+  - FeH2PO4+
+  - FeF+
+  - Fe+3
+  - FeOH+2
+  - Fe(OH)2+
+  - Fe(OH)3
+  - Fe(OH)4-
+  - Fe(OH)2
+  - Fe2(OH)2+4
+  - Fe3(OH)4+5
+  - FeCl+2
+  - FeCl2+
+  - FeCl3
+  - FeSO4+
+  - FeHSO4+2
+  - Fe(SO4)2-
+  - FeHPO4+
+  - FeH2PO4+2
+  - FeF+2
+  - FeF2+
+  - FeF3
+  - MnF+
+  - AlF+2
+  - AlF2+
+  - AlF3
+  - AlF4-
+  - SiF6-2
+  - CuF+
+  - ZnF+
+  - CdF+
+  - 2F-
+  - CdF2
+  - PbF+
+  - PbF2
+  - 3F-
+  - PbF3-
+  - 4F-
+  - PbF4-2
+Li+:
+  formula: Li
+  sub_species:
+  - Li+
+  - LiSO4-
+Br-:
+  formula: Br
+  sub_species:
+  - Br-
+  - ZnBr+
+  - 2Br-
+  - ZnBr2
+  - CdBr+
+  - CdBr2
+  - PbBr+
+  - PbBr2
+Zn+2:
+  formula: Zn
+  sub_species:
+  - Zn+2
+  - ZnOH+
+  - Zn(OH)2
+  - Zn(OH)3-
+  - Zn(OH)4-2
+  - ZnCl+
+  - ZnCl2
+  - ZnCl3-
+  - ZnCl4-2
+  - ZnOHCl
+  - Zn(HS)2
+  - Zn(HS)3-
+  - ZnCO3
+  - Zn(CO3)2-2
+  - ZnHCO3+
+  - ZnSO4
+  - Zn(SO4)2-2
+  - ZnBr+
+  - ZnBr2
+  - ZnF+
+Cd+2:
+  formula: Cd
+  sub_species:
+  - Cd+2
+  - CdOH+
+  - Cd(OH)2
+  - Cd(OH)3-
+  - Cd(OH)4-2
+  - 2Cd+2
+  - Cd2OH+3
+  - CdOHCl
+  - CdNO3+
+  - CdCl+
+  - CdCl2
+  - CdCl3-
+  - CdCO3
+  - Cd(CO3)2-2
+  - CdHCO3+
+  - CdSO4
+  - Cd(SO4)2-2
+  - CdBr+
+  - CdBr2
+  - CdF+
+  - CdF2
+  - CdHS+
+  - Cd(HS)2
+  - Cd(HS)3-
+  - Cd(HS)4-2
+Pb+2:
+  formula: Pb
+  sub_species:
+  - Pb+2
+  - PbOH+
+  - Pb(OH)2
+  - Pb(OH)3-
+  - Pb(OH)4-2
+  - Pb2OH+3
+  - PbCl+
+  - PbCl2
+  - PbCl3-
+  - PbCl4-2
+  - PbCO3
+  - Pb(CO3)2-2
+  - PbHCO3+
+  - PbSO4
+  - Pb(SO4)2-2
+  - Pb(HS)2
+  - Pb(HS)3-
+  - 3Pb+2
+  - Pb3(OH)4+2
+  - PbNO3+
+  - PbBr+
+  - PbBr2
+  - PbF+
+  - PbF2
+  - PbF3-
+  - PbF4-2
+Cu+2:
+  formula: Cu
+  sub_species:
+  - Cu+2
+  - Cu+
+  - CuCl2-
+  - CuCl3-2
+  - CuCO3
+  - Cu(CO3)2-2
+  - CuHCO3+
+  - CuCl+
+  - CuCl2
+  - CuCl3-
+  - CuCl4-2
+  - CuF+
+  - CuOH+
+  - Cu(OH)2
+  - Cu(OH)3-
+  - Cu(OH)4-2
+  - 2Cu+2
+  - Cu2(OH)2+2
+  - CuSO4
+  - Cu(HS)3-
+Cu+1:
+  formula: Cu1
+  sub_species: []
+H2Sg:
+  formula: H2Sg
+  sub_species:
+  - H2Sg

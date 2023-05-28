@@ -1,0 +1,184 @@
+H:
+  formula: H
+  species: H+
+  mw: 1.008
+H(0):
+  formula: H
+  species: H2
+  mw: 1.007941
+H(1):
+  formula: '0'
+  species: H+
+  mw: 0.0
+E:
+  formula: '0.0'
+  species: e-
+  mw: 0.0
+O:
+  formula: O
+  species: H2O
+  mw: 16.0
+O(0):
+  formula: O
+  species: O2
+  mw: 15.999405
+O(-2):
+  formula: '0'
+  species: H2O
+  mw: 0.0
+Ca:
+  formula: Ca
+  species: Ca+2
+  mw: 40.08
+Mg:
+  formula: Mg
+  species: Mg+2
+  mw: 24.312
+Na:
+  formula: Na
+  species: Na+
+  mw: 22.9898
+K:
+  formula: K
+  species: K+
+  mw: 39.102
+Fe:
+  formula: Fe
+  species: Fe+2
+  mw: 55.847
+Fe(+2):
+  formula: Fe
+  species: Fe+2
+  mw: 55.845
+Fe(+3):
+  formula: Fe
+  species: Fe+3
+  mw: 55.845
+Mn:
+  formula: Mn
+  species: Mn+2
+  mw: 54.938
+Mn(+2):
+  formula: Mn
+  species: Mn+2
+  mw: 54.938044
+Mn(+3):
+  formula: Mn
+  species: Mn+3
+  mw: 54.938044
+Al:
+  formula: Al
+  species: Al+3
+  mw: 26.9815
+Ba:
+  formula: Ba
+  species: Ba+2
+  mw: 137.34
+Sr:
+  formula: Sr
+  species: Sr+2
+  mw: 87.62
+Si:
+  formula: SiO2
+  species: H4SiO4
+  mw: 28.0843
+Cl:
+  formula: Cl
+  species: Cl-
+  mw: 35.453
+C:
+  formula: HCO3
+  species: CO3-2
+  mw: 12.0111
+C(+4):
+  formula: HCO3
+  species: CO3-2
+  mw: 61.016896
+C(-4):
+  formula: CH4
+  species: CH4
+  mw: 16.042504
+Alkalinity:
+  formula: Ca0.5(CO3)0.5
+  species: CO3-2
+  mw: 50.05
+S:
+  formula: SO4
+  species: SO4-2
+  mw: 32.064
+S(6):
+  formula: SO4
+  species: SO4-2
+  mw: 96.06242
+S(-2):
+  formula: S
+  species: HS-
+  mw: 32.0648
+N:
+  formula: N
+  species: NO3-
+  mw: 14.0067
+N(+5):
+  formula: N
+  species: NO3-
+  mw: 14.006703
+N(+3):
+  formula: N
+  species: NO2-
+  mw: 14.006703
+N(0):
+  formula: N
+  species: N2
+  mw: 14.006703
+N(-3):
+  formula: N
+  species: NH4+
+  mw: 14.0067
+B:
+  formula: B
+  species: H3BO3
+  mw: 10.81
+P:
+  formula: P
+  species: PO4-3
+  mw: 30.9738
+F:
+  formula: F
+  species: F-
+  mw: 18.9984
+Li:
+  formula: Li
+  species: Li+
+  mw: 6.939
+Br:
+  formula: Br
+  species: Br-
+  mw: 79.904
+Zn:
+  formula: Zn
+  species: Zn+2
+  mw: 65.37
+Cd:
+  formula: Cd
+  species: Cd+2
+  mw: 112.4
+Pb:
+  formula: Pb
+  species: Pb+2
+  mw: 207.19
+Cu:
+  formula: Cu
+  species: Cu+2
+  mw: 63.546
+Cu(+2):
+  formula: Cu
+  species: Cu+2
+  mw: 63.546
+Cu(+1):
+  formula: Cu
+  species: Cu+1
+  mw: 63.546
+Sg:
+  formula: H2Sg
+  species: H2Sg
+  mw: 34.08

@@ -1,0 +1,10 @@
+README.md
+setup.py
+phreeqcinwt/__init__.py
+phreeqcinwt/data_base_utils.py
+phreeqcinwt/phreeqc_wt_api.py
+phreeqcinwt.egg-info/PKG-INFO
+phreeqcinwt.egg-info/SOURCES.txt
+phreeqcinwt.egg-info/dependency_links.txt
+phreeqcinwt.egg-info/requires.txt
+phreeqcinwt.egg-info/top_level.txt

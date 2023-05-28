@@ -1,0 +1,484 @@
+Alkalinity:
+  formula: HCO3
+  species: CO3-2
+  mw: 61.016896
+E:
+  formula: '0'
+  species: e-
+  mw: 0.0
+O:
+  formula: O
+  species: H2O
+  mw: 16.0
+O(-2):
+  formula: O
+  species: H2O
+  mw: 15.999405
+O(0):
+  formula: O
+  species: O2
+  mw: 15.999405
+Ag:
+  formula: Ag
+  species: Ag+
+  mw: 107.868
+Al:
+  formula: Al
+  species: Al+3
+  mw: 26.9815
+As:
+  formula: As
+  species: H3AsO4
+  mw: 74.9216
+As(3):
+  formula: As
+  species: H3AsO3
+  mw: 74.921595
+As(5):
+  formula: As
+  species: H3AsO4
+  mw: 74.921595
+B:
+  formula: B
+  species: H3BO3
+  mw: 10.81
+Ba:
+  formula: Ba
+  species: Ba+2
+  mw: 137.33
+Be:
+  formula: Be
+  species: Be+2
+  mw: 9.0122
+Br:
+  formula: Br
+  species: Br-
+  mw: 79.904
+C:
+  formula: CO3
+  species: CO3-2
+  mw: 12.0111
+C(4):
+  formula: CO3
+  species: CO3-2
+  mw: 12.0111
+Cyanide:
+  formula: Cyanide
+  species: Cyanide-
+  mw: 26.0177
+Dom_a:
+  formula: C
+  species: Dom_a
+  mw: 12.0111
+Dom_b:
+  formula: C
+  species: Dom_b
+  mw: 12.0111
+Dom_c:
+  formula: C
+  species: Dom_c
+  mw: 12.0111
+Ca:
+  formula: Ca
+  species: Ca+2
+  mw: 40.078
+Cd:
+  formula: Cd
+  species: Cd+2
+  mw: 112.41
+Cl:
+  formula: Cl
+  species: Cl-
+  mw: 35.453
+Co:
+  formula: Co
+  species: Co+3
+  mw: 58.9332
+Co(2):
+  formula: Co
+  species: Co+2
+  mw: 58.933194
+Co(3):
+  formula: Co
+  species: Co+3
+  mw: 58.933194
+Cr:
+  formula: Cr
+  species: CrO4-2
+  mw: 51.996
+Cr(2):
+  formula: Cr
+  species: Cr+2
+  mw: 51.9961
+Cr(3):
+  formula: Cr
+  species: Cr(OH)2+
+  mw: 51.9961
+Cr(6):
+  formula: Cr
+  species: CrO4-2
+  mw: 51.9961
+Cu:
+  formula: Cu
+  species: Cu+2
+  mw: 63.546
+Cu(1):
+  formula: Cu
+  species: Cu+
+  mw: 63.546
+Cu(2):
+  formula: Cu
+  species: Cu+2
+  mw: 63.546
+F:
+  formula: F
+  species: F-
+  mw: 18.9984
+Fe:
+  formula: Fe
+  species: Fe+3
+  mw: 55.847
+Fe(2):
+  formula: Fe
+  species: Fe+2
+  mw: 55.845
+Fe(3):
+  formula: Fe
+  species: Fe+3
+  mw: 55.845
+H:
+  formula: H
+  species: H+
+  mw: 1.0079
+H(0):
+  formula: H
+  species: H2
+  mw: 1.007941
+H(1):
+  formula: H
+  species: H+
+  mw: 1.007941
+Hg:
+  formula: Hg
+  species: Hg(OH)2
+  mw: 200.59
+Hg(0):
+  formula: Hg
+  species: Hg
+  mw: 200.592
+Hg(1):
+  formula: Hg
+  species: Hg2+2
+  mw: 200.592
+Hg(2):
+  formula: Hg
+  species: Hg(OH)2
+  mw: 200.592
+I:
+  formula: I
+  species: I-
+  mw: 126.904
+K:
+  formula: K
+  species: K+
+  mw: 39.0983
+Li:
+  formula: Li
+  species: Li+
+  mw: 6.941
+Mg:
+  formula: Mg
+  species: Mg+2
+  mw: 24.305
+Mn:
+  formula: Mn
+  species: Mn+3
+  mw: 54.938
+Mn(2):
+  formula: Mn
+  species: Mn+2
+  mw: 54.938044
+Mn(3):
+  formula: Mn
+  species: Mn+3
+  mw: 54.938044
+Mn(6):
+  formula: Mn
+  species: MnO4-2
+  mw: 54.938044
+Mn(7):
+  formula: Mn
+  species: MnO4-
+  mw: 54.938044
+Mo:
+  formula: Mo
+  species: MoO4-2
+  mw: 95.94
+N:
+  formula: N
+  species: NO3-
+  mw: 14.0067
+N(-3):
+  formula: N
+  species: NH4+
+  mw: 14.006703
+N(3):
+  formula: N
+  species: NO2-
+  mw: 14.006703
+N(5):
+  formula: N
+  species: NO3-
+  mw: 14.006703
+Na:
+  formula: Na
+  species: Na+
+  mw: 22.9898
+Ni:
+  formula: Ni
+  species: Ni+2
+  mw: 58.69
+P:
+  formula: P
+  species: PO4-3
+  mw: 30.9738
+Pb:
+  formula: Pb
+  species: Pb+2
+  mw: 207.2
+S:
+  formula: S
+  species: SO4-2
+  mw: 32.066
+S(-2):
+  formula: S
+  species: HS-
+  mw: 32.0648
+S(6):
+  formula: SO4
+  species: SO4-2
+  mw: 96.06242
+Sb:
+  formula: Sb
+  species: Sb(OH)6-
+  mw: 121.75
+Sb(3):
+  formula: Sb
+  species: Sb(OH)3
+  mw: 121.76
+Sb(5):
+  formula: Sb
+  species: Sb(OH)6-
+  mw: 121.76
+Se:
+  formula: Se
+  species: SeO4-2
+  mw: 78.96
+Se(-2):
+  formula: Se
+  species: HSe-
+  mw: 78.971
+Se(4):
+  formula: Se
+  species: HSeO3-
+  mw: 78.971
+Se(6):
+  formula: Se
+  species: SeO4-2
+  mw: 78.971
+Si:
+  formula: SiO2
+  species: H4SiO4
+  mw: 28.0843
+Sn:
+  formula: Sn
+  species: Sn(OH)6-2
+  mw: 118.71
+Sn(2):
+  formula: Sn
+  species: Sn(OH)2
+  mw: 118.71
+Sn(4):
+  formula: Sn
+  species: Sn(OH)6-2
+  mw: 118.71
+Sr:
+  formula: Sr
+  species: Sr+2
+  mw: 87.62
+Tl:
+  formula: Tl
+  species: Tl(OH)3
+  mw: 204.383
+Tl(1):
+  formula: Tl
+  species: Tl+
+  mw: 204.3834
+Tl(3):
+  formula: Tl
+  species: Tl(OH)3
+  mw: 204.3834
+U:
+  formula: U
+  species: UO2+2
+  mw: 238.029
+U(3):
+  formula: U
+  species: U+3
+  mw: 238.02891
+U(4):
+  formula: U
+  species: U+4
+  mw: 238.02891
+U(5):
+  formula: U
+  species: UO2+
+  mw: 238.02891
+U(6):
+  formula: U
+  species: UO2+2
+  mw: 238.02891
+V:
+  formula: V
+  species: VO2+
+  mw: 50.94
+V(2):
+  formula: V
+  species: V+2
+  mw: 50.9415
+V(3):
+  formula: V
+  species: V+3
+  mw: 50.9415
+V(4):
+  formula: V
+  species: VO+2
+  mw: 50.9415
+V(5):
+  formula: V
+  species: VO2+
+  mw: 50.9415
+Zn:
+  formula: Zn
+  species: Zn+2
+  mw: 65.39
+Benzoate:
+  formula: '121.116'
+  species: Benzoate-
+  mw: 121.116
+Phenylacetate:
+  formula: '135.142'
+  species: Phenylacetate-
+  mw: 135.142
+Isophthalate:
+  formula: '164.117'
+  species: Isophthalate-2
+  mw: 164.117
+Diethylamine:
+  formula: '73.138'
+  species: Diethylamine
+  mw: 73.138
+Butylamine:
+  formula: '73.138'
+  species: Butylamine
+  mw: 73.138
+Methylamine:
+  formula: '31.057'
+  species: Methylamine
+  mw: 31.057
+Dimethylamine:
+  formula: '45.084'
+  species: Dimethylamine
+  mw: 45.084
+Hexylamine:
+  formula: '101.192'
+  species: Hexylamine
+  mw: 101.192
+Ethylenediamine:
+  formula: '60.099'
+  species: Ethylenediamine
+  mw: 60.099
+Propylamine:
+  formula: '59.111'
+  species: Propylamine
+  mw: 59.111
+Isopropylamine:
+  formula: '59.111'
+  species: Isopropylamine
+  mw: 59.111
+Trimethylamine:
+  formula: '59.111'
+  species: Trimethylamine
+  mw: 59.111
+Citrate:
+  formula: '189.102'
+  species: Citrate-3
+  mw: 189.102
+Nta:
+  formula: '188.117'
+  species: Nta-3
+  mw: 188.117
+Edta:
+  formula: '288.214'
+  species: Edta-4
+  mw: 288.214
+Propionate:
+  formula: '73.072'
+  species: Propionate-
+  mw: 73.072
+Butyrate:
+  formula: '87.098'
+  species: Butyrate-
+  mw: 87.098
+Isobutyrate:
+  formula: '87.098'
+  species: Isobutyrate-
+  mw: 87.098
+Two_picoline:
+  formula: '93.128'
+  species: Two_picoline
+  mw: 93.128
+Three_picoline:
+  formula: '93.128'
+  species: Three_picoline
+  mw: 93.128
+Four_picoline:
+  formula: '93.128'
+  species: Four_picoline
+  mw: 93.128
+Formate:
+  formula: '45.018'
+  species: Formate-
+  mw: 45.018
+Isovalerate:
+  formula: '101.125'
+  species: Isovalerate-
+  mw: 101.125
+Valerate:
+  formula: '101.125'
+  species: Valerate-
+  mw: 101.125
+Acetate:
+  formula: '59.045'
+  species: Acetate-
+  mw: 59.045
+Tartarate:
+  formula: '148.072'
+  species: Tartarate-2
+  mw: 148.072
+Glycine:
+  formula: '74.059'
+  species: Glycine-
+  mw: 74.059
+Salicylate:
+  formula: '136.107'
+  species: Salicylate-2
+  mw: 136.107
+Glutamate:
+  formula: '145.115'
+  species: Glutamate-2
+  mw: 145.115
+Phthalate:
+  formula: '164.117'
+  species: Phthalate-2
+  mw: 164.117

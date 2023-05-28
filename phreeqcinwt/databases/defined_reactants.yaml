@@ -1,0 +1,10 @@
+#defined reactants, requires formula of reactant and its mw
+# default acid and base adjust define what reacatnt is used by default if no reactant is provided
+default_ph_adjust: 
+  acid: HCl
+  base: NaOH
+HCl: 36.458
+NaOH: 39.997
+CO2: 44.01
+Na2CO3: 105.9888
+Ca(OH)2: 74.093

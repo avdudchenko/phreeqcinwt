@@ -1,0 +1,1702 @@
+Sulfur:
+  formula: S
+  mw: 32.0648
+Semetal(hex:
+  formula: Se
+  mw: 78.971
+Semetal(am):
+  formula: Se
+  mw: 78.971
+Sbmetal:
+  formula: Sb
+  mw: 121.76
+Snmetal(wht):
+  formula: Sn
+  mw: 118.71
+Pbmetal:
+  formula: Pb
+  mw: 207.2
+Tlmetal:
+  formula: Tl
+  mw: 204.3834
+Znmetal:
+  formula: Zn
+  mw: 65.38
+Cdmetal(alpha):
+  formula: Cd
+  mw: 112.414
+Cdmetal(gamma):
+  formula: Cd
+  mw: 112.414
+Hgmetal(l):
+  formula: Hg
+  mw: 200.592
+Cumetal:
+  formula: Cu
+  mw: 63.546
+Agmetal:
+  formula: Ag
+  mw: 107.8682
+Crmetal:
+  formula: Cr
+  mw: 51.9961
+Vmetal: {}
+Stibnite:
+  formula: Sb2S3
+  mw: 339.7144
+Orpiment:
+  formula: As2S3
+  mw: 246.03759
+Realgar:
+  formula: AsS
+  mw: 106.98639499999999
+SnS:
+  formula: SnS
+  mw: 150.7748
+SnS2:
+  formula: SnS2
+  mw: 182.8396
+Galena:
+  formula: PbS
+  mw: 239.26479999999998
+Tl2S:
+  formula: Tl2S
+  mw: 440.8316
+ZnS(am):
+  formula: ZnS
+  mw: 97.44479999999999
+Sphalerite:
+  formula: ZnS
+  mw: 97.44479999999999
+Wurtzite:
+  formula: ZnS
+  mw: 97.44479999999999
+Greenockite:
+  formula: CdS
+  mw: 144.4788
+Hg2S:
+  formula: Hg2S
+  mw: 433.2488
+Cinnabar:
+  formula: HgS
+  mw: 232.6568
+Metacinnabar:
+  formula: HgS
+  mw: 232.6568
+Chalcocite:
+  formula: Cu2S
+  mw: 159.1568
+Djurleite:
+  formula: Cu0.066Cu1.868S
+  mw: null
+Anilite:
+  formula: Cu0.25Cu1.5S
+  mw: null
+BlaubleiII:
+  formula: Cu0.6Cu0.8S
+  mw: null
+BlaubleiI:
+  formula: Cu0.9Cu0.2S
+  mw: null
+Covellite:
+  formula: CuS
+  mw: 95.6108
+Chalcopyrite:
+  formula: CuFeS2
+  mw: 183.5206
+Acanthite:
+  formula: Ag2S
+  mw: 247.8012
+NiS(alpha):
+  formula: NiS
+  mw: 90.75819999999999
+NiS(beta):
+  formula: NiS
+  mw: 90.75819999999999
+NiS(gamma):
+  formula: NiS
+  mw: 90.75819999999999
+CoS(alpha):
+  formula: CoS
+  mw: 90.997994
+CoS(beta):
+  formula: CoS
+  mw: 90.997994
+FeS(ppt):
+  formula: FeS
+  mw: 87.90979999999999
+Greigite:
+  formula: Fe3S4
+  mw: 295.7942
+Mackinawite:
+  formula: FeS
+  mw: 87.90979999999999
+Pyrite:
+  formula: FeS2
+  mw: 119.9746
+MnS(grn):
+  formula: MnS
+  mw: 87.002844
+MnS(pnk):
+  formula: MnS
+  mw: 87.002844
+MoS2:
+  formula: MoS2
+  mw: 160.0796
+BeS:
+  formula: BeS
+  mw: 41.0769831
+BaS:
+  formula: BaS
+  mw: 169.3918
+Hg2(Cyanide)2:
+  formula: Hg2(Cyanide)2
+  mw: null
+CuCyanide:
+  formula: CuCyanide
+  mw: null
+AgCyanide:
+  formula: AgCyanide
+  mw: null
+Ag2(Cyanide)2:
+  formula: Ag2(Cyanide)2
+  mw: null
+NaCyanide(cubic):
+  formula: NaCyanide
+  mw: null
+KCyanide(cubic):
+  formula: KCyanide
+  mw: null
+Pb2Fe(Cyanide)6:
+  formula: Pb2Fe(Cyanide)6
+  mw: null
+Zn2Fe(Cyanide)6:
+  formula: Zn2Fe(Cyanide)6
+  mw: null
+Cd2Fe(Cyanide)6:
+  formula: Cd2Fe(Cyanide)6
+  mw: null
+Ag4Fe(Cyanide)6:
+  formula: Ag4Fe(Cyanide)6
+  mw: null
+Ag3Fe(Cyanide)6:
+  formula: Ag3Fe(Cyanide)6
+  mw: null
+Mn3(Fe(Cyanide)6)2:
+  formula: Mn3(Fe(Cyanide)6)2
+  mw: null
+Sb2Se3:
+  formula: Sb2Se3
+  mw: 480.433
+SnSe:
+  formula: SnSe
+  mw: 197.68099999999998
+SnSe2:
+  formula: SnSe2
+  mw: 276.652
+Clausthalite:
+  formula: PbSe
+  mw: 286.171
+Tl2Se:
+  formula: Tl2Se
+  mw: 487.7378
+ZnSe:
+  formula: ZnSe
+  mw: 144.351
+CdSe:
+  formula: CdSe
+  mw: 191.385
+HgSe:
+  formula: HgSe
+  mw: 279.563
+Cu2Se(alpha):
+  formula: Cu2Se
+  mw: 206.063
+Cu3Se2:
+  formula: Cu3Se2
+  mw: 348.58000000000004
+CuSe:
+  formula: CuSe
+  mw: 142.517
+CuSe2:
+  formula: CuSe2
+  mw: 221.488
+Ag2Se:
+  formula: Ag2Se
+  mw: 294.7074
+NiSe:
+  formula: NiSe
+  mw: 137.6644
+CoSe:
+  formula: CoSe
+  mw: 137.90419400000002
+FeSe:
+  formula: FeSe
+  mw: 134.816
+Ferroselite:
+  formula: FeSe2
+  mw: 213.787
+MnSe:
+  formula: MnSe
+  mw: 133.909044
+AlSb:
+  formula: AlSb
+  mw: 148.7415385
+ZnSb:
+  formula: ZnSb
+  mw: 187.14
+CdSb:
+  formula: CdSb
+  mw: 234.174
+Cu2Sb:3H2O:
+  formula: Cu2Sb:3H2O
+  mw: null
+Cu3Sb:
+  formula: Cu3Sb
+  mw: 312.398
+Breithauptite:
+  formula: NiSb
+  mw: 180.4534
+MnSb:
+  formula: MnSb
+  mw: 176.698044
+Mn2Sb:
+  formula: Mn2Sb
+  mw: 231.636088
+USb2:
+  formula: USb2
+  mw: 481.54891
+U3Sb4:
+  formula: U3Sb4
+  mw: 1201.12673
+Mg2Sb3:
+  formula: Mg2Sb3
+  mw: 413.89020000000005
+Ca3Sb2:
+  formula: Ca3Sb2
+  mw: 363.754
+NaSb:
+  formula: NaSb
+  mw: 144.74976928
+Na3Sb:
+  formula: Na3Sb
+  mw: 190.72930784
+SeO2:
+  formula: SeO2
+  mw: 110.96981
+SeO3:
+  formula: SeO3
+  mw: 126.969215
+Sb2O5:
+  formula: Sb2O5
+  mw: 323.517025
+SbO2:
+  formula: SbO2
+  mw: 153.75881
+Sb2O4:
+  formula: Sb2O4
+  mw: 307.51762
+Sb4O6(cubic):
+  formula: Sb4O6
+  mw: 583.03643
+Sb4O6(orth):
+  formula: Sb4O6
+  mw: 583.03643
+Sb(OH)3:
+  formula: Sb(OH)3
+  mw: 172.782038
+Senarmontite:
+  formula: Sb2O3
+  mw: 291.518215
+Valentinite:
+  formula: Sb2O3
+  mw: 291.518215
+Chalcedony:
+  formula: SiO2
+  mw: 60.08431
+Cristobalite:
+  formula: SiO2
+  mw: 60.08431
+Quartz:
+  formula: SiO2
+  mw: 60.08431
+SiO2(am-gel):
+  formula: SiO2
+  mw: 60.08431
+SiO2(am-ppt):
+  formula: SiO2
+  mw: 60.08431
+SnO:
+  formula: SnO
+  mw: 134.709405
+SnO2:
+  formula: SnO2
+  mw: 150.70881
+Sn(OH)2:
+  formula: Sn(OH)2
+  mw: 152.724692
+Sn(OH)4:
+  formula: Sn(OH)4
+  mw: 186.73938399999997
+H2Sn(OH)6:
+  formula: H2Sn(OH)6
+  mw: 222.769958
+Massicot:
+  formula: PbO
+  mw: 223.19940499999998
+Litharge:
+  formula: PbO
+  mw: 223.19940499999998
+PbO:0.3H2O:
+  formula: PbO:0.33H2O
+  mw: null
+Plattnerite:
+  formula: PbO2
+  mw: 239.19880999999998
+Pb(OH)2:
+  formula: Pb(OH)2
+  mw: 241.21469199999999
+Pb2O(OH)2:
+  formula: Pb2O(OH)2
+  mw: 464.41409699999997
+Al(OH)3(am):
+  formula: Al(OH)3
+  mw: 78.00357650000001
+Boehmite:
+  formula: AlOOH
+  mw: 59.9882895
+Diaspore:
+  formula: AlOOH
+  mw: 59.9882895
+Gibbsite:
+  formula: Al(OH)3
+  mw: 78.00357650000001
+Tl2O:
+  formula: Tl2O
+  mw: 424.766205
+TlOH:
+  formula: TlOH
+  mw: 221.39074599999998
+Avicennite:
+  formula: Tl2O3
+  mw: 456.765015
+Tl(OH)3:
+  formula: Tl(OH)3
+  mw: 255.405438
+Zn(OH)2(am):
+  formula: Zn(OH)2
+  mw: 99.39469199999999
+Zn(OH)2:
+  formula: Zn(OH)2
+  mw: 99.39469199999999
+Zn(OH)2(beta):
+  formula: Zn(OH)2
+  mw: 99.39469199999999
+Zn(OH)2(gamma):
+  formula: Zn(OH)2
+  mw: 99.39469199999999
+Zn(OH)2(epsilon):
+  formula: Zn(OH)2
+  mw: 99.39469199999999
+ZnO(active):
+  formula: ZnO
+  mw: 81.37940499999999
+Zincite:
+  formula: ZnO
+  mw: 81.37940499999999
+Cd(OH)2(am):
+  formula: Cd(OH)2
+  mw: 146.428692
+Cd(OH)2:
+  formula: Cd(OH)2
+  mw: 146.428692
+Monteponite:
+  formula: CdO
+  mw: 128.413405
+Hg2(OH)2:
+  formula: Hg2(OH)2
+  mw: 435.19869200000005
+Montroydite:
+  formula: HgO
+  mw: 216.591405
+Hg(OH)2:
+  formula: Hg(OH)2
+  mw: 234.606692
+Cuprite:
+  formula: Cu2O
+  mw: 143.091405
+Cu(OH)2:
+  formula: Cu(OH)2
+  mw: 97.56069199999999
+Tenorite:
+  formula: CuO
+  mw: 79.545405
+Ag2O:
+  formula: Ag2O
+  mw: 231.735805
+Ni(OH)2:
+  formula: Ni(OH)2
+  mw: 92.708092
+Bunsenite:
+  formula: NiO
+  mw: 74.69280499999999
+CoO:
+  formula: CoO
+  mw: 74.932599
+Co(OH)2:
+  formula: Co(OH)2
+  mw: 92.947886
+Co(OH)3:
+  formula: Co(OH)3
+  mw: 109.955232
+Fe(OH)2:
+  formula: Fe(OH)2
+  mw: 89.859692
+Ferrihydrite:
+  formula: Fe(OH)3
+  mw: 106.86703800000001
+Fe3(OH)8:
+  formula: Fe3(OH)8
+  mw: 303.59376799999995
+Goethite:
+  formula: FeOOH
+  mw: 88.85175100000001
+Pyrolusite:
+  formula: MnO2
+  mw: 86.936854
+Birnessite:
+  formula: MnO2
+  mw: 86.936854
+Nsutite:
+  formula: MnO2
+  mw: 86.936854
+Pyrochroite:
+  formula: Mn(OH)2
+  mw: 88.95273599999999
+Manganite:
+  formula: MnOOH
+  mw: 87.944795
+Cr(OH)2:
+  formula: Cr(OH)2
+  mw: 86.010792
+Cr(OH)3(am):
+  formula: Cr(OH)3
+  mw: 103.018138
+Cr(OH)3:
+  formula: Cr(OH)3
+  mw: 103.018138
+CrO3:
+  formula: CrO3
+  mw: 99.994315
+MoO3:
+  formula: MoO3
+  mw: 143.948215
+VO:
+  formula: VO
+  mw: 66.940905
+V(OH)3:
+  formula: V(OH)3
+  mw: 101.963538
+VO(OH)2:
+  formula: VO(OH)2
+  mw: 100.955597
+Uraninite:
+  formula: UO2
+  mw: 270.02772
+UO2(am):
+  formula: UO2
+  mw: 270.02772
+UO3:
+  formula: UO3
+  mw: 286.027125
+Gummite:
+  formula: UO3
+  mw: 286.027125
+UO2(OH)2(beta):
+  formula: UO2(OH)2
+  mw: 304.042412
+Schoepite:
+  formula: UO2(OH)2:H2O
+  mw: null
+Be(OH)2(am):
+  formula: Be(OH)2
+  mw: 43.0268751
+Be(OH)2(alpha):
+  formula: Be(OH)2
+  mw: 43.0268751
+Be(OH)2(beta):
+  formula: Be(OH)2
+  mw: 43.0268751
+Brucite:
+  formula: Mg(OH)2
+  mw: 58.31979199999999
+Periclase:
+  formula: MgO
+  mw: 40.304505
+Mg(OH)2(active):
+  formula: Mg(OH)2
+  mw: 58.31979199999999
+Lime:
+  formula: CaO
+  mw: 56.077405
+Portlandite:
+  formula: Ca(OH)2
+  mw: 74.092692
+Ba(OH)2:8H2O:
+  formula: Ba(OH)2:8H2O
+  mw: null
+Cu(SbO3)2:
+  formula: Cu(SbO3)2
+  mw: 403.06243
+Arsenolite:
+  formula: As4O6
+  mw: 395.68281
+Claudetite:
+  formula: As4O6
+  mw: 395.68281
+As2O5:
+  formula: As2O5
+  mw: 229.840215
+Pb2O3:
+  formula: Pb2O3
+  mw: 462.398215
+Minium:
+  formula: Pb3O4
+  mw: 685.5976199999999
+Al2O3:
+  formula: Al2O3
+  mw: 101.961292
+Co3O4:
+  formula: Co3O4
+  mw: 240.79720199999997
+CoFe2O4:
+  formula: CoFe2O4
+  mw: 234.620814
+Magnetite:
+  formula: Fe3O4
+  mw: 231.53262
+Hercynite:
+  formula: FeAl2O4
+  mw: 173.805697
+Hematite:
+  formula: Fe2O3
+  mw: 159.688215
+Maghemite:
+  formula: Fe2O3
+  mw: 159.688215
+Lepidocrocite:
+  formula: FeOOH
+  mw: 88.85175100000001
+Hausmannite:
+  formula: Mn3O4
+  mw: 228.811752
+Bixbyite:
+  formula: Mn2O3
+  mw: 157.874303
+Cr2O3:
+  formula: Cr2O3
+  mw: 151.99041499999998
+V3O5:
+  formula: V3O5
+  mw: 232.821525
+V4O7:
+  formula: V4O7
+  mw: 315.761835
+V6O13:
+  formula: V6O13
+  mw: 513.641265
+V2O5:
+  formula: V2O5
+  mw: 181.880025
+U4O9:
+  formula: U4O9
+  mw: 1096.110285
+U3O8:
+  formula: U3O8
+  mw: 842.08197
+Spinel:
+  formula: MgAl2O4
+  mw: 142.265797
+Magnesioferrite:
+  formula: Fe2MgO4
+  mw: 199.99272
+Natron:
+  formula: Na2CO3:10H2O
+  mw: null
+Cuprousferrite:
+  formula: CuFeO2
+  mw: 151.38980999999998
+Cupricferrite:
+  formula: CuFe2O4
+  mw: 239.23361999999997
+FeCr2O4:
+  formula: FeCr2O4
+  mw: 223.83482
+MgCr2O4:
+  formula: MgCr2O4
+  mw: 192.29492000000002
+SbF3:
+  formula: SbF3
+  mw: 178.755209489
+PbF2:
+  formula: PbF2
+  mw: 245.196806326
+ZnF2:
+  formula: ZnF2
+  mw: 103.376806326
+CdF2:
+  formula: CdF2
+  mw: 150.410806326
+Hg2F2:
+  formula: Hg2F2
+  mw: 439.18080632600004
+CuF:
+  formula: CuF
+  mw: 82.544403163
+CuF2:
+  formula: CuF2
+  mw: 101.542806326
+CuF2:2H2O:
+  formula: CuF2:2H2O
+  mw: null
+AgF:4H2O:
+  formula: AgF:4H2O
+  mw: null
+CoF2:
+  formula: CoF2
+  mw: 96.930000326
+CoF3:
+  formula: CoF3
+  mw: 115.928403489
+CrF3:
+  formula: CrF3
+  mw: 108.991309489
+VF4:
+  formula: VF4
+  mw: 126.93511265199999
+UF4:
+  formula: UF4
+  mw: 314.022522652
+UF4:2.5H2O:
+  formula: UF4:2.5H2O
+  mw: null
+MgF2:
+  formula: MgF2
+  mw: 62.301906325999994
+Fluorite:
+  formula: CaF2
+  mw: 78.074806326
+SrF2:
+  formula: SrF2
+  mw: 125.616806326
+BaF2:
+  formula: BaF2
+  mw: 175.323806326
+Cryolite:
+  formula: Na3AlF6
+  mw: 209.94126531799998
+SbCl3:
+  formula: SbCl3
+  mw: 228.1187
+SnCl2:
+  formula: SnCl2
+  mw: 189.61579999999998
+Cotunnite:
+  formula: PbCl2
+  mw: 278.1058
+Matlockite:
+  formula: PbClF
+  mw: 261.65130316299997
+Phosgenite:
+  formula: PbCl2:PbCO3
+  mw: null
+Laurionite:
+  formula: PbOHCl
+  mw: 259.660246
+Pb2(OH)3Cl:
+  formula: Pb2(OH)3Cl
+  mw: 500.874938
+TlCl:
+  formula: TlCl
+  mw: 239.8363
+ZnCl2:
+  formula: ZnCl2
+  mw: 136.2858
+Zn2(OH)3Cl:
+  formula: Zn2(OH)3Cl
+  mw: 217.234938
+Zn5(OH)8Cl2:
+  formula: Zn5(OH)8Cl2
+  mw: 533.864568
+CdCl2:
+  formula: CdCl2
+  mw: 183.3198
+CdCl2:1H2O:
+  formula: CdCl2:1H2O
+  mw: null
+CdCl2:2.5H2O:
+  formula: CdCl2:2.5H2O
+  mw: null
+CdOHCl:
+  formula: CdOHCl
+  mw: 164.874246
+Calomel:
+  formula: Hg2Cl2
+  mw: 472.0898
+HgCl2:
+  formula: HgCl2
+  mw: 271.4978
+Nantokite:
+  formula: CuCl
+  mw: 98.99889999999999
+Melanothallite:
+  formula: CuCl2
+  mw: 134.4518
+Atacamite:
+  formula: Cu2(OH)3Cl
+  mw: 213.566938
+Cerargyrite:
+  formula: AgCl
+  mw: 143.3211
+CoCl2:
+  formula: CoCl2
+  mw: 129.838994
+CoCl2:6H2O:
+  formula: CoCl2:6H2O
+  mw: null
+(Co(NH3)6)Cl3:
+  formula: (Co(NH3)6)Cl3
+  mw: 267.47505
+(Co(NH3)5OH2)Cl3:
+  formula: (Co(NH3)5OH2)Cl3
+  mw: 268.459811
+(Co(NH3)5Cl)Cl2:
+  formula: (Co(NH3)5Cl)Cl2
+  mw: 250.444524
+Fe(OH)2.7Cl.3:
+  formula: Fe(OH)2.7Cl.3
+  mw: 338.029992
+MnCl2:4H2O:
+  formula: MnCl2:4H2O
+  mw: null
+CrCl2:
+  formula: CrCl2
+  mw: 122.9019
+CrCl3:
+  formula: CrCl3
+  mw: 158.3548
+VCl2:
+  formula: VCl2
+  mw: 121.84729999999999
+VCl3:
+  formula: VCl3
+  mw: 157.3002
+VOCl:
+  formula: VOCl
+  mw: 102.39380499999999
+VOCl2:
+  formula: VOCl2
+  mw: 137.846705
+VO2Cl:
+  formula: VO2Cl
+  mw: 118.39320999999998
+Halite:
+  formula: NaCl
+  mw: 58.442669280000004
+SbBr3:
+  formula: SbBr3
+  mw: 361.47049999999996
+SnBr2:
+  formula: SnBr2
+  mw: 278.517
+SnBr4:
+  formula: SnBr4
+  mw: 438.32399999999996
+PbBr2:
+  formula: PbBr2
+  mw: 367.00699999999995
+PbBrF:
+  formula: PbBrF
+  mw: 306.101903163
+TlBr:
+  formula: TlBr
+  mw: 284.2869
+ZnBr2:2H2O:
+  formula: ZnBr2:2H2O
+  mw: null
+CdBr2:4H2O:
+  formula: CdBr2:4H2O
+  mw: null
+Hg2Br2:
+  formula: Hg2Br2
+  mw: 560.991
+HgBr2:
+  formula: HgBr2
+  mw: 360.399
+CuBr:
+  formula: CuBr
+  mw: 143.4495
+Cu2(OH)3Br:
+  formula: Cu2(OH)3Br
+  mw: 258.017538
+Bromyrite:
+  formula: AgBr
+  mw: 187.7717
+(Co(NH3)6)Br3:
+  formula: (Co(NH3)6)Br3
+  mw: 400.82685
+(Co(NH3)5Cl)Br2:
+  formula: (Co(NH3)5Cl)Br2
+  mw: 339.34572399999996
+CrBr3:
+  formula: CrBr3
+  mw: 291.7066
+AsI3:
+  formula: AsI3
+  mw: 455.635005
+SbI3:
+  formula: SbI3
+  mw: 502.47341
+PbI2:
+  formula: PbI2
+  mw: 461.00894
+TlI:
+  formula: TlI
+  mw: 331.28787
+ZnI2:
+  formula: ZnI2
+  mw: 319.18894
+CdI2:
+  formula: CdI2
+  mw: 366.22294
+Hg2I2:
+  formula: Hg2I2
+  mw: 654.9929400000001
+Coccinite:
+  formula: HgI2
+  mw: 454.40094
+HgI2:2NH3:
+  formula: HgI2:2NH3
+  mw: null
+HgI2:6NH3:
+  formula: HgI2:6NH3
+  mw: null
+CuI:
+  formula: CuI
+  mw: 190.45047
+Iodyrite:
+  formula: AgI
+  mw: 234.77267
+(Co(NH3)6)I3:
+  formula: (Co(NH3)6)I3
+  mw: 541.82976
+(Co(NH3)5Cl)I2:
+  formula: (Co(NH3)5Cl)I2
+  mw: 433.34766400000007
+CrI3:
+  formula: CrI3
+  mw: 432.70951
+Cerussite:
+  formula: PbCO3
+  mw: 267.208955
+Pb2OCO3:
+  formula: Pb2OCO3
+  mw: 490.40835999999996
+Pb3O2CO3:
+  formula: Pb3O2CO3
+  mw: 713.6077649999999
+Hydrocerussite:
+  formula: Pb3(OH)2(CO3)2
+  mw: 775.6326019999999
+Pb10(OH)6O(CO3)6:
+  formula: Pb10(OH)6O(CO3)6
+  mw: 2550.097211
+Tl2CO3:
+  formula: Tl2CO3
+  mw: 468.775755
+Smithsonite:
+  formula: ZnCO3
+  mw: 125.388955
+ZnCO3:1H2O:
+  formula: ZnCO3:1H2O
+  mw: null
+Otavite:
+  formula: CdCO3
+  mw: 172.422955
+Hg2CO3:
+  formula: Hg2CO3
+  mw: 461.19295500000004
+Hg3O2CO3:
+  formula: Hg3O2CO3
+  mw: 693.783765
+CuCO3:
+  formula: CuCO3
+  mw: 123.554955
+Malachite:
+  formula: Cu2(OH)2CO3
+  mw: 221.115647
+Azurite:
+  formula: Cu3(OH)2(CO3)2
+  mw: 344.67060200000003
+Ag2CO3:
+  formula: Ag2CO3
+  mw: 275.745355
+NiCO3:
+  formula: NiCO3
+  mw: 118.702355
+CoCO3:
+  formula: CoCO3
+  mw: 118.942149
+Siderite:
+  formula: FeCO3
+  mw: 115.853955
+Rhodochrosite:
+  formula: MnCO3
+  mw: 114.946999
+Rutherfordine:
+  formula: UO2CO3
+  mw: 330.036675
+Artinite:
+  formula: MgCO3:Mg(OH)2:3H2O
+  mw: null
+Hydromagnesite:
+  formula: Mg5(CO3)4(OH)2:4H2O
+  mw: null
+Magnesite:
+  formula: MgCO3
+  mw: 84.314055
+Nesquehonite:
+  formula: MgCO3:3H2O
+  mw: null
+Aragonite:
+  formula: CaCO3
+  mw: 100.086955
+Calcite:
+  formula: CaCO3
+  mw: 100.086955
+Dolomite(ordered):
+  formula: CaMg(CO3)2
+  mw: 184.40101
+Dolomite(disordered):
+  formula: CaMg(CO3)2
+  mw: 184.40101
+Huntite:
+  formula: CaMg3(CO3)4
+  mw: 353.02912000000003
+Strontianite:
+  formula: SrCO3
+  mw: 147.62895500000002
+Witherite:
+  formula: BaCO3
+  mw: 197.335955
+Thermonatrite:
+  formula: Na2CO3:H2O
+  mw: null
+TlNO3:
+  formula: TlNO3
+  mw: 266.388318
+Zn(NO3)2:6H2O:
+  formula: Zn(NO3)2:6H2O
+  mw: null
+Cu2(OH)3NO3:
+  formula: Cu2(OH)3NO3
+  mw: 240.11895600000003
+(Co(NH3)6)(NO3)3:
+  formula: (Co(NH3)6)(NO3)3
+  mw: 347.13110400000005
+(Co(NH3)5Cl)(NO3)2:
+  formula: (Co(NH3)5Cl)(NO3)2
+  mw: 303.54856
+UO2(NO3)2:
+  formula: UO2(NO3)2
+  mw: 394.037556
+UO2(NO3)2:2H2O:
+  formula: UO2(NO3)2:2H2O
+  mw: null
+UO2(NO3)2:3H2O:
+  formula: UO2(NO3)2:3H2O
+  mw: null
+UO2(NO3)2:6H2O:
+  formula: UO2(NO3)2:6H2O
+  mw: null
+Pb(BO2)2:
+  formula: Pb(BO2)2
+  mw: 292.81962
+Zn(BO2)2:
+  formula: Zn(BO2)2
+  mw: 150.99962
+Cd(BO2)2:
+  formula: Cd(BO2)2
+  mw: 198.03361999999998
+Co(BO2)2:
+  formula: Co(BO2)2
+  mw: 144.552814
+SnSO4:
+  formula: SnSO4
+  mw: 214.77242
+Sn(SO4)2:
+  formula: Sn(SO4)2
+  mw: 310.83484
+Larnakite:
+  formula: PbO:PbSO4
+  mw: null
+Pb3O2SO4:
+  formula: Pb3O2SO4
+  mw: 749.6612299999999
+Pb4O3SO4:
+  formula: Pb4O3SO4
+  mw: 972.860635
+Anglesite:
+  formula: PbSO4
+  mw: 303.26242
+Pb4(OH)6SO4:
+  formula: Pb4(OH)6SO4
+  mw: 1026.906496
+AlOHSO4:
+  formula: AlOHSO4
+  mw: 140.05130450000001
+Al4(OH)10SO4:
+  formula: Al4(OH)10SO4
+  mw: 374.062034
+Tl2SO4:
+  formula: Tl2SO4
+  mw: 504.82921999999996
+Zn2(OH)2SO4:
+  formula: Zn2(OH)2SO4
+  mw: 260.837112
+Zn4(OH)6SO4:
+  formula: Zn4(OH)6SO4
+  mw: 459.626496
+Zn3O(SO4)2:
+  formula: Zn3O(SO4)2
+  mw: 404.26424499999996
+Zincosite:
+  formula: ZnSO4
+  mw: 161.44242
+ZnSO4:1H2O:
+  formula: ZnSO4:1H2O
+  mw: null
+Bianchite:
+  formula: ZnSO4:6H2O
+  mw: null
+Goslarite:
+  formula: ZnSO4:7H2O
+  mw: null
+Cd3(OH)4SO4:
+  formula: Cd3(OH)4SO4
+  mw: 501.333804
+Cd3(OH)2(SO4)2:
+  formula: Cd3(OH)2(SO4)2
+  mw: 563.381532
+Cd4(OH)6SO4:
+  formula: Cd4(OH)6SO4
+  mw: 647.762496
+CdSO4:
+  formula: CdSO4
+  mw: 208.47642000000002
+CdSO4:1H2O:
+  formula: CdSO4:1H2O
+  mw: null
+CdSO4:2.67H2O:
+  formula: CdSO4:2.67H2O
+  mw: null
+Hg2SO4:
+  formula: Hg2SO4
+  mw: 497.24642000000006
+HgSO4:
+  formula: HgSO4
+  mw: 296.65442
+Cu2SO4:
+  formula: Cu2SO4
+  mw: 223.15442000000002
+Antlerite:
+  formula: Cu3(OH)4SO4
+  mw: 354.729804
+Brochantite:
+  formula: Cu4(OH)6SO4
+  mw: 452.29049599999996
+Langite:
+  formula: Cu4(OH)6SO4:H2O
+  mw: null
+CuOCuSO4:
+  formula: CuOCuSO4
+  mw: 239.15382499999998
+CuSO4:
+  formula: CuSO4
+  mw: 159.60842
+Chalcanthite:
+  formula: CuSO4:5H2O
+  mw: null
+Ag2SO4:
+  formula: Ag2SO4
+  mw: 311.79882
+Ni4(OH)6SO4:
+  formula: Ni4(OH)6SO4
+  mw: 432.880096
+Retgersite:
+  formula: NiSO4:6H2O
+  mw: null
+Morenosite:
+  formula: NiSO4:7H2O
+  mw: null
+CoSO4:
+  formula: CoSO4
+  mw: 154.995614
+CoSO4:6H2O:
+  formula: CoSO4:6H2O
+  mw: null
+Melanterite:
+  formula: FeSO4:7H2O
+  mw: null
+Fe2(SO4)3:
+  formula: Fe2(SO4)3
+  mw: 399.87726000000004
+H-Jarosite:
+  formula: (H3O)Fe3(SO4)2(OH)6
+  mw: 480.72714399999995
+Na-Jarosite:
+  formula: NaFe3(SO4)2(OH)6
+  mw: 484.69368527999995
+K-Jarosite:
+  formula: KFe3(SO4)2(OH)6
+  mw: 500.80221599999993
+MnSO4:
+  formula: MnSO4
+  mw: 151.000464
+Mn2(SO4)3:
+  formula: Mn2(SO4)3
+  mw: 398.063348
+VOSO4:
+  formula: VOSO4
+  mw: 163.003325
+Epsomite:
+  formula: MgSO4:7H2O
+  mw: null
+Anhydrite:
+  formula: CaSO4
+  mw: 136.14042
+Gypsum:
+  formula: CaSO4:2H2O
+  mw: null
+Celestite:
+  formula: SrSO4
+  mw: 183.68242
+Barite:
+  formula: BaSO4
+  mw: 233.38942
+Mirabilite:
+  formula: Na2SO4:10H2O
+  mw: null
+Thenardite:
+  formula: Na2SO4
+  mw: 142.04195856
+K-Alum:
+  formula: KAl(SO4)2:12H2O
+  mw: null
+Alunite:
+  formula: KAl3(SO4)2(OH)6
+  mw: 414.21183149999996
+(NH4)2CrO4:
+  formula: (NH4)2CrO4
+  mw: 152.070654
+PbCrO4:
+  formula: PbCrO4
+  mw: 323.19372
+Tl2CrO4:
+  formula: Tl2CrO4
+  mw: 524.76052
+Hg2CrO4:
+  formula: Hg2CrO4
+  mw: 517.17772
+CuCrO4:
+  formula: CuCrO4
+  mw: 179.53972
+Ag2CrO4:
+  formula: Ag2CrO4
+  mw: 331.73012
+MgCrO4:
+  formula: MgCrO4
+  mw: 140.29882
+CaCrO4:
+  formula: CaCrO4
+  mw: 156.07172
+SrCrO4:
+  formula: SrCrO4
+  mw: 203.61372
+BaCrO4:
+  formula: BaCrO4
+  mw: 253.32072
+Li2CrO4:
+  formula: Li2CrO4
+  mw: 129.87372
+Na2CrO4:
+  formula: Na2CrO4
+  mw: 161.97325856
+Na2Cr2O7:
+  formula: Na2Cr2O7
+  mw: 261.96757356
+K2CrO4:
+  formula: K2CrO4
+  mw: 194.19031999999999
+K2Cr2O7:
+  formula: K2Cr2O7
+  mw: 294.184635
+Hg2SeO3:
+  formula: Hg2SeO3
+  mw: 528.153215
+HgSeO3:
+  formula: HgSeO3
+  mw: 327.561215
+Ag2SeO3:
+  formula: Ag2SeO3
+  mw: 342.705615
+CuSeO3:2H2O:
+  formula: CuSeO3:2H2O
+  mw: null
+NiSeO3:2H2O:
+  formula: NiSeO3:2H2O
+  mw: null
+CoSeO3:
+  formula: CoSeO3
+  mw: 185.902409
+Fe2(SeO3)3:2H2O:
+  formula: Fe2(SeO3)3:2H2O
+  mw: null
+Fe2(OH)4SeO3:
+  formula: Fe2(OH)4SeO3
+  mw: 306.688599
+MnSeO3:
+  formula: MnSeO3
+  mw: 181.907259
+MnSeO3:2H2O:
+  formula: MnSeO3:2H2O
+  mw: null
+MgSeO3:6H2O:
+  formula: MgSeO3:6H2O
+  mw: null
+CaSeO3:2H2O:
+  formula: CaSeO3:2H2O
+  mw: null
+SrSeO3:
+  formula: SrSeO3
+  mw: 214.58921500000002
+BaSeO3:
+  formula: BaSeO3
+  mw: 264.296215
+Na2SeO3:5H2O:
+  formula: Na2SeO3:5H2O
+  mw: null
+PbSeO4:
+  formula: PbSeO4
+  mw: 350.16862
+Tl2SeO4:
+  formula: Tl2SeO4
+  mw: 551.73542
+ZnSeO4:6H2O:
+  formula: ZnSeO4:6H2O
+  mw: null
+CdSeO4:2H2O:
+  formula: CdSeO4:2H2O
+  mw: null
+Ag2SeO4:
+  formula: Ag2SeO4
+  mw: 358.70502
+CuSeO4:5H2O:
+  formula: CuSeO4:5H2O
+  mw: null
+NiSeO4:6H2O:
+  formula: NiSeO4:6H2O
+  mw: null
+CoSeO4:6H2O:
+  formula: CoSeO4:6H2O
+  mw: null
+MnSeO4:5H2O:
+  formula: MnSeO4:5H2O
+  mw: null
+UO2SeO4:4H2O:
+  formula: UO2SeO4:4H2O
+  mw: null
+MgSeO4:6H2O:
+  formula: MgSeO4:6H2O
+  mw: null
+CaSeO4:2H2O:
+  formula: CaSeO4:2H2O
+  mw: null
+SrSeO4:
+  formula: SrSeO4
+  mw: 230.58862
+BaSeO4:
+  formula: BaSeO4
+  mw: 280.29562
+BeSeO4:4H2O:
+  formula: BeSeO4:4H2O
+  mw: null
+Na2SeO4:
+  formula: Na2SeO4
+  mw: 188.94815856
+K2SeO4:
+  formula: K2SeO4
+  mw: 221.16521999999998
+(NH4)2SeO4:
+  formula: (NH4)2SeO4
+  mw: 179.04555399999998
+H2MoO4:
+  formula: H2MoO4
+  mw: 161.963502
+PbMoO4:
+  formula: PbMoO4
+  mw: 367.14761999999996
+Al2(MoO4)3:
+  formula: Al2(MoO4)3
+  mw: 533.8059370000001
+Tl2MoO4:
+  formula: Tl2MoO4
+  mw: 568.71442
+ZnMoO4:
+  formula: ZnMoO4
+  mw: 225.32762
+CdMoO4:
+  formula: CdMoO4
+  mw: 272.36162
+CuMoO4:
+  formula: CuMoO4
+  mw: 223.49362
+Ag2MoO4:
+  formula: Ag2MoO4
+  mw: 375.68402000000003
+NiMoO4:
+  formula: NiMoO4
+  mw: 218.64102
+CoMoO4:
+  formula: CoMoO4
+  mw: 218.880814
+FeMoO4:
+  formula: FeMoO4
+  mw: 215.79262
+BeMoO4:
+  formula: BeMoO4
+  mw: 168.9598031
+MgMoO4:
+  formula: MgMoO4
+  mw: 184.25272
+CaMoO4:
+  formula: CaMoO4
+  mw: 200.02562
+BaMoO4:
+  formula: BaMoO4
+  mw: 297.27462
+Li2MoO4:
+  formula: Li2MoO4
+  mw: 173.82762
+Na2MoO4:
+  formula: Na2MoO4
+  mw: 205.92715856
+Na2MoO4:2H2O:
+  formula: Na2MoO4:2H2O
+  mw: null
+Na2Mo2O7:
+  formula: Na2Mo2O7
+  mw: 349.87537356
+K2MoO4:
+  formula: K2MoO4
+  mw: 238.14422000000002
+PbHPO4:
+  formula: PbHPO4
+  mw: 303.179322998
+Pb3(PO4)2:
+  formula: Pb3(PO4)2
+  mw: 811.5427639959998
+Pyromorphite:
+  formula: Pb5(PO4)3Cl
+  mw: 1356.367045994
+Hydroxylpyromorphite:
+  formula: Pb5(PO4)3OH
+  mw: 1337.921491994
+Plumbgummite:
+  formula: PbAl3(PO4)2(OH)5:H2O
+  mw: null
+Hinsdalite:
+  formula: PbAl3PO4SO4(OH)6
+  mw: 581.222493498
+Tsumebite:
+  formula: Pb2CuPO4(OH)3:3H2O
+  mw: null
+Zn3(PO4)2:4H2O:
+  formula: Zn3(PO4)2:4H2O
+  mw: null
+Cd3(PO4)2:
+  formula: Cd3(PO4)2
+  mw: 527.184763996
+Hg2HPO4:
+  formula: Hg2HPO4
+  mw: 497.163322998
+Cu3(PO4)2:
+  formula: Cu3(PO4)2
+  mw: 380.580763996
+Cu3(PO4)2:3H2O:
+  formula: Cu3(PO4)2:3H2O
+  mw: null
+Ag3PO4:
+  formula: Ag3PO4
+  mw: 418.575981998
+Ni3(PO4)2:
+  formula: Ni3(PO4)2
+  mw: 366.022963996
+CoHPO4:
+  formula: CoHPO4
+  mw: 154.912516998
+Co3(PO4)2:
+  formula: Co3(PO4)2
+  mw: 366.742345996
+Vivianite:
+  formula: Fe3(PO4)2:8H2O
+  mw: null
+Strengite:
+  formula: FePO4:2H2O
+  mw: null
+Mn3(PO4)2:
+  formula: Mn3(PO4)2
+  mw: 354.756895996
+MnHPO4:
+  formula: MnHPO4
+  mw: 150.917366998
+(VO)3(PO4)2:
+  formula: (VO)3(PO4)2
+  mw: 390.76547899599996
+Mg3(PO4)2:
+  formula: Mg3(PO4)2
+  mw: 262.858063996
+MgHPO4:3H2O:
+  formula: MgHPO4:3H2O
+  mw: null
+FCO3Apatite:
+  formula: Ca9.316Na0.36Mg0.144(PO4)4.8(CO3)1.2F2.48
+  mw: null
+Hydroxylapatite:
+  formula: Ca5(PO4)3OH
+  mw: 502.311491994
+CaHPO4:2H2O:
+  formula: CaHPO4:2H2O
+  mw: null
+CaHPO4:
+  formula: CaHPO4
+  mw: 136.05732299800002
+Ca3(PO4)2(beta):
+  formula: Ca3(PO4)2
+  mw: 310.176763996
+Ca4H(PO4)3:3H2O:
+  formula: Ca4H(PO4)3:3H2O
+  mw: null
+SrHPO4:
+  formula: SrHPO4
+  mw: 183.599322998
+BaHPO4:
+  formula: BaHPO4
+  mw: 233.30632299799998
+U(HPO4)2:4H2O:
+  formula: U(HPO4)2:4H2O
+  mw: null
+(UO2)3(PO4)2:
+  formula: (UO2)3(PO4)2
+  mw: 1000.025923996
+UO2HPO4:
+  formula: UO2HPO4
+  mw: 366.007042998
+Uramphite:
+  formula: (NH4)2(UO2)2(PO4)2
+  mw: 766.0751379960001
+Przhevalskite:
+  formula: Pb(UO2)2(PO4)2
+  mw: 937.1982039960001
+Torbernite:
+  formula: Cu(UO2)2(PO4)2
+  mw: 793.5442039960001
+Bassetite:
+  formula: Fe(UO2)2(PO4)2
+  mw: 785.843203996
+Saleeite:
+  formula: Mg(UO2)2(PO4)2
+  mw: 754.3033039960001
+Ningyoite:
+  formula: CaU(PO4)2:2H2O
+  mw: null
+H-Autunite:
+  formula: H2(UO2)2(PO4)2
+  mw: 732.0140859960001
+Autunite:
+  formula: Ca(UO2)2(PO4)2
+  mw: 770.076203996
+Sr-Autunite:
+  formula: Sr(UO2)2(PO4)2
+  mw: 817.618203996
+Na-Autunite:
+  formula: Na2(UO2)2(PO4)2
+  mw: 775.9777425560001
+K-Autunite:
+  formula: K2(UO2)2(PO4)2
+  mw: 808.194803996
+Uranocircite:
+  formula: Ba(UO2)2(PO4)2
+  mw: 867.325203996
+Pb3(AsO4)2:
+  formula: Pb3(AsO4)2
+  mw: 899.4384299999999
+AlAsO4:2H2O:
+  formula: AlAsO4:2H2O
+  mw: null
+Zn3(AsO4)2:2.5H2O:
+  formula: Zn3(AsO4)2:2.5H2O
+  mw: null
+Cu3(AsO4)2:2H2O:
+  formula: Cu3(AsO4)2:2H2O
+  mw: null
+Ag3AsO3:
+  formula: Ag3AsO3
+  mw: 446.52441
+Ag3AsO4:
+  formula: Ag3AsO4
+  mw: 462.523815
+Ni3(AsO4)2:8H2O:
+  formula: Ni3(AsO4)2:8H2O
+  mw: null
+Co3(AsO4)2:
+  formula: Co3(AsO4)2
+  mw: 454.638012
+FeAsO4:2H2O:
+  formula: FeAsO4:2H2O
+  mw: null
+Mn3(AsO4)2:8H2O:
+  formula: Mn3(AsO4)2:8H2O
+  mw: null
+Ca3(AsO4)2:4H2O:
+  formula: Ca3(AsO4)2:4H2O
+  mw: null
+Ba3(AsO4)2:
+  formula: Ba3(AsO4)2
+  mw: 689.81943
+Pb3(VO4)2:
+  formula: Pb3(VO4)2
+  mw: 851.4782399999999
+Pb2V2O7:
+  formula: Pb2V2O7
+  mw: 628.278835
+AgVO3:
+  formula: AgVO3
+  mw: 206.807915
+Ag2HVO4:
+  formula: Ag2HVO4
+  mw: 331.683461
+Ag3H2VO5:
+  formula: Ag3H2VO5
+  mw: 456.559007
+Fe(VO3)2:
+  formula: Fe(VO3)2
+  mw: 253.72443
+Mn(VO3)2:
+  formula: Mn(VO3)2
+  mw: 252.817474
+Mg(VO3)2:
+  formula: Mg(VO3)2
+  mw: 222.18453000000002
+Mg2V2O7:
+  formula: Mg2V2O7
+  mw: 262.489035
+Carnotite:
+  formula: KUO2VO4
+  mw: 424.06514
+Tyuyamunite:
+  formula: Ca(UO2)2(VO4)2
+  mw: 810.01168
+Ca(VO3)2:
+  formula: Ca(VO3)2
+  mw: 237.95743000000002
+Ca3(VO4)2:
+  formula: Ca3(VO4)2
+  mw: 350.11224000000004
+Ca2V2O7:
+  formula: Ca2V2O7
+  mw: 294.034835
+Ca3(VO4)2:4H2O:
+  formula: Ca3(VO4)2:4H2O
+  mw: null
+Ca2V2O7:2H2O:
+  formula: Ca2V2O7:2H2O
+  mw: null
+Ba3(VO4)2:4H2O:
+  formula: Ba3(VO4)2:4H2O
+  mw: null
+Ba2V2O7:2H2O:
+  formula: Ba2V2O7:2H2O
+  mw: null
+NaVO3:
+  formula: NaVO3
+  mw: 121.92948428000001
+Na3VO4:
+  formula: Na3VO4
+  mw: 183.90842784
+Na4V2O7:
+  formula: Na4V2O7
+  mw: 305.83791212
+Halloysite:
+  formula: Al2Si2O5(OH)4
+  mw: 258.160486
+Kaolinite:
+  formula: Al2Si2O5(OH)4
+  mw: 258.160486
+Greenalite:
+  formula: Fe3Si2O5(OH)4
+  mw: 371.73240899999996
+Chrysotile:
+  formula: Mg3Si2O5(OH)4
+  mw: 277.112709
+Sepiolite:
+  formula: Mg2Si3O7.5OH:3H2O
+  mw: null
+Sepiolite(A):
+  formula: Mg2Si3O7.5OH:3H2O
+  mw: null
+O2(g):
+  formula: O2
+  mw: 31.99881
+CH4(g):
+  formula: CH4
+  mw: 16.042504
+CO2(g):
+  formula: CO2
+  mw: 44.00955
+H2S(g):
+  formula: H2S
+  mw: 34.080681999999996
+H2Se(g):
+  formula: H2Se
+  mw: 80.98688200000001
+Hg(g):
+  formula: Hg
+  mw: 200.592
+Hg2(g):
+  formula: Hg2
+  mw: 401.184
+Hg(CH3)2(g):
+  formula: Hg(CH3)2
+  mw: 230.66112600000002
+HgF(g):
+  formula: HgF
+  mw: 219.59040316300002
+HgF2(g):
+  formula: HgF2
+  mw: 238.588806326
+HgCl(g):
+  formula: HgCl
+  mw: 236.0449
+HgBr(g):
+  formula: HgBr
+  mw: 280.4955
+HgBr2(g):
+  formula: HgBr2
+  mw: 360.399
+HgI(g):
+  formula: HgI
+  mw: 327.49647000000004
+HgI2(g):
+  formula: HgI2
+  mw: 454.40094
