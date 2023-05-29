@@ -760,6 +760,7 @@ class phreeqcWTapi(dataBaseManagment):
                     "value": input_loading,
                     "compound": input_formula,
                 }
+                self.check_formula_consistent("Alkalinity", input_formula, mw)
         else:
             phreeqc_name = self.find_input_in_db(name, input_loading)
             mw = None
