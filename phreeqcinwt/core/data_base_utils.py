@@ -6,11 +6,15 @@ import os
 
 
 class dataBaseManagment:
-    def load_database(self):
+    def load_database(self, remove_phase_list):
         if self.cwd is None:
             self.cwd = os.path.dirname(phapi.__file__) + "/"
         db_file = self.cwd + "databases/" + self.database
-        self.phreeqc.load_database(db_file)
+        if remove_phase_list is not None:
+            db_string = self.remove_phases_from_db(db_file, remove_phase_list)
+            self.phreeqc.load_database_string(db_string)
+        else:
+            self.phreeqc.load_database(db_file)
         result = self.phreeqc.get_component_list()
 
         self.db_metadata = {
@@ -197,8 +201,39 @@ class dataBaseManagment:
                         # print("ss")
             self.save_db_metadata()
 
-        # print(self.db_metadata["SOLUTION_SPECIES"])
-        # print(self.db_metadata["SOLUTION_MASTER_SPECIES"])
+    # self.phreeqc.load_database(db_file.stirp(".dat") + "_mod.dat")
+    # print(self.db_metadata["SOLUTION_SPECIES"])
+    # print(self.db_metadata["SOLUTION_MASTER_SPECIES"])
+    def remove_phases_from_db(self, db_file, phase_list):
+        def check_ignore(line, phase_list):
+            found = False
+            for phase in phase_list:
+                if phase in line:
+                    found = True
+                    break
+            return found
+
+        db_string = ""
+        print(phase_list)
+        with open(db_file) as database:
+            lines = database.readlines()
+            found = False
+            pass_lines = 0
+            for l in lines:
+                # print(found)
+                if found == False:
+                    found = check_ignore(l, phase_list)
+                    if found == False:
+                        db_string += l
+                    else:
+                        print("removed from db file: {}".format(l.strip("\n")))
+                elif found and l[0:1].isspace():
+                    print("removed from db file: {}".format(l.strip("\n")))
+                else:
+                    found = False
+                    db_string += l
+        # )
+        return db_string
 
     def save_db_metadata(self):
         dbm_dir = self.cwd + "databases/metadata/" + self.database.strip(".dat")

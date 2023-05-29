@@ -25,6 +25,7 @@ class phreeqcWTapi(dataBaseManagment):
         rebuild_phases=False,
         log_phreeqc_commands=True,
         ignore_phase_list=None,
+        remove_phase_list=None,
     ):
         """this is main class for phreeqcAPI that will handle working with a single or multiple solutions
         this class is a higher level api for phreeqpy and abstraction method for phreeqc with
@@ -55,6 +56,7 @@ class phreeqcWTapi(dataBaseManagment):
         rebuild_phases -- rebuild meta data for phases list (default False)
         log_phreeqc_commands -- log phreeqc commands(default False)
         ignore_phase_list -- provide list of phases to not check for scaling and percipitaiton, can be updated useing exclude_phases method
+        remove_phase_list -- list of phases to remove, this will remove it from provided database, the database will NOT be ovewritten
         """
 
         self.cwd = db_dir
@@ -65,7 +67,7 @@ class phreeqcWTapi(dataBaseManagment):
         ]
         self.phreeqc = phreeqc_mod.IPhreeqc()
         self.database = database
-        self.load_database()
+        self.load_database(remove_phase_list)
         # storing last solution conditions for ph adjust etc.
         self.sol_state_dict = {}
         # number of current soluton and action being performed
