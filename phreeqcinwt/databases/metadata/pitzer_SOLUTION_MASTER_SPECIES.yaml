@@ -1,0 +1,92 @@
+Alkalinity:
+  formula: Ca0.5(CO3)0.5
+  species: CO3-2
+  mw: 50.05
+B:
+  formula: B
+  species: B(OH)3
+  mw: 10.81
+Ba:
+  formula: Ba
+  species: Ba+2
+  mw: 137.33
+Br:
+  formula: Br
+  species: Br-
+  mw: 79.904
+C:
+  formula: HCO3
+  species: CO3-2
+  mw: 12.0111
+C(4):
+  formula: HCO3
+  species: CO3-2
+  mw: 12.0111
+Ca:
+  formula: Ca
+  species: Ca+2
+  mw: 40.08
+Cl:
+  formula: Cl
+  species: Cl-
+  mw: 35.453
+E:
+  formula: '0.0'
+  species: e-
+  mw: 0.0
+Fe:
+  formula: Fe
+  species: Fe+2
+  mw: 55.847
+H:
+  formula: H
+  species: H+
+  mw: 1.008
+H(1):
+  formula: '0.0'
+  species: H+
+  mw: 0.0
+K:
+  formula: K
+  species: K+
+  mw: 39.0983
+Li:
+  formula: Li
+  species: Li+
+  mw: 6.941
+Mg:
+  formula: Mg
+  species: Mg+2
+  mw: 24.305
+Mn:
+  formula: Mn
+  species: Mn+2
+  mw: 54.938
+Na:
+  formula: Na
+  species: Na+
+  mw: 22.9898
+O:
+  formula: O
+  species: H2O
+  mw: 16.0
+O(-2):
+  formula: '0.0'
+  species: H2O
+  mw: 0.0
+S:
+  formula: SO4
+  species: SO4-2
+  mw: 32.064
+S(6):
+  formula: SO4
+  species: SO4-2
+  mw: 96.06242
+Si:
+  formula: SiO2
+  species: H4SiO4
+  mw: 28.0843
+Sr:
+  formula: Sr
+  species: Sr+2
+  mw: 87.62

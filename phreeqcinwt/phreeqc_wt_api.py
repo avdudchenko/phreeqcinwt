@@ -10,7 +10,8 @@ import copy
 
 import molmass
 import yaml
-from phreeqcinwt.data_base_utils import dataBaseManagment
+
+from phreeqcinwt.core.data_base_utils import dataBaseManagment
 
 
 class phreeqcWTapi(dataBaseManagment):
@@ -23,6 +24,7 @@ class phreeqcWTapi(dataBaseManagment):
         rebuild_soluton_species=False,
         rebuild_phases=False,
         log_phreeqc_commands=True,
+        ignore_phase_list=None,
     ):
         """this is main class for phreeqcAPI that will handle working with a single or multiple solutions
         this class is a higher level api for phreeqpy and abstraction method for phreeqc with
@@ -52,6 +54,7 @@ class phreeqcWTapi(dataBaseManagment):
         rebuild_soluton_species -- rebuild meta data for solution species list (default False)
         rebuild_phases -- rebuild meta data for phases list (default False)
         log_phreeqc_commands -- log phreeqc commands(default False)
+        ignore_phase_list -- provide list of phases to not check for scaling and percipitaiton, can be updated useing exclude_phases method
         """
 
         self.cwd = db_dir
@@ -70,6 +73,8 @@ class phreeqcWTapi(dataBaseManagment):
         self.current_action = 0
         # actions log
         self.command_log = {"log": log_phreeqc_commands}
+
+        self.exclude_phases(ignore_phase_list)
 
     def run_string(self, string):
         """Method to send command to phreeqpy
@@ -95,6 +100,31 @@ class phreeqcWTapi(dataBaseManagment):
                 print(log["command"])
             else:
                 print(action, log)
+
+    def exclude_phases(self, ignore_list):
+        """Method to exclude phases from being checked when getting scailing tendencies or percipitaiton
+        to use, provide ignore_list, then call get_solution_state to update other relevant settings
+        before calling any other functions
+
+        Keyword arguments:
+        ignore_list -- List of phases to ignore
+        """
+        self.db_metadata["CHECK_PHASE_LIST"] = self.db_metadata["PHASES"].keys()
+        if ignore_list != None:
+            new_phase_list = []
+            ignored_list = []
+            for k in self.db_metadata["CHECK_PHASE_LIST"]:
+                if k not in ignore_list:
+                    new_phase_list.append(k)
+                else:
+                    ignored_list.append(k)
+            if len(ignore_list) != len(ignore_list):
+                print(
+                    "Failed to find all ignore phases!, only found {}".format(
+                        ignored_list
+                    )
+                )
+            self.db_metadata["CHECK_PHASE_LIST"] = new_phase_list
 
     def build_water_composition(
         self,
@@ -206,7 +236,9 @@ class phreeqcWTapi(dataBaseManagment):
         self.composition += "END\n"
 
         self.run_string(self.composition)
-
+        self.db_metadata[
+            "MAJOR_SOLUTION_COMPONENTS"
+        ] = self.phreeqc.get_component_list()
         self.get_solution_state()
 
     def perform_reaction(
@@ -407,9 +439,14 @@ class phreeqcWTapi(dataBaseManagment):
         command += " -charge_balance true\n"
         command += " -water true\n"
         command += " -percent_error true\n"
-        command += " -saturation_indices {}\n".format(
-            " ".join(self.db_metadata["PHASES"].keys())
-        )
+        command += " -saturation_indices "
+        for key in self.db_metadata["CHECK_PHASE_LIST"]:
+            command += key + " "
+        command += "\n"
+        command += " -totals"
+        for element, name in self.forward_dict.items():
+            command += " {} ".format(name)
+        command += "\n"
         command += " -molalities"
         for element, name in self.return_dict.items():
             for spc in self.db_metadata["SOLUTION_SPECIES"][element]["sub_species"]:
@@ -471,7 +508,7 @@ class phreeqcWTapi(dataBaseManagment):
         for element, vals in self.return_dict.items():
             # print("m_" + items["species"] + "(mol/kgw)")
             aque_species_comp[vals["input_name"]] = {"sub_species": {}}
-            total_mols = 0
+            # total_mols = 0
             for spc in self.db_metadata["SOLUTION_SPECIES"][element]["sub_species"]:
                 idx = np.where("m_" + spc + "(mol/kgw)" == np.array(result[0]))[0]
                 # print("m_" + items["species"] + "(mol/kgw)", idx)
@@ -480,18 +517,24 @@ class phreeqcWTapi(dataBaseManagment):
                     value = result[1][idx]
                     unit = "mol/kgw"
                     # print(value)
-                    total_mols += value
+                    # total_mols += value
                     if value > return_above:
                         aque_species_comp[vals["input_name"]]["sub_species"][spc] = {
                             "value": value,
                             "unit": unit,
                         }
-
+            idx = np.where(
+                self.forward_dict[vals["input_name"]] + "(mol/kgw)"
+                == np.array(result[0])
+            )[0][0]
+            # print(vals["input_name"], idx)
+            total_mols = result[1][idx]
             # if self.return_dict.get(spc) is not None:
             if units:
                 if isinstance(vals["mw"], float):
                     unit = "g/kgw"
                     total_mols = total_mols * vals["mw"]
+                    # print(element, vals["mw"])
             # else:
             aque_species_comp[vals["input_name"]]["value"] = total_mols
             aque_species_comp[vals["input_name"]]["unit"] = unit
@@ -620,15 +663,17 @@ class phreeqcWTapi(dataBaseManagment):
         self.db_metadata["PRESENT_PHASES_IN_SOLUTION"] = []
         for phase in self.db_metadata["PHASES"].keys():
             # print(result[0])
-            p_idx = np.where(np.array(result[0]) == "si_" + phase)[0][0]
+
+            p_idx = np.where(np.array(result[0]) == "si_" + phase)[0]
             # print(p_idx)
-            si = result[1][p_idx]
-            if float(si) > -999:
-                result_dict[phase] = {
-                    "value": 10 ** (float(si)),
-                    "unit": "dimensionless",
-                }
-                self.db_metadata["PRESENT_PHASES_IN_SOLUTION"].append(phase)
+            if p_idx.size > 0:
+                si = result[1][p_idx[0]]
+                if float(si) > -999:
+                    result_dict[phase] = {
+                        "value": 10 ** (float(si)),
+                        "unit": "dimensionless",
+                    }
+                    self.db_metadata["PRESENT_PHASES_IN_SOLUTION"].append(phase)
         results_dict = {}
         results_dict["scaling_tendencies"] = result_dict
         results_dict["solution_state"] = {}
@@ -671,448 +716,104 @@ class phreeqcWTapi(dataBaseManagment):
         return results_dict.copy()
 
     def build_ion_dict(self, input_dict, assume_alkalinity=False):
-        def set_dict(ion, input_values):
-            if isinstance(input_values, dict):
-                formula = self.db_metadata["SOLUTION_MASTER_SPECIES"][ion]["formula"]
-
-                if formula != input_values["compound"] or "mw" in input_values:
-                    if "mw" in input_values:
-                        mw = input_values["mw"]
-                    else:
-                        try:
-                            mw = molmass.Formula(input_values["compound"]).mass
-
-                        except:
-                            print(
-                                "Warning: molmass failed to compute mw for provided compound {}".format(
-                                    input_values["compound"]
-                                )
-                            )
-                            mw = None
-                    self.db_metadata["SOLUTION_MASTER_SPECIES"][ion][
-                        "formula"
-                    ] = input_values["compound"]
-                    self.db_metadata["SOLUTION_MASTER_SPECIES"][ion]["mw"] = mw
-                return input_values
-            else:
-                formula = self.db_metadata["SOLUTION_MASTER_SPECIES"][ion]["formula"]
-                return {"value": input_values, "compound": formula}
-
         phreeqc_ion_dict = {}
         self.return_dict = {}
         self.forward_dict = {}
         for name, loading in input_dict.items():
-            if (assume_alkalinity and name == "HCO3") or (
-                assume_alkalinity and name == "CaHCO3"
-            ):
-                mw = 61.01689
-                if name == "CaHCO3":
-                    mw = 50.04
-                phreeqc_ion_dict["Alkalinity"] = set_dict("Alkalinity", loading)
-                phreeqc_ion_dict["C"] = set_dict(
-                    "C", {"value": loading, "compound": name, "mw": mw}
-                )
-                self.db_metadata["SOLUTION_MASTER_SPECIES"]["Alkalinity"][
-                    "formula"
-                ] = name
-                self.return_dict[
-                    self.db_metadata["SOLUTION_MASTER_SPECIES"]["C"]["species"]
-                ] = {
-                    "input_name": name,
-                    "mw": self.db_metadata["SOLUTION_MASTER_SPECIES"]["C"]["mw"],
-                }
-                self.forward_dict[name] = "C"
+            phreeqc_ion_dict, phreeqc_name = self.set_dict(
+                phreeqc_ion_dict, name, loading, assume_alkalinity
+            )
 
-            elif (assume_alkalinity == False and name == "HCO3") or (
-                assume_alkalinity and name == "CaHCO3"
-            ):
-                mw = 61.01689
-                if name == "CaHCO3":
-                    mw = 50.04
-                phreeqc_ion_dict["C"] = set_dict(
-                    "C", {"value": loading, "compound": name, "mw": mw}
-                )
-                self.return_dict[
-                    self.db_metadata["SOLUTION_MASTER_SPECIES"]["C"]["species"]
-                ] = {
-                    "input_name": name,
-                    "mw": self.db_metadata["SOLUTION_MASTER_SPECIES"]["C"]["mw"],
-                }
-                self.forward_dict[name] = "C"
+            self.return_dict[
+                self.db_metadata["SOLUTION_MASTER_SPECIES"][phreeqc_name]["species"]
+            ] = {
+                "input_name": name,
+                "mw": self.db_metadata["SOLUTION_MASTER_SPECIES"][phreeqc_name]["mw"],
+            }
+            self.forward_dict[name] = phreeqc_name
 
-            elif name in self.db_metadata["SOLUTION_MASTER_SPECIES"]:
-                phreeqc_ion_dict[name] = set_dict(name, loading)
-                self.return_dict[
-                    self.db_metadata["SOLUTION_MASTER_SPECIES"][name]["species"]
-                ] = {
-                    "input_name": name,
-                    "mw": self.db_metadata["SOLUTION_MASTER_SPECIES"][name]["mw"],
-                }
-                self.forward_dict[name] = name
-
-                # self.return_dict[name] = {
-                #     "input_name": name,
-                #     "mw": self.db_metadata["SOLUTION_MASTER_SPECIES"][name]["mw"],
-                # }
-            else:
-                name_found = True
-                for ion, info in self.db_metadata["SOLUTION_MASTER_SPECIES"].items():
-                    # print(name, info)
-                    if name == info["formula"]:
-                        name_not_found = False
-                        phreeqc_ion_dict[ion] = set_dict(ion, loading)
-                        self.return_dict[
-                            self.db_metadata["SOLUTION_MASTER_SPECIES"][ion]["species"]
-                        ] = {
-                            "input_name": name,
-                            "mw": self.db_metadata["SOLUTION_MASTER_SPECIES"][ion][
-                                "mw"
-                            ],
-                        }
-                        self.forward_dict[name] = ion
-
-                        # self.return_dict[ion] = {
-                        #     "input_name": name,
-                        #     "mw": self.db_metadata["SOLUTION_MASTER_SPECIES"][ion][
-                        #         "mw"
-                        #     ],
-                        # }
-                        break
-                    elif name == info["species"]:
-                        name_not_found = False
-                        phreeqc_ion_dict[ion] = set_dict(ion, loading)
-                        self.return_dict[
-                            self.db_metadata["SOLUTION_MASTER_SPECIES"][ion]["species"]
-                        ] = {
-                            "input_name": name,
-                            "mw": self.db_metadata["SOLUTION_MASTER_SPECIES"][ion][
-                                "mw"
-                            ],
-                        }
-                        self.forward_dict[name] = ion
-
-                        # self.return_dict[ion] = {
-                        #     "input_name": name,
-                        #     "mw": self.db_metadata["SOLUTION_MASTER_SPECIES"][ion][
-                        #         "mw"
-                        #     ],
-                        # }
-                        break
-                if name_not_found:
-                    raise Exception(
-                        "Ion {} not found in metadata or database, please check".format(
-                            name
-                        )
-                    )
-        # print(self.return_dict)
+        # prs
         return phreeqc_ion_dict
 
+    def set_dict(self, phreeqc_ion_dict, name, input_loading, assume_alkalinity):
+        if name == "HCO3" or name == "CaHCO3":
+            if "C(4)" in self.db_metadata["SOLUTION_MASTER_SPECIES"]:
+                phreeqc_name = "C(4)"
+            elif "C(+4)" in self.db_metadata["SOLUTION_MASTER_SPECIES"]:
+                phreeqc_name = "C(+4)"
+            else:
+                raise ("Did not find C4 or C(+4) in database")
+            mw = None
+            if name == "CaHCO3":
+                mw = 50.04
+                input_formula = "Ca0.5(CO3)0.5"
+            else:
+                input_formula = "HCO3"
+            self.check_formula_consistent(phreeqc_name, input_formula, mw)
 
-if __name__ == "__main__":
-    phreeqc = phreeqcAPI()
+            phreeqc_ion_dict[phreeqc_name] = {
+                "value": input_loading,
+                "compound": input_formula,
+            }
+            if assume_alkalinity:
+                phreeqc_ion_dict["Alkalinity"] = {
+                    "value": input_loading,
+                    "compound": input_formula,
+                }
+        else:
+            phreeqc_name = self.find_input_in_db(name, input_loading)
+            mw = None
+            if isinstance(input_loading, dict):
+                input_formula = input_loading["formula"]
+                mw = input_loading.get("mw")
+            else:
+                input_formula = name
+            self.check_formula_consistent(phreeqc_name, input_formula, mw)
+            phreeqc_ion_dict[phreeqc_name] = {
+                "value": input_loading,
+                "compound": input_formula,
+            }
+        return phreeqc_ion_dict, phreeqc_name
 
-    # BGW1
-    # input_composotion = {
-    #     "Na": 0.739,
-    #     "K": 0.009,
-    #     "Cl": 0.870,
-    #     "Ca": 0.258,
-    #     "Mg": 0.090,
-    #     "C(4)": {"value": 0.385, "compound": "HCO3"},
-    #     "S(6)": {"value": 1.011, "compound": "SO4"},
-    #     # "Alkalinity": {"value": 0.335, "compound": "HCO3"},
-    # }
-    input_composotion = {
-        "Na": 0.739,
-        "K": 0.009,
-        "Cl": 0.870,
-        "Ca": 0.258,
-        "Mg": 0.090,
-        "HCO3": 0.385,
-        "SO4": 1.011,
-        # "C": 0.258,
-        # "C": {"value": 0.385, "compound": "HCO3-"},
-        # "Alkalinity": {"value": 0.381, "compound": "HCO3-"},
-    }
+    def find_input_in_db(self, name, input_loading):
+        if name in self.db_metadata["SOLUTION_MASTER_SPECIES"]:
+            return name
+        else:
+            name_found = True
+            for ion, info in self.db_metadata["SOLUTION_MASTER_SPECIES"].items():
+                # print(name, info)
+                if name == info["formula"]:
+                    return ion
+                    break
+                elif name == info["species"]:
+                    name_not_found = False
+                    return ion
+                    break
+            if name_not_found:
+                raise Exception(
+                    "Ion {} not found in metadata or database, please check".format(
+                        name
+                    )
+                )
 
-    phreeqc.build_water_composition(
-        input_composotion=input_composotion,
-        charge_balance="Cl",
-        pH=7,
-        pe=0,
-        units="g/kgw",
-        pressure=1,
-        temperature=20,
-        assume_alkalinity=True,
-    )
+    def check_formula_consistent(self, db_name, input_fomrula, input_mw=None):
+        db_formula = self.db_metadata["SOLUTION_MASTER_SPECIES"][db_name]["formula"]
+        if db_formula != input_fomrula:
+            self.db_metadata["SOLUTION_MASTER_SPECIES"][db_name][
+                "formula"
+            ] = input_fomrula
+        db_mw = self.db_metadata["SOLUTION_MASTER_SPECIES"][db_name]["mw"]
 
-    phreeqc.get_solution_state(report=True)
-    # phreeqc.perform_reaction(ph_adjust={"pH": 6}, report=True)
-    phreeqc.perform_reaction(reactants={"Na2CO3": 100}, report=True)
-    phreeqc.form_percipitants(report=True)
-    phreeqc.perform_reaction(evaporate_water_mass_percent=10)
-
-    phreeqc.get_solution_state(report=True)
-    asa
-    ph_vapor = []
-    ph_antoin = []
-    for k in np.linspace(20, 100, 10):
-        vap = phreeqc.get_vapor_pressure(k)
-        ph_vapor.append(vap["H2O(g)"])  # atm
-        a_p = 10 ** (8.07131 - 1730.63 / (233.426 + k)) / 760  # atm
-        ph_antoin.append(a_p)
-    print(ph_vapor)
-    print(ph_antoin)
-    fig = fig_generator.figureGenerator()
-    fig.init_figure()
-    fig.plot_line(
-        xdata=np.linspace(20, 100, 10),
-        ydata=np.array(ph_vapor),
-        clip_on=True,
-        color="red",
-        label="Phreeq C vapor pressure",
-    )
-    fig.plot_line(
-        xdata=np.linspace(20, 100, 10),
-        ydata=np.array(ph_antoin),
-        clip_on=True,
-        color="black",
-        label="Antoin equation vapor pressure",
-    )
-    fig.add_legend()
-    fig.set_axis(xlabel="Temp (C)", ylabel="Pressure (atm)")
-    fig.show()
-    # result = phreeqc.get_scaling_tendencies()
-    # phreeqc.perform_titration(ph_target=6.9)
-    # result2 = phreeqc.get_scaling_tendencies()
-
-    # for key, value in result["scalingTendencies"].items():
-    #     print(
-    #         key,
-    #         value["value"],
-    #         result2["scalingTendencies"][key]["value"],
-    #         value["value"] - result2["scalingTendencies"][key]["value"],
-    #     )
-
-    # phreeqc.get_vapor_pressure(120)
-# print(result)
-# naoh = result["NaOH"]["value"]
-# result = phreeqc.get_scaling_tendencies()
-# for key, value in result["scalingTendencies"].items():
-#     print(key, value)
-# phadj = result["pH"]["value"]
-# # print(result)
-# phreeqc.build_water_composition(
-#     input_composotion=input_composotion,
-#     charge_balance="pH",
-#     pH=7,
-#     units="g/L",
-# )
-# phreeqc.perform_titration(ph_target=7)
-# phreeqc.perform_titration(ph_target=phadj)
-
-# result2 = phreeqc.get_scaling_tendencies()
-# for key, value in result["scalingTendencies"].items():
-#     print(
-#         key,
-#         value["value"],
-#         result2["scalingTendencies"][key]["value"],
-#         value["value"] - result2["scalingTendencies"][key]["value"],
-#     )
-# for key, value in result_2.items():
-#     print(key, value - result[key], value, result[key])
-# # phreeqc.perform_titration(ph_target=2)
-# phreeqc.perform_reaction("HCl", 2000)
-# print(phreeqc.get_scaling_tendencies())
-# phreeqc.perform_titration(ph_target=10)
-# print(phreeqc.get_scaling_tendencies())
-# phreeqc.perform_titration(addition_amount_mg=100, addition_type="acid")
-# phreeqc.perform_reaction(reactant="CO2", reactant_additon_mg=10000)
-# result = (
-#     phreeqc.get_scaling_tendencies()
-# )  # percipitation_result = self.phreeqc.check_precipitation()
-# print(phreeqc.get_scaling_tendencies())
-# # print(percipitation_result)
-# print(result["titration"]["pH"]["value"])
-
-# result = phreeqc.check_precipitation()
-# print(result)
-# # result = phreeqc.perform_titration(ph_target=7)
-# phreeqc.build_water_composition(
-#     input_composotion=input_composotion,
-#     charge_balance="pH",
-#     pH=7,
-#     units="g/L",
-# )
-# result = phreeqc.get_scaling_tendencies(True)
-# phreeqc.perform_titration(ph_target=6)
-#     for na in naoh:
-#         phreeqc.build_water_composition(
-#             input_composotion=input_composotion,
-#             charge_balance="pH",
-#             pH=10,
-#             units="g/L",
-#         )
-#         result = phreeqc.get_scaling_tendencies()
-
-#         phreeqc.perform_titration(ph_target=9)
-#         phreeqc.perform_titration(addition_amount_mg=100, addition_type="acid")
-#         result = phreeqc.get_scaling_tendencies()
-#         acid_ph = result["titration"]["pH"]["value"]
-#         print("acid", result["titration"]["pH"]["value"])
-#         # phreeqc.perform_titration(addition_amount_mg=0, addition_type="base")
-#         (
-#             orogin_comp_1,
-#             final_comp_1,
-#             fractions_1,
-#         ) = phreeqc.check_precipitation()
-
-#         phreeqc.build_water_composition(
-#             input_composotion=input_composotion,
-#             charge_balance="pH",
-#             pH=10,
-#             units="g/L",
-#         )
-#         phreeqc.perform_titration(ph_target=acid_ph)
-#         # phreeqc.perform_titration(ph_target=result["titration"]["pH"]["value"])
-#         result = phreeqc.get_scaling_tendencies()
-#         # print("post acid", result["titration"]["pH"]["value"])
-#         # phreeqc.perform_titration(ph_target=6.9)
-#         phreeqc.perform_titration(addition_amount_mg=na, addition_type="base")
-#         result = phreeqc.get_scaling_tendencies()
-#         (
-#             orogin_comp_2,
-#             final_comp_2,
-#             fractions_2,
-#         ) = phreeqc.check_precipitation()  # origin=2)
-#         # result = phreeqc.get_scaling_tendencies()
-#         pH = result["titration"]["pH"]["value"]
-#         # print(pH)
-#         pHs.append(pH)
-
-#         sf = 0
-#         # print(final_comp_1)
-#         print(fractions_1)
-#         print(fractions_2)
-#         # a#ssert False
-#         for key, frac in fractions_2.items():
-#             sf += frac
-#         # mg = (final_comp_1["Mg"] - final_comp_2["Mg"]) / final_comp_1["Mg"]
-#         # ca = (final_comp_1["Ca"] - final_comp_2["Ca"]) / final_comp_1["Ca"]
-#         # coh = (final_comp_1["C"] - final_comp_2["C"]) / final_comp_1["C"]
-#         mg = fractions_2["Mg"]  # - fractions_1["Mg"]
-#         ca = fractions_2["Ca"]  # - fractions_1["Ca"]
-#         coh = fractions_2["C"]  # - fractions_1["C"]
-#         ca_fraction.append(ca)
-#         mg_fraction.append(mg)
-#         coh_fraction.append(coh)
-#         fraction_sums.append(sf)
-#         # asds
-#     fig = fig_generator.figureGenerator()
-#     fig.init_figure()
-#     # fig.plot_line(
-#     #     pHs,
-#     #     fraction_sums,
-#     #     clip_on=True,
-#     #     color="black",
-#     #     label="sum_fractions",
-#     # )
-#     fig.plot_line(
-#         naoh,
-#         mg_fraction,
-#         clip_on=True,
-#         color="blue",
-#         label="Mg fraction",
-#     )
-#     fig.plot_line(
-#         naoh,
-#         ca_fraction,
-#         clip_on=True,
-#         color="red",
-#         label="Ca fraction",
-#     )
-
-#     fig.plot_line(
-#         naoh,
-#         coh_fraction,
-#         clip_on=True,
-#         color="green",
-#         label="COH fraction",
-#     )
-#     fig.set_axis(
-#         xlims=[0, 1000],
-#         xticks=np.linspace(0, 1000, 5),
-#         xlabel="NaOH addition (PPM)",
-#         ylabel="Precipitation fraction",
-#     )
-#     fig.add_legend()
-#     # fig = fig_generator.figureGenerator()
-#     # fig.init_figure()
-#     # fig.plot_line(
-#     #     naoh,
-#     #     fraction_sums,
-#     #     clip_on=True,
-#     #     color="black",
-#     #     label="sum_fractions",
-#     # )
-#     # fig.plot_line(
-#     #     naoh,
-#     #     mg_fraction,
-#     #     clip_on=True,
-#     #     color="blue",
-#     #     label="Mg_fractions",
-#     # )
-#     # fig.plot_line(
-#     #     naoh,
-#     #     ca_fraction,
-#     #     clip_on=True,
-#     #     color="red",
-#     #     label="Ca_fractions",
-#     # )
-
-#     # fig.plot_line(
-#     #     naoh,
-#     #     coh_fraction,
-#     #     clip_on=True,
-#     #     color="green",
-#     #     label="COH_fractions",
-#     # )
-#     # fig.set_axis(xlims=[1, 80000], xlabel="naoh", ylabel="fraction sum", xscale="log")
-#     # fig.add_legend()
-#     fig.save_fig("precip")
-#     fig = fig_generator.figureGenerator()
-#     fig.init_figure()
-#     fig.plot_line(
-#         naoh,
-#         pHs,
-#         color="black",
-#         clip_on=True,
-#     )
-#     fig.set_axis(
-#         xlims=[0, 1000],
-#         yticks=np.linspace(6, 14, 5),
-#         xlabel="NaOH dose (PPM)",
-#         ylabel="pH",
-#     )
-
-#     fig.save_fig("ph")
-#     fig.show()
-#     # print(result["scalingTendencies"].keys())
-#     # phreeqc.perform_titration(ph_target=6.5)
-#     # phreeqc.perform_titration(ph_target=6)
-# # phreeqc.build_water_composition(
-# #     input_composotion={
-# #         "Na": 1.13,
-# #         "Cl": 0.91,
-# #         "Ca": 0.2,
-# #         "C": 0.737,
-# #         "S(6)": 1.23,
-# #     },
-# #     charge_balance="pH",
-# #     pH=7,
-# #     units="g/L",
-# # )
-# # phreeqc.perform_titration(ph_target=7, acid_titrant="H+", base_titrant="OH-")
-# # phreeqc.perform_titration(ph_target=6)
-# # phreeqc.perform_titration(ph_target=4)
-# # # print(phreeqc.result)
+        try:
+            if input_mw == None:
+                self.db_metadata["SOLUTION_MASTER_SPECIES"][db_name][
+                    "mw"
+                ] = molmass.Formula(input_fomrula).mass
+            else:
+                self.db_metadata["SOLUTION_MASTER_SPECIES"][db_name]["mw"] = input_mw
+        except:
+            print(
+                "failed to update db mw, please vefiy, useing {} g/mol for {}".format(
+                    db_mw, input_formula
+                )
+            )

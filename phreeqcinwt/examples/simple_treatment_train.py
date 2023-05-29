@@ -2,7 +2,8 @@ from phreeqcinwt.phreeqc_wt_api import phreeqcWTapi
 
 
 if __name__ == "__main__":
-    phreeqcWT = phreeqcWTapi(database="phreeqc.dat")
+    phreeqcWT = phreeqcWTapi(database="pitzer.dat", ignore_phase_list=["Dolomite"])
+    # phreeqcWT = phreeqcWTapi(database="phreeqc.dat")
     # phreeqcWT = phreeqcWTapi(database="minteq.v4.dat")
     # basic brackish water
     input_composotion = {
@@ -48,7 +49,8 @@ if __name__ == "__main__":
     phreeqcWT.perform_reaction(temperature=50)
     phreeqcWT.get_vapor_pressure(report=True)
     phreeqcWT.get_solution_state(report=True)
-
+    # phreeqcWT.form_percipitants(report=True)
     # phreeqcWT.get_solution_state(report=True)
-    # phreeqcWT.perform_reaction(reactants={"CO2": 145.26}, report=True)
-    # phreeqcWT.get_solution_state(report=True)
+    # # phreeqcWT.get_solution_state(report=True)
+    # # phreeqcWT.perform_reaction(reactants={"CO2": 145.26}, report=True)
+    # # phreeqcWT.get_solution_state(report=True)

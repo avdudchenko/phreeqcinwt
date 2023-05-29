@@ -11,6 +11,8 @@ class dataBaseManagment:
             self.cwd = os.path.dirname(phapi.__file__) + "/"
         db_file = self.cwd + "databases/" + self.database
         self.phreeqc.load_database(db_file)
+        result = self.phreeqc.get_component_list()
+
         self.db_metadata = {
             "PHASES": {},
             "DEFINED_REACTANTS": {},
@@ -58,6 +60,8 @@ class dataBaseManagment:
                         found_master_species = False
                     if "PHASES" in str(row):
                         found_species = False
+                    if "EXCHANGE_MASTER_SPECIES" in str(row):
+                        found_phases = False
                     if (found_master_species and self.rebuild_metadata[0]) or (
                         found_master_species and states["SOLUTION_MASTER_SPECIES"]
                     ):
@@ -121,7 +125,7 @@ class dataBaseManagment:
                     if (found_phases and self.rebuild_metadata[2]) or (
                         found_phases and states["PHASES"]
                     ):
-                        # print(row)
+                        print(row)
                         if row != []:
                             if len(row[0]) > 1 and "#" not in str(row):
                                 self.db_metadata["PHASES"][
@@ -132,9 +136,9 @@ class dataBaseManagment:
                                 reaction = row[1].split(" ")
                                 if (
                                     reaction[0]
-                                    not in "-log_k,-delta_h,-analytic,-Vm,-T_c,-Omega,-P_c"
+                                    not in "-log_k,-delta_h,-delta_H,-analytic,-Vm,-T_c,-Omega,-P_c,-analytical_expression"
                                 ):
-                                    # print(row)
+                                    print(row)
                                     l, r = row[1].split(" = ")
                                     formula = l.split(" ")[0]
                                     # print(cur_phase, formula)  # , r)
