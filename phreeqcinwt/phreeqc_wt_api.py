@@ -26,6 +26,7 @@ class phreeqcWTapi(dataBaseManagment, utilities):
         rebuild_phases=False,
         log_phreeqc_commands=True,
         ignore_phase_list=None,
+        only_track_list=None,
         remove_phase_list=None,
     ):
         """this is main class for phreeqcAPI that will handle working with a single or multiple solutions
@@ -77,7 +78,7 @@ class phreeqcWTapi(dataBaseManagment, utilities):
         # actions log
         self.command_log = {"log": log_phreeqc_commands}
 
-        self.exclude_phases(ignore_phase_list)
+        self.exclude_phases(ignore_phase_list, only_track_list)
 
     def run_string(self, string):
         """Method to send command to phreeqpy
@@ -104,13 +105,14 @@ class phreeqcWTapi(dataBaseManagment, utilities):
             else:
                 print(action, log)
 
-    def exclude_phases(self, ignore_list):
+    def exclude_phases(self, ignore_list, only_track_list=None):
         """Method to exclude phases from being checked when getting scailing tendencies or percipitaiton
         to use, provide ignore_list, then call get_solution_state to update other relevant settings
         before calling any other functions
 
         Keyword arguments:
         ignore_list -- List of phases to ignore
+        only_track_list -- oppsite of ingore_list, list that focuses only on the provided phase
         """
         self.db_metadata["CHECK_PHASE_LIST"] = self.db_metadata["PHASES"].keys()
         if ignore_list != None:
@@ -127,6 +129,16 @@ class phreeqcWTapi(dataBaseManagment, utilities):
                         ignored_list
                     )
                 )
+            self.db_metadata["CHECK_PHASE_LIST"] = new_phase_list
+        if only_track_list != None:
+            new_phase_list = []
+            added_list = []
+            for k in self.db_metadata["CHECK_PHASE_LIST"]:
+                if k in only_track_list:
+                    new_phase_list.append(k)
+                    added_list.append(k)
+            if len(ignore_list) != len(ignore_list):
+                print("Failed to find all phases!, only found {}".format(ignored_list))
             self.db_metadata["CHECK_PHASE_LIST"] = new_phase_list
 
     def build_water_composition(
@@ -275,7 +287,7 @@ class phreeqcWTapi(dataBaseManagment, utilities):
         ph_adjust -- ph adjustant to use and target {'reactant': reactant formula, 'ph':pH target} (default None)
         pressure -- reaction pressure (default None)
         temperature -- reaction temperature (default None)
-        evaporate_water_mass_percent -- percent of water to remove from solution (default None)
+        evaporate_water_mass_percent -- percent of water to remove from solution, if negative, adds water to solution (default None)
         report -- print out titration results (default False)
         """
         if solution_number == None:
@@ -333,8 +345,14 @@ class phreeqcWTapi(dataBaseManagment, utilities):
         mass_water_removal = self.water_mass * evaporate_water_mass_percent / 100
 
         mole_reactant = mass_water_removal * 1000 / 18.01528
+
         self.water_mass -= mass_water_removal
-        command += "    H2O -{mole_reactant}\n".format(mole_reactant=mole_reactant)
+        if mole_reactant < 0:
+            command += "    H2O {mole_reactant}\n".format(
+                mole_reactant=abs(mole_reactant)
+            )
+        else:
+            command += "    H2O -{mole_reactant}\n".format(mole_reactant=mole_reactant)
         return command
 
     def _gen_reaction_command(self, command, reactants):

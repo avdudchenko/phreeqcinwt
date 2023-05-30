@@ -33,7 +33,7 @@ def get_netural_concetration(m, comp_dict, balance_ion="Cl"):
     total_mass = 1000
     for ion, mass_loading in comp_dict.items():
         total_mass += mass_loading
-    print(total_mass)
+
     m.block[0].flow_mass_phase_comp["Liq", "H2O"].fix(1)
     m.block[0].flow_mol_phase_comp["Liq", "H2O"].unfix()
     for ion, mass_loading in comp_dict.items():
@@ -49,7 +49,7 @@ def get_netural_concetration(m, comp_dict, balance_ion="Cl"):
     iscale.calculate_scaling_factors(m)
     solver = get_solver()
     solver.solve(m)
-    m.block[0].display()
+
     m.block[0].flow_mass_phase_comp["Liq", "H2O"].unfix()
     m.block[0].flow_mol_phase_comp["Liq", "H2O"].fix()
     for ion, mass_loading in comp_dict.items():
@@ -63,20 +63,19 @@ def get_netural_concetration(m, comp_dict, balance_ion="Cl"):
         get_property="flow_mol_phase_comp",
     )
     return_dict = {}
-    m.block[0].display()
+
     water_mass = m.block[0].flow_mass_phase_comp["Liq", "H2O"].value
     for ion, mass_loading in comp_dict.items():
         return_dict[ion] = (
             m.block[0].flow_mass_phase_comp["Liq", ion].value * 1000 / water_mass
         )
-    print(return_dict)
+
     return return_dict
 
 
 if __name__ == "__main__":
     phreeqc_pitzer = phreeqcWTapi(database="pitzer.dat")
-    phreeqc_phreeqc = phreeqcWTapi(database="pitzer.dat")
-    # phreeqcWT = phreeqcWTapi(database="minteq.v4.dat")
+
     # basic brackish water
     input_composotion = {
         "Na": 0.739,
@@ -146,7 +145,7 @@ if __name__ == "__main__":
     # m.display()
     for ion, loading in out.items():
         input_composotion[ion] = loading
-    phreeqcWT.build_water_composition(
+    phreeqc_pitzer.build_water_composition(
         input_composotion=input_composotion,
         charge_balance="Cl",
         pH=7,
@@ -154,30 +153,8 @@ if __name__ == "__main__":
         units="g/kgw",
         pressure=1,
         temperature=20,
-        assume_alkalinity=True,
+        assume_alkalinity=False,
     )
 
     print("-----------------------get intial solution state-----------------------")
-    phreeqcWT.get_solution_state(report=True)
-    # print("-----------------------soften water useing soda ash-----------------------")
-    # phreeqcWT.perform_reaction(reactants={"Na2CO3": 63.22}, report=True)
-    # # phreeqcWT.get_solution_state(report=True)
-    # phreeqcWT.form_percipitants(report=True)
-    # print("-----------------------solution after softeing-----------------------")
-    # print("-----------------------add CO2 softeing-----------------------")
-    # phreeqcWT.perform_reaction(reactants={"CO2": 145.26}, report=True)
-    # print("-----------------------solution after CO2-----------------------")
-    # phreeqcWT.get_solution_state(report=True)
-    # phreeqcWT.perform_reaction(evaporate_water_mass_percent=72.2)
-    # phreeqcWT.get_solution_state(report=True)
-    # # phreeqcWT.get_vapor_pressure(report=True)
-    # print("-----------------------heat up solution to 90 C-----------------------")
-
-    # phreeqcWT.perform_reaction(temperature=50)
-    # phreeqcWT.get_vapor_pressure(report=True)
-    # phreeqcWT.get_solution_state(report=True)
-    # phreeqcWT.form_percipitants(report=True)
-    # phreeqcWT.get_solution_state(report=True)
-    # # phreeqcWT.get_solution_state(report=True)
-    # # phreeqcWT.perform_reaction(reactants={"CO2": 145.26}, report=True)
-    # # phreeqcWT.get_solution_state(report=True)
+    phreeqc_pitzer.get_solution_state(report=True)
