@@ -469,6 +469,7 @@ class phreeqcWTapi(dataBaseManagment, utilities):
         command += "-start\n"
         command += "10 punch RHO\n"
         command += "-end\n"
+
         command += "SELECTED_OUTPUT\n"
         command += " -alkalinity true\n"
         command += " -temperature true\n"
@@ -638,12 +639,12 @@ class phreeqcWTapi(dataBaseManagment, utilities):
             mols = result[1][idx_d]
             if return_non_zero:
                 if mols > 0:
-                    percip_result[k + "(mol/kgw)"] = {
+                    percip_result[k] = {
                         "value": result[1][idx_d] / self.water_mass,
                         "units": "mol/kgw",
                     }
             elif mols > -999:
-                percip_result[k + "(mol/kgw)"] = {
+                percip_result[k] = {
                     "value": result[1][idx_d] / self.water_mass,
                     "units": "mol/kgw",
                 }
@@ -653,7 +654,15 @@ class phreeqcWTapi(dataBaseManagment, utilities):
                 print("\t", phase, amount)
         return percip_result
 
-    def get_vapor_pressure(self, report):
+    def get_vapor_pressure(self, report=False):
+        """Method for getting vapor pressure
+        This will return fugacities for the for each gas phase. the fugacity is
+        equivlaent to vapor pressure at low pressures. The sum of all fugacities is
+        total vapor pressure.
+
+        Keyword arguments:
+        report -- print out results (default False)
+        """
         gas_phases = []
         gas_header = []
 
@@ -692,13 +701,119 @@ class phreeqcWTapi(dataBaseManagment, utilities):
         for k in gas_phases:
             # print("fugacity_{}".format(k))
             idx = np.where("fugacity_{}".format(k) == np.array(result[0]))[0][0]
-            out_dict[k] = result[1][idx]
+            out_dict[k] = {"value": result[1][idx], "units": "atm"}
             total += result[1][idx]
         out_dict["total_fugacity"] = total
         if report:
             print("vapor pressures-----------")
             for comp, vapor in out_dict.items():
-                print("\t", comp, vapor)
+                print("\t", comp, vapor["value"], vapor["units"])
+        # print("vapor", out_dict)  # , result[1][idx])
+        return out_dict
+
+    def get_enthalpy_phase(self, report=True):
+        """Method for heat of reaction for phases
+        this uses non-documented fucntion and described as follows
+        "I wrote two functions DELTA_H_SPECIES(species name)
+        and DELTA_H_PHASE(phase name). They numerically evaluate the delta H.
+        if an analytical expression exists, the result will be at the
+        temperature of the calculation.
+        If no analytical expression exists,
+        the numerical result should be equal to the delta H
+         specified in SOLUTION_SPECIES or PHASES."
+         Source "https://phreeqcusers.org/index.php?topic=447.0"
+
+
+        Keyword arguments:
+        report -- print out results (default False)
+        """
+        h_phases = []
+        h_header = []
+        for phase in self.db_metadata["PRESENT_PHASES_IN_SOLUTION"]:
+            h_header.append("delta_h_{}".format(phase))
+        # print(gas_phases)
+        command = "USE SOLUTION {}\n".format(self.current_solution)
+        command += "EQUILIBRIUM_PHASES\n"
+        command += "USER_PUNCH\n"
+        command += "-start\n"
+        command += "-headings {}\n".format(" ".join(h_header))
+        for i, g in enumerate(self.db_metadata["PRESENT_PHASES_IN_SOLUTION"]):
+            command += '{} PUNCH DELTA_H_PHASE("{}")\n'.format(int(i * 10), g)
+        command += "-end\n"
+        command += "SELECTED_OUTPUT\n"
+        command += "   -user_punch True\n"
+        command += "END\n"
+        # print(command)
+        self.run_string(command)
+        result = self.phreeqc.get_selected_output_array()
+        out_dict = {}
+        # print(result)
+        total = 0
+        for k in self.db_metadata["PRESENT_PHASES_IN_SOLUTION"]:
+            # print("fugacity_{}".format(k))
+            idx = np.where("delta_h_{}".format(k) == np.array(result[0]))[0][0]
+            out_dict[k] = {"value": result[1][idx], "units": "kJ/mol"}
+            # total += result[1][idx]
+        # out_dict["heat_of_reaction"] = total
+        if report:
+            print("heat of reaction-----------")
+            for comp, vapor in out_dict.items():
+                print("\t", comp, vapor["value"])
+        # print("vapor", out_dict)  # , result[1][idx])
+        return out_dict
+
+    def get_enthalpy_species(self, report=True):
+        """Method for heat of reaction for species
+        this uses non-documented fucntion and described as follows
+        "I wrote two functions DELTA_H_SPECIES(species name)
+        and DELTA_H_PHASE(phase name). They numerically evaluate the delta H.
+        if an analytical expression exists, the result will be at the
+        temperature of the calculation.
+        If no analytical expression exists,
+        the numerical result should be equal to the delta H
+         specified in SOLUTION_SPECIES or PHASES."
+         Source "https://phreeqcusers.org/index.php?topic=447.0"
+
+
+        Keyword arguments:
+        report -- print out results (default False)
+        """
+        h_phases = []
+        h_header = []
+
+        for element, name in self.return_dict.items():
+            for spc in self.db_metadata["SOLUTION_SPECIES"][element]["sub_species"]:
+                h_header.append("delta_h_{}".format(spc))
+                h_phases.append(spc)
+        # print(gas_phases)
+        command = "USE SOLUTION {}\n".format(self.current_solution)
+        command += "EQUILIBRIUM_PHASES\n"
+        command += "USER_PUNCH\n"
+        command += "-start\n"
+        command += "-headings {}\n".format(" ".join(h_header))
+        for i, g in enumerate(h_phases):
+            command += '{} PUNCH DELTA_H_SPECIES("{}")\n'.format(int(i * 10), g)
+        command += "-end\n"
+        command += "SELECTED_OUTPUT\n"
+        command += "   -user_punch True\n"
+        command += "END\n"
+        # print(command)
+        self.run_string(command)
+        result = self.phreeqc.get_selected_output_array()
+        out_dict = {}
+        # print(result)
+        total = 0
+        for element, name in self.return_dict.items():
+            for k in self.db_metadata["SOLUTION_SPECIES"][element]["sub_species"]:
+                # print("fugacity_{}".format(k))
+                idx = np.where("delta_h_{}".format(k) == np.array(result[0]))[0][0]
+                out_dict[k] = {"value": result[1][idx], "units": "kJ/mol"}
+            # total += result[1][idx]
+        # out_dict["heat_of_reaction"] = total
+        if report:
+            print("heat of reaction-----------")
+            for comp, vapor in out_dict.items():
+                print("\t", comp, vapor["value"])
         # print("vapor", out_dict)  # , result[1][idx])
         return out_dict
 
