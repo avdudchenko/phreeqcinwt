@@ -585,7 +585,7 @@ class phreeqcWTapi(dataBaseManagment, utilities):
             aque_species_comp[vals["input_name"]]["units"] = unit
         return aque_species_comp
 
-    def form_precipitants(
+    def form_phases(
         self,
         solution_number=None,
         phases=None,

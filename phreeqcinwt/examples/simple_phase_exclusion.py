@@ -37,7 +37,7 @@ if __name__ == "__main__":
     print("-----------------------soften water useing soda ash-----------------------")
     phreeqcWT.perform_reaction(reactants={"Na2CO3": 63.22}, report=False)
     # phreeqcWT.get_solution_state(report=True)
-    all_percipitatnts = phreeqcWT.form_percipitants(report=True)
+    all_percipitatnts = phreeqcWT.form_phases(report=True)
 
     # go back to orignal solution
     phreeqcWT.current_solution = 1
@@ -47,11 +47,11 @@ if __name__ == "__main__":
     print("-----------------------soften water useing soda ash-----------------------")
     phreeqcWT.perform_reaction(reactants={"Na2CO3": 63.22}, report=False)
     # phreeqcWT.get_solution_state(report=True)
-    all_percipitatnts = phreeqcWT.form_percipitants(report=True)
+    all_percipitatnts = phreeqcWT.form_phases(report=True)
 
     # remove excluded phase from list
     phreeqcWT.exclude_phases(None)
     # chcek if it will percipitae in new soution
     phreeqcWT.get_solution_state(report=True)
-    all_percipitatnts = phreeqcWT.form_percipitants(report=True)
+    all_percipitatnts = phreeqcWT.form_phases(report=True)
     phreeqcWT.get_solution_state(report=True)

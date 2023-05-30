@@ -36,7 +36,7 @@ if __name__ == "__main__":
         phreeqcWT.current_solution = 1
         phreeqcWT.get_solution_state(report=False)
         phreeqcWT.perform_reaction(evaporate_water_mass_percent=wr)
-        # phreeqcWT.form_percipitants()
+        # phreeqcWT.form_phases()
         state = phreeqcWT.get_solution_state(report=False)
 
         print(
