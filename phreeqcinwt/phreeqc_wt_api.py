@@ -272,7 +272,7 @@ class phreeqcWTapi(dataBaseManagment, utilities):
         For reactants specifiy a dict with following structure
             to add specific amount of reactant use reactants key word {reactant:amount in mg/kgw}
 
-        To adjust to specific pH use ph_adjust useing dict entery as {'reactant': reactant formula, 'ph':pH target}, if reactant is not specified will either use HCL or NaOH
+        To adjust to specific pH use ph_adjust useing dict entery as {'reactant': reactant formula, 'pH':pH target}, if reactant is not specified will either use HCL or NaOH
 
         example for multiple reactants
         {{'HCl':100},{'NaOH':10}}
@@ -382,6 +382,10 @@ class phreeqcWTapi(dataBaseManagment, utilities):
             reactant = self.db_metadata["DEFINED_REACTANTS"]["default_ph_adjust"][
                 adjust
             ]
+        else:
+            self.db_metadata["DEFINED_REACTANTS"]["default_ph_adjust"][
+                adjust
+            ] = reactant
         if self.db_metadata["DEFINED_REACTANTS"].get(reactant) is None:
             raise (
                 "Failed to find reactant {} in defined_reactants database, please add to /databases/defined_reactants.yaml".format(
@@ -439,6 +443,7 @@ class phreeqcWTapi(dataBaseManagment, utilities):
         alkalinity, temperature, ph, ionic strength, charge balance, error in charge balance
         molalaitys of species and sub-species, and pre-scailing tendecies
 
+
         Keyword arguments:
         solution_number -- user provided solution nubmer to use (default None)
         report -- to print aquired data into consol (default False)
@@ -448,6 +453,11 @@ class phreeqcWTapi(dataBaseManagment, utilities):
         return_input_names -- uses formulas provided by input dict when generating solution, if false, will return
         specie names as defined by phreeqc used database (deafult True)
 
+        returns:
+        dict -- keys:
+                    'composition':dict - containst composition and sub-species
+                    'solution_state': dict - general solution information, such as pH, etc
+                    'scaling_tendencies': dict - scalining tendencies for tracked phases
         """
         if solution_number == None:
             solution_number = self.current_solution
@@ -575,7 +585,7 @@ class phreeqcWTapi(dataBaseManagment, utilities):
             aque_species_comp[vals["input_name"]]["units"] = unit
         return aque_species_comp
 
-    def form_percipitants(
+    def form_precipitants(
         self,
         solution_number=None,
         phases=None,
