@@ -74,7 +74,8 @@ def get_netural_concetration(m, comp_dict, balance_ion="Cl"):
 
 
 if __name__ == "__main__":
-    phreeqcWT = phreeqcWTapi(database="phreeqc.dat")
+    phreeqc_pitzer = phreeqcWTapi(database="pitzer.dat")
+    phreeqc_phreeqc = phreeqcWTapi(database="pitzer.dat")
     # phreeqcWT = phreeqcWTapi(database="minteq.v4.dat")
     # basic brackish water
     input_composotion = {

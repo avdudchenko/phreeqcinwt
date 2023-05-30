@@ -36,5 +36,5 @@ if __name__ == "__main__":
     phreeqcWT.get_solution_state(report=False)
     print("-----------------------soften water useing soda ash-----------------------")
     phreeqcWT.perform_reaction(reactants={"Na2CO3": 63.22}, report=False)
-    # phreeqcWT.get_solution_state(report=True)
-    all_percipitatnts = phreeqcWT.form_percipitants(report=True)
+    phreeqcWT.get_solution_state(report=True)
+    # all_percipitatnts = phreeqcWT.form_percipitants(report=True)

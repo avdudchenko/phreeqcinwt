@@ -12,9 +12,10 @@ import molmass
 import yaml
 
 from phreeqcinwt.core.data_base_utils import dataBaseManagment
+from phreeqcinwt.core.utility_functions import utilities
 
 
-class phreeqcWTapi(dataBaseManagment):
+class phreeqcWTapi(dataBaseManagment, utilities):
     def __init__(
         self,
         database=r"phreeqc.dat",
@@ -433,7 +434,13 @@ class phreeqcWTapi(dataBaseManagment):
         if solution_number == None:
             solution_number = self.current_solution
         command = "USE SOLUTION {}\n".format(str(solution_number))
+
         command += "EQUILIBRIUM_PHASES\n"
+        command += "USER_PUNCH\n"
+        command += "-heading density\n"
+        command += "-start\n"
+        command += "10 punch RHO\n"
+        command += "-end\n"
         command += "SELECTED_OUTPUT\n"
         command += " -alkalinity true\n"
         command += " -temperature true\n"
@@ -441,7 +448,9 @@ class phreeqcWTapi(dataBaseManagment):
         command += " -charge_balance true\n"
         command += " -water true\n"
         command += " -percent_error true\n"
+        command += " -user_punch true\n"
         command += " -saturation_indices "
+
         for key in self.db_metadata["CHECK_PHASE_LIST"]:
             command += key + " "
         command += "\n"
@@ -453,10 +462,12 @@ class phreeqcWTapi(dataBaseManagment):
         for element, name in self.return_dict.items():
             for spc in self.db_metadata["SOLUTION_SPECIES"][element]["sub_species"]:
                 command += " {} ".format(spc)
+
         command += "\n"
         command += "END\n"
 
         self.run_string(command)
+
         result = self.phreeqc.get_selected_output_array()
 
         solution_composition = {}
@@ -469,16 +480,19 @@ class phreeqcWTapi(dataBaseManagment):
             units=units,
             return_above=return_above,
         )
+        solution_composition["solution_state"].update(
+            self.get_total_concetration(solution_composition)
+        )
         if report:
             print("solution state--------------")
-            for key, state in solution_composition["solution_state"].items():
-                print("\t", key, state["value"])
+            for key, result in solution_composition["solution_state"].items():
+                print("\t", key, result["value"], result["units"])
             print("ion composion------------------")
             for ion, mass in solution_composition["composition"].items():
                 print(
                     ion,
                     mass["value"],
-                    mass["unit"],
+                    mass["units"],
                     "original input",
                     self.input_composotion[self.forward_dict[ion]]["value"],
                     "diff-assumed same units! (%)",
@@ -490,13 +504,14 @@ class phreeqcWTapi(dataBaseManagment):
                     * 100,
                 )
                 for sub, values in mass["sub_species"].items():
-                    print("\t", sub, values["value"], values["unit"])
+                    print("\t", sub, values["value"], values["units"])
             print("scaling tendendencies------------------")
             for scalant, SI in solution_composition["scaling_tendencies"].items():
                 if scalant == "max":
                     print("\t", scalant, SI["value"], SI["scalant"])
                 else:
                     print("\t", scalant, SI["value"])
+
         return solution_composition
 
     def _get_solution_comp(
@@ -523,7 +538,7 @@ class phreeqcWTapi(dataBaseManagment):
                     if value > return_above:
                         aque_species_comp[vals["input_name"]]["sub_species"][spc] = {
                             "value": value,
-                            "unit": unit,
+                            "units": unit,
                         }
             idx = np.where(
                 self.forward_dict[vals["input_name"]] + "(mol/kgw)"
@@ -539,7 +554,7 @@ class phreeqcWTapi(dataBaseManagment):
                     # print(element, vals["mw"])
             # else:
             aque_species_comp[vals["input_name"]]["value"] = total_mols
-            aque_species_comp[vals["input_name"]]["unit"] = unit
+            aque_species_comp[vals["input_name"]]["units"] = unit
         return aque_species_comp
 
     def form_percipitants(
@@ -597,12 +612,12 @@ class phreeqcWTapi(dataBaseManagment):
                 if mols > 0:
                     percip_result[k + "(mol/kgw)"] = {
                         "value": result[1][idx_d] / self.water_mass,
-                        "unit": "mol/kgw",
+                        "units": "mol/kgw",
                     }
             elif mols > -999:
                 percip_result[k + "(mol/kgw)"] = {
                     "value": result[1][idx_d] / self.water_mass,
-                    "unit": "mol/kgw",
+                    "units": "mol/kgw",
                 }
         if report:
             print("precip results--------------------")
@@ -673,24 +688,31 @@ class phreeqcWTapi(dataBaseManagment):
                 if float(si) > -999:
                     result_dict[phase] = {
                         "value": 10 ** (float(si)),
-                        "unit": "dimensionless",
+                        "units": "dimensionless",
                     }
                     self.db_metadata["PRESENT_PHASES_IN_SOLUTION"].append(phase)
         results_dict = {}
         results_dict["scaling_tendencies"] = result_dict
         results_dict["solution_state"] = {}
-        for sol_state in [
-            ["pH", "pH"],
-            ["pe", "pe"],
-            ["temp(C)", "temperature (degree C)"],
-            ["Alk(eq/kgw)", "Alkalinity (g/kgw)"],
-            ["charge(eq)", "charge balance (eq)"],
-            ["pct_err", "Error in charge (%)"],
-            ["mass_H2O", "Water mass (kg)"],
-        ]:
-            idx = np.where(sol_state[0] == np.array(result[0]))[0][0]
+
+        sol_state_dict = {
+            "pH": {"name": "pH", "units": "dimensionless"},
+            "pe": {"name": "pe", "units": "dimensionless"},
+            "temp(C)": {"name": "Temperature", "units": "C"},
+            "Alk(eq/kgw)": {"name": "Alkalinity", "units": "g/kgw"},
+            "charge(eq)": {"name": "Charge balance", "units": "eq"},
+            "pct_err": {"name": "Error in charge", "units": "%"},
+            "mass_H2O": {"name": "Water mass", "units": "kg"},
+            "density": {"name": "Solution density", "units": "kg/L"},
+        }
+        for key, data in sol_state_dict.items():
+            # print(key, name, unit)
+            name = data["name"]
+            unit = data["units"]
+
+            idx = np.where(key == np.array(result[0]))[0][0]
             val = result[1][idx]
-            if sol_state[0] == "Alk(eq/kgw)":
+            if key == "Alk(eq/kgw)":
                 multiplier = self.db_metadata["SOLUTION_MASTER_SPECIES"]["Alkalinity"][
                     "mw"
                 ]
@@ -698,9 +720,14 @@ class phreeqcWTapi(dataBaseManagment):
                     "formula"
                 ]
                 val = val * multiplier
-                sol_state[1] = "Alkalinity (g as {}/kgw)".format(formula)
-            results_dict["solution_state"][sol_state[1]] = {"value": val}
-        self.water_mass = results_dict["solution_state"]["Water mass (kg)"]["value"]
+                unit = "g/kgw as {}".format(formula)
+            # elif key == "density":
+            # results_dict["solution_state"][name] = {"value": val, "units": unit}
+
+            results_dict["solution_state"][name] = {"value": val, "units": unit}
+            # print(results_dict)
+
+        self.water_mass = results_dict["solution_state"]["Water mass"]["value"]
         idx = np.where("pH" == np.array(result[0]))[0][0]
         self.solution_ph = result[1][idx]
 
