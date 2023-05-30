@@ -26,7 +26,7 @@ class phreeqcWTapi(dataBaseManagment, utilities):
         rebuild_phases=False,
         log_phreeqc_commands=True,
         ignore_phase_list=None,
-        only_track_list=None,
+        track_phase_list=None,
         remove_phase_list=None,
     ):
         """this is main class for phreeqcAPI that will handle working with a single or multiple solutions
@@ -78,7 +78,7 @@ class phreeqcWTapi(dataBaseManagment, utilities):
         # actions log
         self.command_log = {"log": log_phreeqc_commands}
 
-        self.exclude_phases(ignore_phase_list, only_track_list)
+        self.exclude_phases(ignore_phase_list, track_phase_list)
 
     def run_string(self, string):
         """Method to send command to phreeqpy
@@ -105,7 +105,7 @@ class phreeqcWTapi(dataBaseManagment, utilities):
             else:
                 print(action, log)
 
-    def exclude_phases(self, ignore_list, only_track_list=None):
+    def exclude_phases(self, ignore_list, track_phase_list=None):
         """Method to exclude phases from being checked when getting scailing tendencies or percipitaiton
         to use, provide ignore_list, then call get_solution_state to update other relevant settings
         before calling any other functions
@@ -123,21 +123,21 @@ class phreeqcWTapi(dataBaseManagment, utilities):
                     new_phase_list.append(k)
                 else:
                     ignored_list.append(k)
-            if len(ignore_list) != len(ignore_list):
+            if len(ignore_list) != len(ignored_list):
                 print(
                     "Failed to find all ignore phases!, only found {}".format(
                         ignored_list
                     )
                 )
             self.db_metadata["CHECK_PHASE_LIST"] = new_phase_list
-        if only_track_list != None:
+        if track_phase_list != None:
             new_phase_list = []
             added_list = []
             for k in self.db_metadata["CHECK_PHASE_LIST"]:
-                if k in only_track_list:
+                if k in track_phase_list:
                     new_phase_list.append(k)
                     added_list.append(k)
-            if len(ignore_list) != len(ignore_list):
+            if len(track_phase_list) != len(added_list):
                 print("Failed to find all phases!, only found {}".format(ignored_list))
             self.db_metadata["CHECK_PHASE_LIST"] = new_phase_list
 
