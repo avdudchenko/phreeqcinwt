@@ -282,7 +282,7 @@ class phreeqcWTapi(dataBaseManagment, utilities):
 
         Keyword arguments:
         solution_number -- user provided solution nubmer to use (default None)
-        reactant -- reactant use, should be a dict that includes reactant name and either mass or pH target,
+        reactants -- reactant use, should be a dict that includes reactant name and either mass or pH target,
         can contain multiple reactants {reactant:amount in mg} (default None)
         ph_adjust -- ph adjustant to use and target {'reactant': reactant formula, 'ph':pH target} (default None)
         pressure -- reaction pressure (default None)
@@ -392,6 +392,7 @@ class phreeqcWTapi(dataBaseManagment, utilities):
                     reactant
                 )
             )
+
         if adjust == "acid":
             command = self._gen_acid_adjust(command, ph_adjust["pH"], reactant)
         else:
@@ -403,9 +404,10 @@ class phreeqcWTapi(dataBaseManagment, utilities):
         command += "Fix_H+\n"
         command += "   H+=H+\n"
         command += "EQUILIBRIUM_PHASES \n"
-        command += "   Fix_H+ -{ph_target} {acid_titrant}\n".format(
-            ph_target=ph_target, acid_titrant=acid_titrant
-        )
+        if self.solution_ph != ph_target:
+            command += "   Fix_H+ -{ph_target} {acid_titrant}\n".format(
+                ph_target=ph_target, acid_titrant=acid_titrant
+            )
         return command
 
     def _gen_base_adjust(self, command, ph_target, base_titrant):
@@ -413,9 +415,10 @@ class phreeqcWTapi(dataBaseManagment, utilities):
         command += "Fix_OH-\n"
         command += "   OH-=OH-\n"
         command += "EQUILIBRIUM_PHASES \n"
-        command += "   Fix_OH- -{ph_target} {base_titrant}\n".format(
-            ph_target=(14 - ph_target), base_titrant=base_titrant
-        )
+        if self.solution_ph != ph_target:
+            command += "   Fix_OH- -{ph_target} {base_titrant}\n".format(
+                ph_target=(14 - ph_target), base_titrant=base_titrant
+            )
         return command
 
     def set_titrant_dict(self, titration_dict, titrant_type, value):

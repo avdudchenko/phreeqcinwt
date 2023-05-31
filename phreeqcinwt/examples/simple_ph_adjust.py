@@ -27,9 +27,12 @@ if __name__ == "__main__":
         units="g/kgw",
         pressure=1,
         temperature=20,
-        assume_alkalinity=True,
+        assume_alkalinity=False,
     )
+    phreeqcWT.get_solution_state(report=True)
     titrant_dict = phreeqcWT.perform_reaction(
-        ph_adjust={"pH": 5, "reactant": "HCl"}, report=True
+        ph_adjust={"pH": 7, "reactant": "NaOH"}, report=True
     )
+    titrant_dict = phreeqcWT.perform_reaction(reactants={"HCl": 0}, report=True)
     print(titrant_dict)
+    phreeqcWT.get_solution_state(report=True)

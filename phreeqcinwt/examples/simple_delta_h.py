@@ -35,18 +35,20 @@ if __name__ == "__main__":
     # for wr in [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 95, 99]:
     phreeqcWT.current_solution = 1
     phreeqcWT.get_solution_state(report=False)
+
     # phreeqcWT.perform_reaction(temperature=wr)
     result = phreeqcWT.get_enthalpy_phase()
 
     result_phases = phreeqcWT.form_phases()
-    for key, phase_result in result_phases.items():
-        print(
-            key,
-            "amount formed",
-            phase_result["value"],
-            "ethnaly change (kj/kgw)",
-            phase_result["value"] * result[key]["value"],
-        )
+    print(result_phases)
+    # for key, phase_result in result_phases.items():
+    #     print(
+    #         key,
+    #         "amount formed",
+    #         phase_result["value"],
+    #         "ethnaly change (kj/kgw)",
+    #         phase_result["value"] * result[key]["value"],
+    #     )
     # phreeqcWT.get_enthalpy_phase()
 
     # asss
