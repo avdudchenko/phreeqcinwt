@@ -23,7 +23,7 @@ if __name__ == "__main__":
         input_composotion=input_composotion,
         charge_balance="Cl",
         pH=7,
-        pe=0,
+        pe=4,
         units="g/kgw",
         pressure=1,
         temperature=20,
@@ -31,8 +31,15 @@ if __name__ == "__main__":
     )
     phreeqcWT.get_solution_state(report=True)
     titrant_dict = phreeqcWT.perform_reaction(
-        ph_adjust={"pH": 7, "reactant": "NaOH"}, report=True
+        ph_adjust={"pH": 5.0, "reactant": "HCl"}, pressure=1, report=True
     )
-    titrant_dict = phreeqcWT.perform_reaction(reactants={"HCl": 0}, report=True)
-    print(titrant_dict)
+    phreeqcWT.get_solution_state(report=True)
+    titrant_dict = phreeqcWT.perform_reaction(
+        ph_adjust={"pH": 4.5, "reactant": "HCl"}, pressure=1, report=True
+    )
+    # titrant_dict = phreeqcWT.perform_reaction(pressure=100, report=True)
+    # # print(titrant_dict)
+    # titrant_dict = phreeqcWT.perform_reaction(
+    #     ph_adjust={"pH": 7, "reactant": "NaOH"}, report=True
+    # )
     phreeqcWT.get_solution_state(report=True)

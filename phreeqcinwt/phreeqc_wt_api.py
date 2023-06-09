@@ -302,11 +302,12 @@ class phreeqcWTapi(dataBaseManagment, utilities):
         if pressure is not None:
             command += "REACTION_PRESSURE \n"
             command += "   {}\n".format(pressure)
-        # if reactants is not None or evaporate_water_mass_percent is not None:
-        if reactants is not None:
-            command = self._gen_reaction_command(command, reactants)
-        if evaporate_water_mass_percent is not None:
-            command = self._gen_evap_command(command, evaporate_water_mass_percent)
+        if reactants is not None or evaporate_water_mass_percent is not None:
+            command += "REACTION\n"
+            if reactants is not None:
+                command = self._gen_reaction_command(command, reactants)
+            if evaporate_water_mass_percent is not None:
+                command = self._gen_evap_command(command, evaporate_water_mass_percent)
         if ph_adjust is not None:
             command = self._gen_titration_command(command, ph_adjust)
 
@@ -341,7 +342,7 @@ class phreeqcWTapi(dataBaseManagment, utilities):
         return reaction_dict
 
     def _gen_evap_command(self, command, evaporate_water_mass_percent):
-        command += "REACTION 1\n"
+        # command += "REACTION 1\n"
         mass_water_removal = self.water_mass * evaporate_water_mass_percent / 100
 
         mole_reactant = mass_water_removal * 1000 / 18.01528
@@ -356,7 +357,7 @@ class phreeqcWTapi(dataBaseManagment, utilities):
         return command
 
     def _gen_reaction_command(self, command, reactants):
-        command += "REACTION 2\n"
+        # command += "REACTION 2\n"
         for reactant, mass in reactants.items():
             mass_g = mass / 1000
             mw = self.db_metadata["DEFINED_REACTANTS"].get(reactant)
@@ -713,6 +714,27 @@ class phreeqcWTapi(dataBaseManagment, utilities):
                 print("\t", comp, vapor["value"], vapor["units"])
         # print("vapor", out_dict)  # , result[1][idx])
         return out_dict
+
+    def mix_solutions(self, solutin_dict, new_solution_number=None):
+        """Method for mixing solutions, will be saved as new solution, by advancing
+        current_solution number by 1
+
+        Keyword arguments:
+        solutin_dict -- dictionary of solution names and ratios to mix
+        report -- print out results (default False)
+        """
+        command = "MIX\n"  # .format(self.current_solution)
+        for solution, fraction in solutin_dict.items():
+            command += " {} {}\n".format(solution, fraction)
+        # if save_solution:
+        if new_solution_number is not None:
+            self.current_solution = new_solution_number
+        else:
+            self.current_solution += 1
+        command += "SAVE SOLUTION {}\n".format(self.current_solution)
+        command += "END\n"
+        # print(command)
+        self.run_string(command)
 
     def get_enthalpy_phase(self, report=True):
         """Method for heat of reaction for phases
