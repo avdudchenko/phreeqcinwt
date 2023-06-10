@@ -2,7 +2,17 @@ from phreeqcinwt.phreeqc_wt_api import phreeqcWTapi
 
 
 if __name__ == "__main__":
-    phreeqcWT = phreeqcWTapi(database="pitzer.dat")  # , ignore_phase_list=["Dolomite"])
+    phreeqcWT = phreeqcWTapi(
+        database="pitzer.dat",
+        ignore_phase_list=[
+            "Dolomite",
+            "Magnesite",
+            "Huntite",
+            "Goergeyite",
+            "CO2(g)",
+            "H2O(g)",
+        ],
+    )
     # phreeqcWT = phreeqcWTapi(database="phreeqc.dat")
     # phreeqcWT = phreeqcWTapi(database="minteq.v4.dat")
     # basic brackish water
@@ -33,19 +43,21 @@ if __name__ == "__main__":
     print("-----------------------get intial solution state-----------------------")
     phreeqcWT.get_solution_state(report=True)
     print("-----------------------soften water useing soda ash-----------------------")
-    phreeqcWT.perform_reaction(reactants={"Na2CO3": 63.22}, report=True)
+    phreeqcWT.perform_reaction(reactants={"Na2CO3": 700}, report=True)
     # phreeqcWT.get_solution_state(report=True)
     phreeqcWT.form_phases(report=True)
     print("-----------------------solution after softeing-----------------------")
     print("-----------------------add CO2 softeing-----------------------")
-    phreeqcWT.perform_reaction(reactants={"CO2": 145.26}, report=True)
+    phreeqcWT.perform_reaction(reactants={"CO2": 0}, report=True)
     print("-----------------------solution after CO2-----------------------")
     phreeqcWT.get_solution_state(report=True)
-    phreeqcWT.perform_reaction(evaporate_water_mass_percent=72.2)
+    phreeqcWT.form_phases(report=True)
+    phreeqcWT.perform_reaction(evaporate_water_mass_percent=92)  # , pressure=1)
     phreeqcWT.get_solution_state(report=True)
-    phreeqcWT.get_vapor_pressure(report=True)
-    print("-----------------------heat up solution to 50 C-----------------------")
+    phreeqcWT.form_phases(report=True)
+    # phreeqcWT.get_vapor_pressure(report=True)
+    # print("-----------------------heat up solution to 50 C-----------------------")
 
-    phreeqcWT.perform_reaction(temperature=50)
-    phreeqcWT.get_vapor_pressure(report=True)
-    phreeqcWT.get_solution_state(report=True)
+    # phreeqcWT.perform_reaction(temperature=50)
+    # phreeqcWT.get_vapor_pressure(report=True)
+    # phreeqcWT.get_solution_state(report=True)
