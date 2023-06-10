@@ -130,7 +130,7 @@ class dataBaseManagment:
                         found_phases and states["PHASES"]
                     ):
                         print(row)
-                        if row != []:
+                        if row != [] and "PITZER" not in str(row):
                             if len(row[0]) > 1 and "#" not in str(row):
                                 self.db_metadata["PHASES"][
                                     (row[0].replace(" ", ""))
@@ -160,6 +160,8 @@ class dataBaseManagment:
                     if "PHASES" in str(row):
                         found_phases = True
                         print("fp")
+                    if "PITZER" in str(row):
+                        found_phases = False
                     if "SOLUTION_SPECIES" in str(row):
                         for name, item in self.db_metadata[
                             "SOLUTION_MASTER_SPECIES"

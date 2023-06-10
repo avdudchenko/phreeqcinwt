@@ -1,100 +1,51 @@
 CO3-2:
   formula: CO3
-  sub_species:
-  - CO3-2
-  - HCO3-
-  - MgCO3
+  sub_species: []
 B(OH)3:
   formula: B(OH)3
-  sub_species:
-  - B(OH)3
-  - 3B(OH)3
-  - 4B(OH)3
+  sub_species: []
 Ba+2:
   formula: Ba
-  sub_species:
-  - Ba+2
+  sub_species: []
 Br-:
   formula: Br
-  sub_species:
-  - Br-
+  sub_species: []
 Ca+2:
   formula: Ca
-  sub_species:
-  - Ca+2
-  - CaB(OH)4+
+  sub_species: []
 Cl-:
   formula: Cl
-  sub_species:
-  - Cl-
+  sub_species: []
 Fe+2:
   formula: Fe
-  sub_species:
-  - Fe+2
+  sub_species: []
 H+:
   formula: H
-  sub_species:
-  - H+
-  - H2O
-  - B(OH)3
-  - H4SiO4
-  - OH-
-  - HCO3-
-  - HSO4-
-  - H2Sg
-  - HSg-
-  - B(OH)4-
-  - 3B(OH)3
-  - B3O3(OH)4-
-  - 2H2O
-  - 4B(OH)3
-  - B4O5(OH)4-2
-  - 3H2O
-  - 2H+
-  - CaB(OH)4+
-  - MgB(OH)4+
-  - MgOH+
-  - H3SiO4-
-  - H2SiO4-2
+  sub_species: []
 K+:
   formula: K
-  sub_species:
-  - K+
+  sub_species: []
 Li+:
   formula: Li
-  sub_species:
-  - Li+
+  sub_species: []
 Mg+2:
   formula: Mg
-  sub_species:
-  - Mg+2
-  - MgB(OH)4+
-  - MgOH+
-  - MgCO3
+  sub_species: []
 Mn+2:
   formula: Mn
-  sub_species:
-  - Mn+2
+  sub_species: []
 Na+:
   formula: Na
-  sub_species:
-  - Na+
+  sub_species: []
 H2O:
   formula: H2O
-  sub_species:
-  - H2O
-  - 2H2O
-  - 3H2O
+  sub_species: []
 SO4-2:
   formula: SO4
-  sub_species:
-  - SO4-2
-  - HSO4-
+  sub_species: []
 H4SiO4:
   formula: H4SiO4
-  sub_species:
-  - H4SiO4
+  sub_species: []
 Sr+2:
   formula: Sr
-  sub_species:
-  - Sr+2
+  sub_species: []
