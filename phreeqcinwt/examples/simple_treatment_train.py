@@ -62,5 +62,5 @@ if __name__ == "__main__":
     print("-----------------------heat up solution to 50 C-----------------------")
 
     phreeqcWT.perform_reaction(temperature=50)
-    phreeqcWT.get_vapor_pressure(report=True)
-    phreeqcWT.get_solution_state(report=True)
+    vapor_pressure = phreeqcWT.get_vapor_pressure(report=True)
+    print(vapor_pressure)
