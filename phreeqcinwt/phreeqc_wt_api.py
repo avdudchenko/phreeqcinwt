@@ -707,7 +707,7 @@ class phreeqcWTapi(dataBaseManagment, utilities):
             idx = np.where("fugacity_{}".format(k) == np.array(result[0]))[0][0]
             out_dict[k] = {"value": result[1][idx], "units": "atm"}
             total += result[1][idx]
-        out_dict["total_fugacity"] = total
+        out_dict["total_fugacity"] = {"value": total, "units": "atm"}
         if report:
             print("vapor pressures-----------")
             for comp, vapor in out_dict.items():
