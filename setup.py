@@ -13,7 +13,7 @@ setup(
     author_email="<avd@slac.stanford.edu>",
     description=DESCRIPTION,
     long_description=LONG_DESCRIPTION,
-    packages=find_packages(),
+    packages=["phreeqpy"],
     install_requires=["molmass"],  # add any additional packages that
     # needs to be installed along with your package. Eg: 'caer'
     keywords=["python", "phreeqc", "phreeqpy"],

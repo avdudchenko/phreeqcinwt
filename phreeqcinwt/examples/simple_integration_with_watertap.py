@@ -73,14 +73,65 @@ def get_netural_concetration(m, comp_dict, balance_ion="Cl"):
     return return_dict
 
 
+def ion_balance(input_dict, balance_ion="Cl"):
+    ion_props = {
+        "mw_data": {
+            "H2O": 18e-3,
+            "Ca": 40.078e-3,
+            "HCO3": 61.0168e-3,
+            "SO4": 96.06e-3,
+            "Na": 22.989769e-3,
+            "Cl": 35.453e-3,
+            "K": 39.0983e-3,
+            "Mg": 24.305e-3,
+        },
+        "charge": {
+            "Ca": 2,
+            "HCO3": -1,
+            "SO4": -2,
+            "Na": 1,
+            "Cl": -1,
+            "K": 1,
+            "Mg": 2,
+        },
+    }
+    total_charge = 0
+    in_charge = {}
+    balanced_dict = {}
+    for ion, mass in input_dict.items():
+        # if ion != balance_ion:
+        charge = ion_props["charge"][ion]
+        mols = mass / 1000 / ion_props["mw_data"][ion]
+        total_charge += charge * mols
+        # rint(ion, mols, charge * mols)
+        in_charge[ion] = charge * mols
+    mol_cl = total_charge / (ion_props["charge"][balance_ion])
+    # Ellipsisif total_charge > 0 and ion_props["charge"][balance_ion] < 0:
+    balanced_mass = -mol_cl * 1000 * ion_props["mw_data"][balance_ion]
+    print(balanced_mass)
+    input_dict[balance_ion] = input_dict[balance_ion] + balanced_mass
+    # total_charge_out = 0
+    # ts = {}
+    # for ion, mass in input_dict.items():
+    #     charge = ion_props["charge"][ion]
+    #     mols = mass / 1000 / ion_props["mw_data"][ion]
+    #     total_charge_out += charge * mols
+    #     ts[ion] = charge * mols
+    # if abs(total_charge_out) > 0.1:
+    #     print(total_charge, total_charge_out, ts, in_charge)
+    # else:
+    #     print("charge okay", total_charge, balanced_mass)
+    return input_dict
+
+
 if __name__ == "__main__":
     phreeqc_pitzer = phreeqcWTapi(database="pitzer.dat")
 
     # basic brackish water
     input_composotion = {
-        "Na": 0.739,
+        "Na": 0.4,
         "K": 0.009,
-        "Cl": 0.870,
+        "Cl": 0.2,
         "Ca": 0.258,
         "Mg": 0.090,
         "HCO3": 0.385,
@@ -110,12 +161,12 @@ if __name__ == "__main__":
         },
         "mw_data": {
             "H2O": 18e-3,
-            "Ca": 40e-3,
+            "Ca": 40.078e-3,
             "HCO3": 61.0168e-3,
-            "SO4": 96e-3,
-            "Na": 23e-3,
-            "Cl": 35e-3,
-            "K": 22.989769e-3,
+            "SO4": 96.06e-3,
+            "Na": 22.989769e-3,
+            "Cl": 35.453e-3,
+            "K": 39.0983e-3,
             "Mg": 24.305e-3,
         },
         "stokes_radius_data": {
@@ -143,8 +194,14 @@ if __name__ == "__main__":
     m = build(default)
     out = get_netural_concetration(m, input_composotion)
     # m.display()
+    ib = ion_balance(input_composotion.copy())
+    print(out, ib)
+    for ion, loading in out.items():
+        # input_composotion[ion] = loading
+        print(ion, "org", input_composotion[ion], "wt", loading, "m", ib[ion])
     for ion, loading in out.items():
         input_composotion[ion] = loading
+    # print(ion, "wt", loading, "m", ib[ion])
     phreeqc_pitzer.build_water_composition(
         input_composotion=input_composotion,
         charge_balance="Cl",
