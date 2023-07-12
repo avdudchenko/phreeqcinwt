@@ -2,6 +2,29 @@ import numpy as np
 
 
 class solution_utils:
+    def _process_activities(self, result):
+        # print(result)
+        activities = {}
+        for element, name in self.return_dict.items():
+            idx = np.where("la_" + element == np.array(result[0]))[0]
+            # print(idx, "la_" + element)
+            activities[element] = 10 ** result[1][idx[0]]
+        idx = np.where("la_H2O" == np.array(result[0]))[0]
+        # print(idx)
+        activities["H2O"] = {"value": 10 ** result[1][idx[0]], "units": "dimensionless"}
+        # print(activities)
+        return activities
+
+    def _get_osmotic_pressure(self, result, solution_state, activities):
+        idx = np.where("h2o_vm" == np.array(result[0]))[0]
+        vm = result[1][idx[0]]  # cm3/mol
+        activity = activities["H2O"]["value"]
+        R = 8.31446261815324  # m3⋅Pa⋅K−1⋅mol−1
+        T = solution_state["Temperature"]["value"] + 273.15
+
+        osmotic_pressure = -R * T / (vm * 1e-6) * np.log(activity)
+        return {"units": "Pa", "value": osmotic_pressure}
+
     def _get_solution_comp(
         self,
         result,
@@ -75,14 +98,17 @@ class solution_utils:
             "pct_err": {"name": "Error in charge", "units": "%"},
             "mass_H2O": {"name": "Water mass", "units": "kg"},
             "density": {"name": "Solution density", "units": "kg/L"},
+            "mu": {"name": "Ionic strength", "units": "M"},
         }
         for key, data in sol_state_dict.items():
             # print(key, name, unit)
             name = data["name"]
             unit = data["units"]
+            # print(key)
 
             idx = np.where(key == np.array(result[0]))[0][0]
             val = result[1][idx]
+            # print(key)
             if key == "Alk(eq/kgw)":
                 multiplier = self.db_metadata["SOLUTION_MASTER_SPECIES"]["Alkalinity"][
                     "mw"

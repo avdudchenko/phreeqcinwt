@@ -158,12 +158,16 @@ class utilities:
         if name is not None:
             if name in self.solution_name_reference:
                 print("Warning {} already in solution list, overwriting")
-            self.solution_name_reference[name] = self.current_solution
+            self.solution_name_reference[name] = {
+                "sol_number": self.current_solution,
+                "water_mass": self.water_mass,
+            }
 
     def load_solution(self, name):
         sol_num = self.solution_name_reference.get(name)
         if sol_num is not None:
-            self.current_solution = sol_num
+            self.current_solution = sol_num["sol_number"]
+            self.water_mass = sol_num["water_mass"]
         else:
             print("Solution name {} not found".format(name))
 

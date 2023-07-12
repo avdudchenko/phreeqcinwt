@@ -361,23 +361,30 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
 
         command += "EQUILIBRIUM_PHASES\n"
         command += "USER_PUNCH\n"
-        command += "-heading density\n"
+        command += "-heading density h2o_vm\n"
         command += "-start\n"
         command += "10 punch RHO\n"
+        command += "20 PUNCH VM('H2O')\n"
         command += "-end\n"
-
+        # command = self._get_species_volumes(command)
         command += "SELECTED_OUTPUT\n"
         command += " -alkalinity true\n"
         command += " -temperature true\n"
         command += " -ionic_strength true\n"
         command += " -charge_balance true\n"
         command += " -water true\n"
+
         command += " -percent_error true\n"
         command += " -user_punch true\n"
         command += " -saturation_indices "
 
         for key in self.db_metadata["CHECK_PHASE_LIST"]:
             command += key + " "
+        command += "\n"
+        command += " -activities "
+        for element, name in self.return_dict.items():
+            command += " {} ".format(element)
+        command += " H2O "
         command += "\n"
         command += " -totals"
         for element, name in self.forward_dict.items():
@@ -399,6 +406,8 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
         solution_composition = self._get_scaling_tendencies(
             result,
         )
+        solution_composition["activities"] = self._process_activities(result)
+
         solution_composition["composition"] = self._get_solution_comp(
             result,
             return_input_names=return_input_names,
@@ -407,6 +416,13 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
         )
         solution_composition["solution_state"].update(
             self.get_total_concetration(solution_composition)
+        )
+        solution_composition["solution_state"][
+            "Osmotic pressure"
+        ] = self._get_osmotic_pressure(
+            result,
+            solution_composition["solution_state"],
+            solution_composition["activities"],
         )
         if report:
             print("solution state--------------")
@@ -420,13 +436,6 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
                     mass["units"],
                     "original input",
                     self.input_composotion[self.forward_dict[ion]]["value"],
-                    "diff-assumed same units! (%)",
-                    (
-                        mass["value"]
-                        - self.input_composotion[self.forward_dict[ion]]["value"]
-                    )
-                    / self.input_composotion[self.forward_dict[ion]]["value"]
-                    * 100,
                 )
                 for sub, values in mass["sub_species"].items():
                     print("\t", sub, values["value"], values["units"])
