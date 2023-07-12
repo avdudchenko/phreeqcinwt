@@ -21,12 +21,12 @@ if __name__ == "__main__":
     # phreeqcWT = phreeqcWTapi(database="minteq.v4.dat")
     # basic brackish water
     input_composotion = {
-        "Na": 0.5,
+        "Na": 2,
         "K": 0,
-        "Cl": 0.5,
+        "Cl": 2,
         "Ca": 0.0,
         "Mg": 0.0,
-        "HCO3": 0.3805,
+        "HCO3": 0.0,
         "SO4": 0,
         # "C": 0.258,
         # "C": {"value": 0.385, "compound": "HCO3-"},
@@ -52,7 +52,7 @@ if __name__ == "__main__":
         # vapor_pressure = phreeqcWT.get_vapor_pressure(report=False)
         print(
             result["solution_state"]["Water mass"],
-            result["solution_state"]["Total solids (mass basis)"],
+            result["solution_state"]["Total solids (volume basis)"],
             result["solution_state"]["Osmotic pressure"]["value"] * 1e-5,
         )
         # print()
