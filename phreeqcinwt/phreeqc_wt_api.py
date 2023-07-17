@@ -30,6 +30,7 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
         ignore_phase_list=None,
         track_phase_list=None,
         remove_phase_list=None,
+        exclude_gases_in_phases=True,
     ):
         """this is main class for phreeqcAPI that will handle working with a single or multiple solutions
         this class is a higher level api for phreeqpy and abstraction method for phreeqc with
@@ -81,9 +82,13 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
         # actions log
         self.command_log = {"log": log_phreeqc_commands}
 
-        self.exclude_phases(ignore_phase_list, track_phase_list)
+        self.exclude_phases(
+            ignore_phase_list, track_phase_list, exclude_gases_in_phases
+        )
 
-    def exclude_phases(self, ignore_list, track_phase_list=None):
+    def exclude_phases(
+        self, ignore_list, track_phase_list=None, exclude_gases_in_phases=True
+    ):
         """Method to exclude phases from being checked when getting scailing tendencies or percipitaiton
         to use, provide ignore_list, then call get_solution_state to update other relevant settings
         before calling any other functions
@@ -91,6 +96,7 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
         Keyword arguments:
         ignore_list -- List of phases to ignore
         only_track_list -- oppsite of ingore_list, list that focuses only on the provided phase
+        exclude_gases_in_phases -- exclude gases from ST and phases being removed.
         """
         self.db_metadata["CHECK_PHASE_LIST"] = self.db_metadata["PHASES"].keys()
         if ignore_list != None:
@@ -118,12 +124,20 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
             if len(track_phase_list) != len(added_list):
                 print("Failed to find all phases!, only found {}".format(ignored_list))
             self.db_metadata["CHECK_PHASE_LIST"] = new_phase_list
+        if exclude_gases_in_phases:
+            gasless_list = []
+            for phase in self.db_metadata["CHECK_PHASE_LIST"]:
+                if "(g)" not in phase:
+                    gasless_list.append(phase)
+                else:
+                    print("Ignoring gas phase {}".format(phase))
+            self.db_metadata["CHECK_PHASE_LIST"] = gasless_list
 
     def build_water_composition(
         self,
         input_composotion,
         solution_number=1,
-        solution_name="Initial composition",
+        solution_name=None,
         pH=7,
         temperature=25,
         pe=4,
@@ -134,6 +148,7 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
         charge_balance="Cl",
         water_mass=1,
         assume_alkalinity=True,
+        report=False,
     ):
         """
         This method is used to build a solution.  Input compositon should use either phreeqc species, formula, or solution speices as defined in
@@ -162,7 +177,7 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
         Keyword arguments:
         input_composotion -- dictionary for input compositon
         solution_number -- solution number being generated (default 1)
-        solution_name -- name for the solution to save as (default Initial composition)
+        solution_name -- name for the solution to save as (default None)
         pH -- solution pH (defualt 7)
         temperature -- solution temp in degrees C (default 25)
         pe -- solution pe - only needed for redox couples(default 4)
@@ -175,7 +190,7 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
         assume_alkalinity -- assume if HCO is provided its alkalinity, if TRUE include Alkalinity and C(4) with same concetraiton
         in solutin composition as HCO3 or CaCO3,
         note when CaCO3 phreeqc will use mw of 50.4 g/mol for it, and so will be mw in database (default True)
-
+        report -- print report for solution state
         """
         self.input_composotion_raw = input_composotion
         self.input_composotion = self.build_ion_dict(
@@ -236,7 +251,8 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
         self.db_metadata[
             "MAJOR_SOLUTION_COMPONENTS"
         ] = self.phreeqc.get_component_list()
-        self.get_solution_state()
+        result = self.get_solution_state(report=report)
+        return result
 
     def perform_reaction(
         self,

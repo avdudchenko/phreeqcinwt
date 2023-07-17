@@ -54,11 +54,13 @@ class reaction_utils:
                     reactant
                 )
             )
-
+        # command = ""
         if adjust == "acid":
-            command = self._gen_acid_adjust(command, ph_adjust["pH"], reactant)
+            if self.solution_ph > ph_adjust["pH"]:
+                command = self._gen_acid_adjust(command, ph_adjust["pH"], reactant)
         else:
-            command = self._gen_base_adjust(command, ph_adjust["pH"], reactant)
+            if self.solution_ph < ph_adjust["pH"]:
+                command = self._gen_base_adjust(command, ph_adjust["pH"], reactant)
         return command
 
     def _gen_acid_adjust(self, command, ph_target, acid_titrant):
@@ -66,10 +68,10 @@ class reaction_utils:
         command += "Fix_H+\n"
         command += "   H+=H+\n"
         command += "EQUILIBRIUM_PHASES \n"
-        if self.solution_ph != ph_target:
-            command += "   Fix_H+ -{ph_target} {acid_titrant}\n".format(
-                ph_target=ph_target, acid_titrant=acid_titrant
-            )
+
+        command += "   Fix_H+ -{ph_target} {acid_titrant}\n".format(
+            ph_target=ph_target, acid_titrant=acid_titrant
+        )
         return command
 
     def _gen_base_adjust(self, command, ph_target, base_titrant):
@@ -77,10 +79,10 @@ class reaction_utils:
         command += "Fix_OH-\n"
         command += "   OH-=OH-\n"
         command += "EQUILIBRIUM_PHASES \n"
-        if self.solution_ph != ph_target:
-            command += "   Fix_OH- -{ph_target} {base_titrant}\n".format(
-                ph_target=(14 - ph_target), base_titrant=base_titrant
-            )
+
+        command += "   Fix_OH- -{ph_target} {base_titrant}\n".format(
+            ph_target=(14 - ph_target), base_titrant=base_titrant
+        )
         return command
 
     def set_titrant_dict(self, titration_dict, titrant_type, value):

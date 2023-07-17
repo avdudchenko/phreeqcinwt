@@ -157,7 +157,7 @@ class utilities:
     def store_solution_name(self, name=None):
         if name is not None:
             if name in self.solution_name_reference:
-                print("Warning {} already in solution list, overwriting")
+                print("Warning {} already in solution list, overwriting".format(name))
             self.solution_name_reference[name] = {
                 "sol_number": self.current_solution,
                 "water_mass": self.water_mass,
