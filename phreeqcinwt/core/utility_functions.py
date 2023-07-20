@@ -154,9 +154,9 @@ class utilities:
             self.current_action += 1
         self.phreeqc.run_string(string)
 
-    def store_solution_name(self, name=None):
+    def store_solution_name(self, name=None, warn=False):
         if name is not None:
-            if name in self.solution_name_reference:
+            if name in self.solution_name_reference and warn:
                 print("Warning {} already in solution list, overwriting".format(name))
             self.solution_name_reference[name] = {
                 "sol_number": self.current_solution,
@@ -171,8 +171,8 @@ class utilities:
         else:
             print("Solution name {} not found".format(name))
 
-    def save_solution(self, name):
-        self.store_solution_name(name)
+    def save_solution(self, name, warn=False):
+        self.store_solution_name(name, warn)
 
     def display_current_solutions(self):
         print("-----------stored solution aliases------------")

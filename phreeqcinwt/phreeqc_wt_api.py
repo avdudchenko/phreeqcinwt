@@ -136,7 +136,7 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
     def build_water_composition(
         self,
         input_composotion,
-        solution_number=1,
+        solution_number=None,
         solution_name=None,
         pH=7,
         temperature=25,
@@ -176,7 +176,7 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
 
         Keyword arguments:
         input_composotion -- dictionary for input compositon
-        solution_number -- solution number being generated (default 1)
+        solution_number -- solution number being generated (default None)
         solution_name -- name for the solution to save as (default None)
         pH -- solution pH (defualt 7)
         temperature -- solution temp in degrees C (default 25)
@@ -197,11 +197,13 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
             input_composotion, assume_alkalinity=assume_alkalinity
         )
         self.water_mass = water_mass
+        if solution_number is not None:
+            self.current_solution = solution_number
+        else:
+            self.current_solution += 1
+        self.store_solution_name(self.current_solution)
 
-        self.current_solution = solution_number
-        self.store_solution_name(solution_name)
-
-        self.composition = "SOLUTION {}\n".format(solution_number)
+        self.composition = "SOLUTION {}\n".format(self.current_solution)
         self.composition += "   temp {}\n".format(temperature)
         self.composition += "   pressure {}\n".format(pressure)
         if charge_balance == "pH":
@@ -462,7 +464,7 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
                 else:
                     print("\t", scalant, SI["value"])
 
-        return solution_composition
+        return copy.deepcopy(solution_composition)
 
     def form_phases(
         self,
