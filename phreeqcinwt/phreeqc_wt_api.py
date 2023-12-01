@@ -457,6 +457,9 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
                 )
                 for sub, values in mass["sub_species"].items():
                     print("\t", sub, values["value"], values["units"])
+            print("activities------------------")
+            for scalant, SI in solution_composition["activities"].items():
+                print("\t", scalant, SI["value"])
             print("scaling tendendencies------------------")
             for scalant, SI in solution_composition["scaling_tendencies"].items():
                 if scalant == "max":

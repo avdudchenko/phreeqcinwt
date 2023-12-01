@@ -8,7 +8,10 @@ class solution_utils:
         for element, name in self.return_dict.items():
             idx = np.where("la_" + element == np.array(result[0]))[0]
             # print(idx, "la_" + element)
-            activities[element] = 10 ** result[1][idx[0]]
+            activities[element] = {
+                "value": 10 ** result[1][idx[0]],
+                "units": "dimensionless",
+            }
         idx = np.where("la_H2O" == np.array(result[0]))[0]
         # print(idx)
         activities["H2O"] = {"value": 10 ** result[1][idx[0]], "units": "dimensionless"}
