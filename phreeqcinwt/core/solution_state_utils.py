@@ -12,9 +12,17 @@ class solution_utils:
                 "value": 10 ** result[1][idx[0]],
                 "units": "dimensionless",
             }
+            activities["log10_{}".format(element)] = {
+                "value": result[1][idx[0]],
+                "units": "dimensionless",
+            }
         idx = np.where("la_H2O" == np.array(result[0]))[0]
         # print(idx)
         activities["H2O"] = {"value": 10 ** result[1][idx[0]], "units": "dimensionless"}
+        activities["log10_{}".format("H2O")] = {
+            "value": result[1][idx[0]],
+            "units": "dimensionless",
+        }
         # print(activities)
         return activities
 
