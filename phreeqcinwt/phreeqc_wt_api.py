@@ -383,6 +383,11 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
         command += "-start\n"
         command += "10 punch RHO\n"
         command += "20 PUNCH VM('H2O')\n"
+        phs = ["Calcite"]
+        command += "-headings ksp_{}\n".format(" ksp_".join(self.db_metadata["PHASES"]))
+        for i, g in enumerate(self.db_metadata["PHASES"]):
+            command += '{} PUNCH LK_PHASE("{}")\n'.format(int(30 + i * 10), g)
+            # print(command)
         command += "-end\n"
         # command = self._get_species_volumes(command)
         command += "SELECTED_OUTPUT\n"
@@ -465,7 +470,7 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
                 if scalant == "max":
                     print("\t", scalant, SI["value"], SI["scalant"])
                 else:
-                    print("\t", scalant, SI["value"])
+                    print("\t", scalant, SI["value"], "log10 of Ksp =", SI["log10_ksp"])
 
         return copy.deepcopy(solution_composition)
 
