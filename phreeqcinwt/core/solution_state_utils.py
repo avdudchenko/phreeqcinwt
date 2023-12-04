@@ -33,7 +33,7 @@ class solution_utils:
         R = 8.31446261815324  # m3⋅Pa⋅K−1⋅mol−1
         T = solution_state["Temperature"]["value"] + 273.15
 
-        osmotic_pressure = -R * T / (vm * 1e-6) * np.log(activity)
+        osmotic_pressure = -R * T / (vm * 1e-6) * np.log10(activity)
         return {"units": "Pa", "value": osmotic_pressure}
 
     def _get_solution_comp(
@@ -81,7 +81,6 @@ class solution_utils:
 
     def _get_scaling_tendencies(self, result, report=False):
         result_dict = {}
-        print(result)
         self.db_metadata["PRESENT_PHASES_IN_SOLUTION"] = []
 
         for phase in self.db_metadata["PHASES"].keys():
@@ -152,6 +151,9 @@ class solution_utils:
 
         results_dict["scaling_tendencies"]["max"] = {
             "value": results_dict["scaling_tendencies"][max_scaling_key]["value"],
+            "log10_ksp": results_dict["scaling_tendencies"][max_scaling_key][
+                "log10_ksp"
+            ],
             "scalant": max_scaling_key,
         }
         return results_dict.copy()
