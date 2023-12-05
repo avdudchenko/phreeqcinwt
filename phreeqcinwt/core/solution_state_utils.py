@@ -33,7 +33,7 @@ class solution_utils:
         R = 8.31446261815324  # m3⋅Pa⋅K−1⋅mol−1
         T = solution_state["Temperature"]["value"] + 273.15
 
-        osmotic_pressure = -R * T / (vm * 1e-6) * np.log10(activity)
+        osmotic_pressure = -R * T / (vm * 1e-6) * np.log(activity)
         return {"units": "Pa", "value": osmotic_pressure}
 
     def _get_solution_comp(
