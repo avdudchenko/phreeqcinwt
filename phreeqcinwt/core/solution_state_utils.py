@@ -82,13 +82,11 @@ class solution_utils:
     def _get_scaling_tendencies(self, result, report=False):
         result_dict = {}
         self.db_metadata["PRESENT_PHASES_IN_SOLUTION"] = []
-
         for phase in self.db_metadata["PHASES"].keys():
             # print(result[0])
 
             p_idx = np.where(np.array(result[0]) == "si_" + phase)[0]
             ksp_idx = np.where(np.array(result[0]) == "ksp_" + phase)[0]
-            # print(p_idx)
             if p_idx.size > 0:
                 si = result[1][p_idx[0]]
                 if float(si) > -999:
