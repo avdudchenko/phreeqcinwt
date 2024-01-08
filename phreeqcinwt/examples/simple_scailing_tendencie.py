@@ -43,7 +43,7 @@ if __name__ == "__main__":
         pe=0,
         units="g/kgw",
         pressure=1,
-        temperature=25,
+        temperature=20,
         assume_alkalinity=False,
         report=False,
         water_mass=10,
