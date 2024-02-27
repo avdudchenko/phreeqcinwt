@@ -90,8 +90,12 @@ class solution_utils:
             if p_idx.size > 0:
                 si = result[1][p_idx[0]]
                 if float(si) > -999:
+                    try:
+                        val = 10 ** (float(si))
+                    except:
+                        val = 1e20
                     result_dict[phase] = {
-                        "value": 10 ** (float(si)),
+                        "value": val,
                         "log10_ksp": result[1][ksp_idx[0]],
                         "units": "dimensionless",
                     }

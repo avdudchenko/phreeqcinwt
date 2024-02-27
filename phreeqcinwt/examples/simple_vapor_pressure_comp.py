@@ -6,16 +6,25 @@ def antoin_vapor_pressure(temp):
 
 
 if __name__ == "__main__":
-    phreeqcWT = phreeqcWTapi(
+    phreeqcWT_all_gasses = phreeqcWTapi(
         database="pitzer.dat",
         ignore_phase_list=[
             "Dolomite",
             "Magnesite",
             "Huntite",
             "Goergeyite",
-            "CO2(g)",
-            "H2O(g)",
         ],
+    )
+    phreeqcWT_selected_gasses = phreeqcWTapi(
+        database="pitzer.dat",
+        ignore_phase_list=[
+            "Dolomite",
+            "Magnesite",
+            "Huntite",
+            "Goergeyite",
+        ],
+        ignore_gas_phase_list=["CO2(g)"],
+        track_gas_phase_list=["H2O(g)"],
     )
     # phreeqcWT = phreeqcWTapi(database="phreeqc.dat")
     # phreeqcWT = phreeqcWTapi(database="minteq.v4.dat")
@@ -33,7 +42,17 @@ if __name__ == "__main__":
         # "Alkalinity": {"value": 0.381, "compound": "HCO3-"},
     }
 
-    phreeqcWT.build_water_composition(
+    phreeqcWT_all_gasses.build_water_composition(
+        input_composotion=input_composotion,
+        charge_balance="Cl",
+        pH=7,
+        pe=0,
+        units="g/kgw",
+        pressure=1,
+        temperature=20,
+        assume_alkalinity=True,
+    )
+    phreeqcWT_selected_gasses.build_water_composition(
         input_composotion=input_composotion,
         charge_balance="Cl",
         pH=7,
@@ -45,18 +64,21 @@ if __name__ == "__main__":
     )
     temps = [20, 40, 60, 80, 99]
     for t in temps:
-        phreeqcWT.perform_reaction(temperature=t)
-        vapor_pressure = phreeqcWT.get_vapor_pressure(report=False)
-        ant_vp = antoin_vapor_pressure(t)
-        print(
-            "temp (C)",
-            t,
-            "Phreeqc total P(atm)",
-            round(vapor_pressure["total_fugacity"]["value"], 4),
-            "Phreeqc H2O only P(atm)",
-            round(vapor_pressure["H2O(g)"]["value"], 4),
-            "Antoin P(atm)",
-            round(ant_vp, 4),
-            "diff H2O Only (%)",
-            (vapor_pressure["H2O(g)"]["value"] - ant_vp) / ant_vp * 100,
-        )
+        print("all gasses")
+        phreeqcWT_all_gasses.perform_reaction(temperature=t)
+        vapor_pressure = phreeqcWT_all_gasses.get_vapor_pressure(report=True)
+        print("selected gasses")
+        vapor_pressure = phreeqcWT_selected_gasses.get_vapor_pressure(report=True)
+        # ant_vp = antoin_vapor_pressure(t)
+        # print(
+        #     "temp (C)",
+        #     t,
+        #     "Phreeqc total P(atm)",
+        #     round(vapor_pressure["total_fugacity"]["value"], 4),
+        #     "Phreeqc H2O only P(atm)",
+        #     round(vapor_pressure["H2O(g)"]["value"], 4),
+        #     "Antoin P(atm)",
+        #     round(ant_vp, 4),
+        #     "diff H2O Only (%)",
+        #     (vapor_pressure["H2O(g)"]["value"] - ant_vp) / ant_vp * 100,
+        # )

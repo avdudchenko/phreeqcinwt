@@ -28,7 +28,9 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
         rebuild_phases=False,
         log_phreeqc_commands=True,
         ignore_phase_list=None,
+        ignore_gas_phase_list=None,
         track_phase_list=None,
+        track_gas_phase_list=None,
         remove_phase_list=None,
         exclude_gases_in_phases=True,
     ):
@@ -61,6 +63,7 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
         rebuild_phases -- rebuild meta data for phases list (default False)
         log_phreeqc_commands -- log phreeqc commands(default False)
         ignore_phase_list -- provide list of phases to not check for scaling and percipitaiton, can be updated useing exclude_phases method
+        ignore_gas_phase_list -- provide list of gases phases to not check when getting vapor pressure, can be updated useing exclude_phases method
         remove_phase_list -- list of phases to remove, this will remove it from provided database, the database will NOT be ovewritten
         """
 
@@ -83,11 +86,20 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
         self.command_log = {"log": log_phreeqc_commands}
 
         self.exclude_phases(
-            ignore_phase_list, track_phase_list, exclude_gases_in_phases
+            ignore_phase_list,
+            ignore_gas_phase_list,
+            track_phase_list,
+            track_gas_phase_list,
+            exclude_gases_in_phases,
         )
 
     def exclude_phases(
-        self, ignore_list, track_phase_list=None, exclude_gases_in_phases=True
+        self,
+        ignore_list,
+        ignore_gas_phase_list,
+        track_phase_list=None,
+        track_gas_phase_list=None,
+        exclude_gases_in_phases=True,
     ):
         """Method to exclude phases from being checked when getting scailing tendencies or percipitaiton
         to use, provide ignore_list, then call get_solution_state to update other relevant settings
@@ -99,6 +111,7 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
         exclude_gases_in_phases -- exclude gases from ST and phases being removed.
         """
         self.db_metadata["CHECK_PHASE_LIST"] = self.db_metadata["PHASES"].keys()
+        self.db_metadata["CHECK_GAS_PHASE_LIST"] = self.db_metadata["PHASES"].keys()
         if ignore_list != None:
             new_phase_list = []
             ignored_list = []
@@ -114,6 +127,25 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
                     )
                 )
             self.db_metadata["CHECK_PHASE_LIST"] = new_phase_list
+        if ignore_gas_phase_list == None:
+            ignore_gas_phase_list = []
+        _gas_phase_list = []
+        for phase in self.db_metadata["CHECK_GAS_PHASE_LIST"]:
+            if "(g)" in phase and phase not in ignore_gas_phase_list:
+                _gas_phase_list.append(phase)
+        self.db_metadata["CHECK_GAS_PHASE_LIST"] = _gas_phase_list
+        if track_gas_phase_list != None:
+            new_phase_list = []
+            added_list = []
+            for phase in self.db_metadata["CHECK_GAS_PHASE_LIST"]:
+                if phase in track_gas_phase_list:
+                    new_phase_list.append(phase)
+                    added_list.append(phase)
+            if len(track_gas_phase_list) != len(added_list):
+                print(
+                    "Failed to find all gas phases!, only found {}".format(ignored_list)
+                )
+            self.db_metadata["CHECK_GAS_PHASE_LIST"] = new_phase_list
         if track_phase_list != None:
             new_phase_list = []
             added_list = []
@@ -250,9 +282,9 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
         self.composition += "END\n"
 
         self.run_string(self.composition)
-        self.db_metadata[
-            "MAJOR_SOLUTION_COMPONENTS"
-        ] = self.phreeqc.get_component_list()
+        self.db_metadata["MAJOR_SOLUTION_COMPONENTS"] = (
+            self.phreeqc.get_component_list()
+        )
         result = self.get_solution_state(report=report)
         return result
 
@@ -438,12 +470,12 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
         solution_composition["solution_state"].update(
             self.get_total_concetration(solution_composition)
         )
-        solution_composition["solution_state"][
-            "Osmotic pressure"
-        ] = self._get_osmotic_pressure(
-            result,
-            solution_composition["solution_state"],
-            solution_composition["activities"],
+        solution_composition["solution_state"]["Osmotic pressure"] = (
+            self._get_osmotic_pressure(
+                result,
+                solution_composition["solution_state"],
+                solution_composition["activities"],
+            )
         )
         if report:
             print("solution state--------------")
@@ -554,12 +586,11 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
         """
         gas_phases = []
         gas_header = []
-
-        for phase in list(self.db_metadata["PHASES"].keys()):
+        for phase in list(self.db_metadata["CHECK_GAS_PHASE_LIST"]):
             if "(g)" in phase:
                 gas_phases.append(phase)
                 gas_header.append("fugacity_{}".format(phase))
-        # print(gas_phases)
+
         command = "USE SOLUTION {}\n".format(self.current_solution)
         command += "GAS_PHASE 1\n"
         command += "   -fixed_volume\n"

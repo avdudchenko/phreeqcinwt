@@ -23,12 +23,13 @@ class reaction_utils:
             mass_g = mass / 1000
             mw = self.db_metadata["DEFINED_REACTANTS"].get(reactant)
             if mw == None:
-                raise (
+                raise TypeError(
                     "reactant {} not found in database, please add to /databases/defined_reactants.yaml".format(
                         reactant
                     )
                 )
             mole_reactant = mass_g / mw * self.water_mass
+            # print("Adding {} {} mols/kg".format(reactant, mass_g / mw))
             command += "    {reactant} {mole_reactant}\n".format(
                 reactant=reactant, mole_reactant=mole_reactant
             )

@@ -48,7 +48,7 @@ if __name__ == "__main__":
     for r in recovery:
         phreeqcWT.load_solution("Ref_state")
         phreeqcWT.perform_reaction(evaporate_water_mass_percent=r)
-        result = phreeqcWT.get_solution_state(report=False)
+        result = phreeqcWT.get_solution_state(report=True)
         # vapor_pressure = phreeqcWT.get_vapor_pressure(report=False)
         print(
             result["solution_state"]["Water mass"],
