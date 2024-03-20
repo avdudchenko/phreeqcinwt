@@ -115,7 +115,12 @@ class solution_utils:
             "mass_H2O": {"name": "Water mass", "units": "kg"},
             "density": {"name": "Solution density", "units": "kg/L"},
             "mu": {"name": "Ionic strength", "units": "M"},
+            "solution_conductivity": {
+                "name": "Solution conductivity",
+                "units": "uS/cm",
+            },
         }
+        print(result[0])
         for key, data in sol_state_dict.items():
             # print(key, name, unit)
             name = data["name"]

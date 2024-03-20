@@ -27,13 +27,14 @@ if __name__ == "__main__":
         pressure=1,
         temperature=20,
         assume_alkalinity=True,
+        report=True,
     )
-
+    assert False
     density = []
     concetration_solutes = []
     print("-----------------------get intial solution state-----------------------")
     for wr in [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 95, 99]:
-        phreeqcWT.current_solution = 1
+
         phreeqcWT.get_solution_state(report=False)
         phreeqcWT.perform_reaction(evaporate_water_mass_percent=wr)
         # phreeqcWT.form_phases()

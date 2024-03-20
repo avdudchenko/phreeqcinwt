@@ -411,15 +411,16 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
 
         command += "EQUILIBRIUM_PHASES\n"
         command += "USER_PUNCH\n"
-        command += "-heading density h2o_vm "
+        command += "-heading density h2o_vm solution_conductivity"
         command += " ksp_{}\n".format(" ksp_".join(self.db_metadata["PHASES"]))
         command += "-start\n"
-        command += "10 punch RHO\n"
+        command += "10 PUNCH RHO\n"
         command += "20 PUNCH VM('H2O')\n"
+        command += "30 PUNCH SC\n"
+        start_point = 40
         for i, g in enumerate(self.db_metadata["PHASES"]):
-            command += '{} PUNCH LK_PHASE("{}")\n'.format(int(30 + i * 10), g)
+            command += '{} PUNCH LK_PHASE("{}")\n'.format(int(start_point + i * 10), g)
         command += "-end\n"
-
         command += "SELECTED_OUTPUT\n"
         command += " -alkalinity true\n"
         command += " -temperature true\n"
