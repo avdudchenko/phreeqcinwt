@@ -120,7 +120,7 @@ class solution_utils:
                 "units": "uS/cm",
             },
         }
-        print(result[0])
+        # print(result[0])
         for key, data in sol_state_dict.items():
             # print(key, name, unit)
             name = data["name"]
