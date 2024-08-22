@@ -9,4 +9,6 @@ phreeqcinwt.egg-info/requires.txt
 phreeqcinwt.egg-info/top_level.txt
 phreeqcinwt/core/__init__.py
 phreeqcinwt/core/data_base_utils.py
+phreeqcinwt/core/reaction_utils.py
+phreeqcinwt/core/solution_state_utils.py
 phreeqcinwt/core/utility_functions.py

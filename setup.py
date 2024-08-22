@@ -13,8 +13,12 @@ setup(
     author_email="<avd@slac.stanford.edu>",
     description=DESCRIPTION,
     long_description=LONG_DESCRIPTION,
-    packages=[],
-    install_requires=["molmass"],  # add any additional packages that
+    packages=find_packages(),
+    install_requires=[
+        "numpy <= 1.26.4",
+        "pyyaml",
+        "molmass",
+    ],  # add any additional packages that
     # needs to be installed along with your package. Eg: 'caer'
     keywords=["python", "phreeqc", "phreeqpy"],
     classifiers=[

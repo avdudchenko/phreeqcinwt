@@ -11,5 +11,8 @@ Classifier: Programming Language :: Python :: 2
 Classifier: Programming Language :: Python :: 3
 Classifier: Operating System :: MacOS :: MacOS X
 Classifier: Operating System :: Microsoft :: Windows
+Requires-Dist: numpy<=1.26.4
+Requires-Dist: pyyaml
+Requires-Dist: molmass
 
 Module for simulating water treatment systems with phreeqpy/phreeqc

@@ -80,7 +80,7 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
         self.solution_name_reference = {}
 
         # number of current soluton and action being performed
-        self.current_solution = 1
+        self.current_solution = 0
         self.current_action = 0
         # actions log
         self.command_log = {"log": log_phreeqc_commands}
@@ -234,7 +234,7 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
         else:
             self.current_solution += 1
         self.store_solution_name(self.current_solution)
-
+        print("self.current_solution", self.current_solution)
         self.composition = "SOLUTION {}\n".format(self.current_solution)
         self.composition += "   temp {}\n".format(temperature)
         self.composition += "   pressure {}\n".format(pressure)
