@@ -297,6 +297,7 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
         temperature=None,
         pressure=None,
         evaporate_water_mass_percent=None,
+        reactant_units="mg/kgw",
         report=False,
     ):
         """
@@ -328,7 +329,7 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
             solution_number = self.current_solution
 
         command = ""
-        command += "USE SOLUTION {}\n".format(self.current_solution)
+        command += "USE SOLUTION {}\n".format(solution_number)
         # self.current_reaction += 1
         if temperature is not None:
             command += "REACTION_TEMPERATURE\n"
@@ -339,7 +340,7 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
         if reactants is not None or evaporate_water_mass_percent is not None:
             command += "REACTION\n"
             if reactants is not None:
-                command = self._gen_reaction_command(command, reactants)
+                command = self._gen_reaction_command(command, reactants, reactant_units)
             if evaporate_water_mass_percent is not None:
                 command = self._gen_evap_command(command, evaporate_water_mass_percent)
         if ph_adjust is not None:

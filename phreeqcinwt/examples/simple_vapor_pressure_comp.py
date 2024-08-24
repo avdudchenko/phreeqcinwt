@@ -69,6 +69,7 @@ if __name__ == "__main__":
         vapor_pressure = phreeqcWT_all_gasses.get_vapor_pressure(report=True)
         print("selected gasses")
         vapor_pressure = phreeqcWT_selected_gasses.get_vapor_pressure(report=True)
+        print(vapor_pressure)
         # ant_vp = antoin_vapor_pressure(t)
         # print(
         #     "temp (C)",

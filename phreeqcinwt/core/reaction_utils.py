@@ -17,7 +17,7 @@ class reaction_utils:
             command += "    H2O -{mole_reactant}\n".format(mole_reactant=mole_reactant)
         return command
 
-    def _gen_reaction_command(self, command, reactants):
+    def _gen_reaction_command(self, command, reactants, unit="mg/kgw"):
         # command += "REACTION 2\n"
         for reactant, mass in reactants.items():
             mass_g = mass / 1000
@@ -28,7 +28,12 @@ class reaction_utils:
                         reactant
                     )
                 )
-            mole_reactant = mass_g / mw * self.water_mass
+            if unit == "mg/kgw":
+                mole_reactant = mass_g / mw * self.water_mass
+            elif unit == "mol":
+                mole_reactant = mass
+            else:
+                raise ValueError(f"Unit {unit} not supported")
             # print("Adding {} {} mols/kg".format(reactant, mass_g / mw))
             command += "    {reactant} {mole_reactant}\n".format(
                 reactant=reactant, mole_reactant=mole_reactant
