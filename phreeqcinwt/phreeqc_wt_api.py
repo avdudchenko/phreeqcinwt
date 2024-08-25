@@ -234,7 +234,6 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
         else:
             self.current_solution += 1
         self.store_solution_name(self.current_solution)
-        print("self.current_solution", self.current_solution)
         self.composition = "SOLUTION {}\n".format(self.current_solution)
         self.composition += "   temp {}\n".format(temperature)
         self.composition += "   pressure {}\n".format(pressure)
@@ -577,7 +576,13 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
                 print("\t", phase, amount)
         return percip_result
 
-    def get_vapor_pressure(self, report=False):
+    def get_vapor_pressure(
+        self,
+        report=False,
+        solution_number=None,
+        store_solution=True,
+        solution_name=None,
+    ):
         """Method for getting vapor pressure
         This will return fugacities for the for each gas phase. the fugacity is
         equivlaent to vapor pressure at low pressures. The sum of all fugacities is
@@ -592,19 +597,14 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
             if "(g)" in phase:
                 gas_phases.append(phase)
                 gas_header.append("fugacity_{}".format(phase))
-
+        if solution_number == None:
+            solution_number = self.current_solution
         command = "USE SOLUTION {}\n".format(self.current_solution)
         command += "GAS_PHASE 1\n"
         command += "   -fixed_volume\n"
         for g in gas_phases:
             command += "    {}\n".format(g)
         command += "   -fixed_volume\n"
-        # command += "END\n"
-        # command += "USE REACTION\n"  # .format(self.current_solution)
-        # command += "USE gas_phase 1\n"
-        #        command += "REACTION_TEMPERATURE\n"
-        #       command += "   {}\n".format(temperture)
-        # command += "END\n"
         command += "USER_PUNCH\n"
         command += "-start\n"
         command += "-headings {}\n".format(" ".join(gas_header))
@@ -613,7 +613,11 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
         command += "-end\n"
         command += "SELECTED_OUTPUT\n"
         command += "   -gases {}".format(" ".join(gas_phases))
-        command += "   -user_punch True"
+        command += "   -user_punch True\n"
+        if store_solution:
+            self.current_solution += 1
+            command += "SAVE SOLUTION {}\n".format(self.current_solution)
+            self.store_solution_name(solution_name)
         command += "END\n"
         self.run_string(command)
         result = self.phreeqc.get_selected_output_array()
