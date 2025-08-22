@@ -1,0 +1,242 @@
+{
+    "9.0": {
+        "dose": {
+            "value": 130.69581938563346,
+            "units": "mg/kgw"
+        },
+        "precip": {
+            "Calcite": {
+                "value": 0.00028436617604497545,
+                "units": "mol/kgw"
+            },
+            "Dolomite": {
+                "value": 0.0008319603077204921,
+                "units": "mol/kgw"
+            }
+        }
+    },
+    "9.107142857142858": {
+        "dose": {
+            "value": 166.98713454219168,
+            "units": "mg/kgw"
+        },
+        "precip": {
+            "Calcite": {
+                "value": 0.0003810827935939061,
+                "units": "mol/kgw"
+            },
+            "Dolomite": {
+                "value": 0.000945947363609662,
+                "units": "mol/kgw"
+            }
+        }
+    },
+    "9.214285714285714": {
+        "dose": {
+            "value": 212.92449238774898,
+            "units": "mg/kgw"
+        },
+        "precip": {
+            "Calcite": {
+                "value": 0.0005033536202104324,
+                "units": "mol/kgw"
+            },
+            "Dolomite": {
+                "value": 0.0010899276267829295,
+                "units": "mol/kgw"
+            }
+        }
+    },
+    "9.321428571428571": {
+        "dose": {
+            "value": 271.0757975779742,
+            "units": "mg/kgw"
+        },
+        "precip": {
+            "Calcite": {
+                "value": 0.0006578629701659292,
+                "units": "mol/kgw"
+            },
+            "Dolomite": {
+                "value": 0.0012716754354738815,
+                "units": "mol/kgw"
+            }
+        }
+    },
+    "9.428571428571429": {
+        "dose": {
+            "value": 344.71218726549034,
+            "units": "mg/kgw"
+        },
+        "precip": {
+            "Calcite": {
+                "value": 0.0008530207095456774,
+                "units": "mol/kgw"
+            },
+            "Dolomite": {
+                "value": 0.0015009343671971485,
+                "units": "mol/kgw"
+            }
+        }
+    },
+    "9.535714285714286": {
+        "dose": {
+            "value": 438.0558878844076,
+            "units": "mg/kgw"
+        },
+        "precip": {
+            "Calcite": {
+                "value": 0.0010994661872325926,
+                "units": "mol/kgw"
+            },
+            "Dolomite": {
+                "value": 0.0017899794647460911,
+                "units": "mol/kgw"
+            }
+        }
+    },
+    "9.642857142857142": {
+        "dose": {
+            "value": 556.6540821847391,
+            "units": "mg/kgw"
+        },
+        "precip": {
+            "Calcite": {
+                "value": 0.0014106945672174701,
+                "units": "mol/kgw"
+            },
+            "Dolomite": {
+                "value": 0.0021543197863344737,
+                "units": "mol/kgw"
+            }
+        }
+    },
+    "9.75": {
+        "dose": {
+            "value": 707.9504816275488,
+            "units": "mg/kgw"
+        },
+        "precip": {
+            "Calcite": {
+                "value": 0.0018035587549494964,
+                "units": "mol/kgw"
+            },
+            "Dolomite": {
+                "value": 0.0026132853667252967,
+                "units": "mol/kgw"
+            }
+        }
+    },
+    "9.857142857142858": {
+        "dose": {
+            "value": 902.1606119641378,
+            "units": "mg/kgw"
+        },
+        "precip": {
+            "Calcite": {
+                "value": 0.002296285175558189,
+                "units": "mol/kgw"
+            },
+            "Dolomite": {
+                "value": 0.003187898021818534,
+                "units": "mol/kgw"
+            }
+        }
+    },
+    "9.964285714285714": {
+        "dose": {
+            "value": 1153.6068608158096,
+            "units": "mg/kgw"
+        },
+        "precip": {
+            "Calcite": {
+                "value": 0.0027168754756234153,
+                "units": "mol/kgw"
+            },
+            "Dolomite": {
+                "value": 0.003678254553823335,
+                "units": "mol/kgw"
+            }
+        }
+    },
+    "10.071428571428571": {
+        "dose": {
+            "value": 1482.7487124454017,
+            "units": "mg/kgw"
+        },
+        "precip": {
+            "Calcite": {
+                "value": 0.0027317934513374532,
+                "units": "mol/kgw"
+            },
+            "Dolomite": {
+                "value": 0.0036956591904041027,
+                "units": "mol/kgw"
+            }
+        }
+    },
+    "10.178571428571429": {
+        "dose": {
+            "value": 1919.2791703218857,
+            "units": "mg/kgw"
+        },
+        "precip": {
+            "Calcite": {
+                "value": 0.0027338500575774948,
+                "units": "mol/kgw"
+            },
+            "Dolomite": {
+                "value": 0.003698058067813484,
+                "units": "mol/kgw"
+            }
+        }
+    },
+    "10.285714285714285": {
+        "dose": {
+            "value": 2506.899884371777,
+            "units": "mg/kgw"
+        },
+        "precip": {
+            "Calcite": {
+                "value": 0.002734634945194349,
+                "units": "mol/kgw"
+            },
+            "Dolomite": {
+                "value": 0.0036989721381207,
+                "units": "mol/kgw"
+            }
+        }
+    },
+    "10.392857142857142": {
+        "dose": {
+            "value": 3310.830127806937,
+            "units": "mg/kgw"
+        },
+        "precip": {
+            "Calcite": {
+                "value": 0.0027350317772537845,
+                "units": "mol/kgw"
+            },
+            "Dolomite": {
+                "value": 0.003699431838979471,
+                "units": "mol/kgw"
+            }
+        }
+    },
+    "10.5": {
+        "dose": {
+            "value": 4429.93882278922,
+            "units": "mg/kgw"
+        },
+        "precip": {
+            "Calcite": {
+                "value": 0.0027352560493778526,
+                "units": "mol/kgw"
+            },
+            "Dolomite": {
+                "value": 0.0036996877579102898,
+                "units": "mol/kgw"
+            }
+        }
+    }
+}
