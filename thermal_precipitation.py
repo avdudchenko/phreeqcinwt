@@ -39,15 +39,22 @@ if __name__ == "__main__":
         )
         
         phreeqcWT.get_solution_state(report=False)
-        init_enth = phreeqcWT.get_enthalpy_phase()
+        init_enth = phreeqcWT.get_enthalpy_phase(report=False)
+        tot_enth_in = sum(v["value"] for k,v in init_enth.items())
 
-        phreeqcWT.perform_reaction(temperature=n,)
-        exit_enth = phreeqcWT.get_enthalpy_phase()
+        phreeqcWT.perform_reaction(temperature=n)
         
-        phase_dict = phreeqcWT.form_phases(return_non_zero=True,report=True)
+        
+        phase_dict = phreeqcWT.form_phases(return_non_zero=True,report=False)
+        exit_enth = phreeqcWT.get_enthalpy_phase(report=False)
+        tot_enth_out = sum(v["value"] for k,v in exit_enth.items())
 
-        # data[n] = {'delta_H': exit_enth-init_enth,'precip':phase_dict}
-             
+        data[i] = {'T_outlet':n,
+                   'tot_H_in':tot_enth_in,
+                   'tot_H_out':tot_enth_out,
+                   'delta_H':tot_enth_out - tot_enth_in,
+                   'precip':phase_dict}
+        
             
         i = i + 1
 
