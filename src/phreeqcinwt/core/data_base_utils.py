@@ -10,6 +10,7 @@ class dataBaseManagment:
         if self.cwd is None:
             self.cwd = os.path.dirname(phapi.__file__) + "/"
         db_file = self.cwd + "databases/" + self.database
+        print("Loading database file: {}".format(db_file))
         if remove_phase_list is not None:
             db_string = self.remove_phases_from_db(db_file, remove_phase_list)
             self.phreeqc.load_database_string(db_string)
@@ -24,6 +25,7 @@ class dataBaseManagment:
             "SOLUTION_SPECIES": {},
         }
         states = self.load_db_metadata()
+        print(states)
         if (
             self.db_metadata["PHASES"] == {}
             or self.db_metadata["SOLUTION_MASTER_SPECIES"] == {}
@@ -35,7 +37,6 @@ class dataBaseManagment:
                 self.db_metadata["SOLUTION_SPECIES"] = {}
             if self.rebuild_metadata[2]:
                 self.db_metadata["PHASES"] = {}
-            # print(self.db_metadata["SOLUTION_MASTER_SPECIES"])
             with open(db_file) as database:
                 try:
                     reader = csv.reader(database, delimiter="\t")
@@ -48,19 +49,13 @@ class dataBaseManagment:
                 found_phases = False
                 found_master_species = False
                 found_species = False
+                cur_phase = None
                 for row in reader:
                     # print(row, len(row) == 0, found_phases)
-                    if (
-                        found_phases
-                        and len(row) == 0
-                        or "SURFACE_MASTER_SPECIES" in str(row)
-                    ):
+                    if found_phases and "SURFACE_MASTER_SPECIES" in str(row):
                         found_phases = False
-                    if (
-                        found_master_species
-                        and len(row) == 0
-                        or "SOLUTION_SPECIES" in str(row)
-                    ):
+                    if found_master_species and "SOLUTION_SPECIES" in str(row):
+                        # print(row)
                         found_master_species = False
                     if "PHASES" in str(row):
                         found_species = False
@@ -70,16 +65,21 @@ class dataBaseManagment:
                         found_master_species and states["SOLUTION_MASTER_SPECIES"]
                     ):
                         if "#" not in str(row) and "SOLUTION_SPECIES" not in str(row):
-                            # print(row)
+
                             clean_row = []
                             for r in row:
                                 sr = r.split(" ")
                                 for s in sr:
                                     if s != "":
                                         clean_row.append(s)
-                            print(clean_row)
+                            # print(clean_row)
                             if clean_row != []:
-                                formula = clean_row[3]
+                                try:
+                                    float(clean_row[3])
+                                    formula = clean_row[1].split("-")[0]
+                                    formula = formula.split("+")[0]
+                                except:
+                                    formula = clean_row[3]
                                 species = clean_row[1]
                                 ion = clean_row[0]
                                 try:
@@ -129,22 +129,41 @@ class dataBaseManagment:
                     if (found_phases and self.rebuild_metadata[2]) or (
                         found_phases and states["PHASES"]
                     ):
-                        print(row)
                         if row != [] and "PITZER" not in str(row):
-                            if len(row[0]) > 1 and "#" not in str(row):
+                            print(cur_phase, row, len(row[0]) > 1)
+                            if (
+                                len(row[0]) > 1
+                                and "#" not in str(row)
+                                and row[0].split(" ")[0]
+                                not in "-log_k,-delta_h,-delta_H,-analytic,-Vm,-T_c,-Omega,-P_c,-analytical_expression"
+                            ):
+                                print("found phase", row)
+                                split_row = row[0].split(" ")[0]
                                 self.db_metadata["PHASES"][
-                                    (row[0].replace(" ", ""))
+                                    (split_row.replace(" ", ""))
                                 ] = {}
-                                cur_phase = row[0].replace(" ", "")
-                            elif "#" not in str(row) and "PHASES" not in str(row):
-                                reaction = row[1].split(" ")
-                                if (
+                                cur_phase = split_row.replace(" ", "")
+                            elif "PHASES" not in str(row):
+                                print("r", row)
+                                reaction = row[0].split(" ")
+                                print(
+                                    str(row),
+                                    reaction[0],
                                     reaction[0]
+                                    not in "-log_k,-delta_h,-delta_H,-analytic,-Vm,-T_c,-Omega,-P_c,-analytical_expression",
+                                    "=" in str(row),
+                                )
+                                if (
+                                    reaction[0] == ""
+                                    or reaction[0]
                                     not in "-log_k,-delta_h,-delta_H,-analytic,-Vm,-T_c,-Omega,-P_c,-analytical_expression"
-                                ):
-                                    print(row)
-                                    l, r = row[1].split(" = ")
-                                    formula = l.split(" ")[0]
+                                ) and "=" in str(row):
+                                    if len(row) > 1:
+                                        l, r = row[1].split("=")
+                                    else:
+                                        l, r = row[0].split("=")
+                                    formula = l.split("+")[0]
+                                    formula = formula.replace(" ", "")
                                     # print(cur_phase, formula)  # , r)
                                     try:
                                         mw = molmass.Formula(formula).mass
@@ -154,12 +173,17 @@ class dataBaseManagment:
                                         "formula": formula,
                                         "mw": mw,
                                     }
+                                    print(self.db_metadata["PHASES"][cur_phase])
+                                # else:
+                                #     assert False
+
                     if "SOLUTION_MASTER_SPECIES" in str(row):
+                        # print(row)
                         found_master_species = True
-                        print("fms")
+                        # print("fms")
                     if "PHASES" in str(row):
                         found_phases = True
-                        print("fp")
+                        # print("fp")
                     if "PITZER" in str(row):
                         found_phases = False
                     if "SOLUTION_SPECIES" in str(row):
@@ -200,7 +224,6 @@ class dataBaseManagment:
                                     "sub_species": [],
                                 }
                         found_species = True
-                        # print("ss")
             self.save_db_metadata()
 
     # self.phreeqc.load_database(db_file.stirp(".dat") + "_mod.dat")
@@ -258,12 +281,12 @@ class dataBaseManagment:
                     + key
                     + ".yaml"
                 )
-
+            print(dbm_dir)
             try:
                 with open(dbm_dir, "r") as file_save:
                     self.db_metadata[key] = yaml.safe_load(file_save)
 
-                    print("Loaded filw", key)
+                    print("Loaded file", key)
             except:
                 print("Failed to load {}".format(key))
             if self.db_metadata[key] == {}:

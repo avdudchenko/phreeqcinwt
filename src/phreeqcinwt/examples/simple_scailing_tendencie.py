@@ -4,7 +4,7 @@ import numpy as np
 
 if __name__ == "__main__":
     phreeqcWT = phreeqcWTapi(
-        database="pitzer.dat",
+        database="wateq4f.dat",
         ignore_phase_list=[
             "Dolomite",
             "Magnesite",
@@ -47,6 +47,8 @@ if __name__ == "__main__":
         report=False,
         water_mass=10,
     )
+    phreeqcWT.print_log()
+
     result = phreeqcWT.get_solution_state(report=True)
     # result = phreeqcWT.perform_reaction(evaporate_water_mass_percent=90, report=True)
     percipitation_result = phreeqcWT.form_phases(report=True)

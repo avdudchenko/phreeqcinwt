@@ -29,9 +29,8 @@ class utilities:
         if name in self.db_metadata["SOLUTION_MASTER_SPECIES"]:
             return name
         else:
-            name_found = True
+            name_not_found = True
             for ion, info in self.db_metadata["SOLUTION_MASTER_SPECIES"].items():
-                # print(name, info)
                 if name == info["formula"]:
                     return ion
                     break
@@ -56,9 +55,9 @@ class utilities:
 
         try:
             if input_mw == None:
-                self.db_metadata["SOLUTION_MASTER_SPECIES"][db_name][
-                    "mw"
-                ] = molmass.Formula(input_fomrula).mass
+                self.db_metadata["SOLUTION_MASTER_SPECIES"][db_name]["mw"] = (
+                    molmass.Formula(input_fomrula).mass
+                )
             else:
                 self.db_metadata["SOLUTION_MASTER_SPECIES"][db_name]["mw"] = input_mw
         except:

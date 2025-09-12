@@ -83,7 +83,6 @@ class solution_utils:
         result_dict = {}
         self.db_metadata["PRESENT_PHASES_IN_SOLUTION"] = []
         for phase in self.db_metadata["PHASES"].keys():
-            # print(result[0])
 
             p_idx = np.where(np.array(result[0]) == "si_" + phase)[0]
             ksp_idx = np.where(np.array(result[0]) == "ksp_" + phase)[0]
@@ -129,7 +128,6 @@ class solution_utils:
 
             idx = np.where(key == np.array(result[0]))[0][0]
             val = result[1][idx]
-            # print(key)
             if key == "Alk(eq/kgw)":
                 multiplier = self.db_metadata["SOLUTION_MASTER_SPECIES"]["Alkalinity"][
                     "mw"

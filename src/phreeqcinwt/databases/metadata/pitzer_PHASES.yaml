@@ -1,16 +1,24 @@
-Akermanite: {}
+Akermanite:
+  formula: Ca2MgSi2O7
+  mw: 272.627935
 Anhydrite:
   formula: CaSO4
   mw: 136.14042
-Anthophyllite: {}
-Antigorite: {}
+Anthophyllite:
+  formula: Mg7Si8O22(OH)2
+  mw: 780.8213020000001
+Antigorite:
+  formula: Mg48Si34O85(OH)62
+  mw: 4535.956677
 Aragonite:
   formula: CaCO3
   mw: 100.086955
 Arcanite:
-  formula: K2SO4
-  mw: 174.25902000000002
-Artinite: {}
+  formula: '#Note,theLinkeandSeidelldatamaygivesubsaturationinotherxpt''s,SI'
+  mw: null
+Artinite:
+  formula: Mg2CO3(OH)2:3H2O
+  mw: null
 Barite:
   formula: BaSO4
   mw: 233.38942
@@ -38,16 +46,24 @@ Celestite:
 Chalcedony:
   formula: SiO2
   mw: 60.08431
-Chrysotile: {}
-Diopside: {}
+Chrysotile:
+  formula: Mg3Si2O5(OH)4
+  mw: 277.112709
+Diopside:
+  formula: CaMgSi2O6
+  mw: 216.55053
 Dolomite:
   formula: CaMg(CO3)2
   mw: 184.40101
-Enstatite: {}
+Enstatite:
+  formula: MgSiO3
+  mw: 100.388815
 Epsomite:
   formula: MgSO4:7H2O
   mw: null
-Forsterite: {}
+Forsterite:
+  formula: Mg2SiO4
+  mw: 140.69332
 Gaylussite:
   formula: CaNa2(CO3)2:5H2O
   mw: null
@@ -69,7 +85,9 @@ Halite:
 Hexahydrite:
   formula: MgSO4:6H2O
   mw: null
-Huntite: {}
+Huntite:
+  formula: CaMg3(CO3)4
+  mw: 353.02912000000003
 Kainite:
   formula: KMgClSO4:3H2O
   mw: null
@@ -130,8 +148,12 @@ Quartz:
 Schoenite:
   formula: K2Mg(SO4)2:6H2O
   mw: null
-Sepiolite(d): {}
-Sepiolite: {}
+Sepiolite(d):
+  formula: Mg2Si3O7.5OH:3H2O
+  mw: null
+Sepiolite:
+  formula: Mg2Si3O7.5OH:3H2O
+  mw: null
 SiO2(a):
   formula: SiO2
   mw: 60.08431
@@ -141,7 +163,9 @@ Sylvite:
 Syngenite:
   formula: K2Ca(SO4)2:H2O
   mw: null
-Talc: {}
+Talc:
+  formula: Mg3Si4O10(OH)2
+  mw: 379.266042
 Thenardite:
   formula: Na2SO4
   mw: 142.04195856

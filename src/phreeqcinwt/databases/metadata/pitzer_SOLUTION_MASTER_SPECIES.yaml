@@ -31,7 +31,7 @@ Cl:
   species: Cl-
   mw: 35.453
 E:
-  formula: '0.0'
+  formula: e
   species: e-
   mw: 0.0
 Fe:
@@ -43,7 +43,7 @@ H:
   species: H+
   mw: 1.008
 H(1):
-  formula: '0.0'
+  formula: H
   species: H+
   mw: 0.0
 K:
@@ -71,7 +71,7 @@ O:
   species: H2O
   mw: 16.0
 O(-2):
-  formula: '0.0'
+  formula: H2O
   species: H2O
   mw: 0.0
 S:
