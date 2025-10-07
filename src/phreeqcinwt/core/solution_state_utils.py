@@ -28,12 +28,15 @@ class solution_utils:
 
     def _get_osmotic_pressure(self, result, solution_state, activities):
         idx = np.where("h2o_vm" == np.array(result[0]))[0]
+        print(idx, "h2o_vm")
         vm = result[1][idx[0]]  # cm3/mol
         activity = activities["H2O"]["value"]
         R = 8.31446261815324  # m3⋅Pa⋅K−1⋅mol−1
         T = solution_state["Temperature"]["value"] + 273.15
-
-        osmotic_pressure = -R * T / (vm * 1e-6) * np.log(activity)
+        if vm > 0:
+            osmotic_pressure = -R * T / (vm * 1e-6) * np.log(activity)
+        else:
+            osmotic_pressure = None
         return {"units": "Pa", "value": osmotic_pressure}
 
     def _get_solution_comp(
@@ -41,11 +44,11 @@ class solution_utils:
         result,
         return_input_names=True,
         units="g/kgw",
-        return_above=1e-16,
+        return_above=1e-60,
     ):
         aque_species_comp = {}
+        print(self.return_dict)
         for element, vals in self.return_dict.items():
-            # print("m_" + items["species"] + "(mol/kgw)")
             aque_species_comp[vals["input_name"]] = {"sub_species": {}}
             # total_mols = 0
             for spc in self.db_metadata["SOLUTION_SPECIES"][element]["sub_species"]:
@@ -135,6 +138,7 @@ class solution_utils:
                 formula = self.db_metadata["SOLUTION_MASTER_SPECIES"]["Alkalinity"][
                     "formula"
                 ]
+                print(val, multiplier, formula)
                 val = val * multiplier
                 unit = "g/kgw as {}".format(formula)
             # elif key == "density":

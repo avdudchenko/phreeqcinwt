@@ -25,7 +25,6 @@ class dataBaseManagment:
             "SOLUTION_SPECIES": {},
         }
         states = self.load_db_metadata()
-        print(states)
         if (
             self.db_metadata["PHASES"] == {}
             or self.db_metadata["SOLUTION_MASTER_SPECIES"] == {}
@@ -89,6 +88,8 @@ class dataBaseManagment:
                                         mw = molmass.Formula(formula).mass
                                     except:
                                         mw = None
+                                        if formula == "Ca0.5(CO3)0.5":
+                                            mw = 50.04
 
                                 self.db_metadata["SOLUTION_MASTER_SPECIES"][ion] = {
                                     "formula": formula,
@@ -130,29 +131,19 @@ class dataBaseManagment:
                         found_phases and states["PHASES"]
                     ):
                         if row != [] and "PITZER" not in str(row):
-                            print(cur_phase, row, len(row[0]) > 1)
                             if (
                                 len(row[0]) > 1
                                 and "#" not in str(row)
                                 and row[0].split(" ")[0]
                                 not in "-log_k,-delta_h,-delta_H,-analytic,-Vm,-T_c,-Omega,-P_c,-analytical_expression"
                             ):
-                                print("found phase", row)
                                 split_row = row[0].split(" ")[0]
                                 self.db_metadata["PHASES"][
                                     (split_row.replace(" ", ""))
                                 ] = {}
                                 cur_phase = split_row.replace(" ", "")
                             elif "PHASES" not in str(row):
-                                print("r", row)
                                 reaction = row[0].split(" ")
-                                print(
-                                    str(row),
-                                    reaction[0],
-                                    reaction[0]
-                                    not in "-log_k,-delta_h,-delta_H,-analytic,-Vm,-T_c,-Omega,-P_c,-analytical_expression",
-                                    "=" in str(row),
-                                )
                                 if (
                                     reaction[0] == ""
                                     or reaction[0]
@@ -164,7 +155,6 @@ class dataBaseManagment:
                                         l, r = row[0].split("=")
                                     formula = l.split("+")[0]
                                     formula = formula.replace(" ", "")
-                                    # print(cur_phase, formula)  # , r)
                                     try:
                                         mw = molmass.Formula(formula).mass
                                     except:
@@ -173,7 +163,6 @@ class dataBaseManagment:
                                         "formula": formula,
                                         "mw": mw,
                                     }
-                                    print(self.db_metadata["PHASES"][cur_phase])
                                 # else:
                                 #     assert False
 
