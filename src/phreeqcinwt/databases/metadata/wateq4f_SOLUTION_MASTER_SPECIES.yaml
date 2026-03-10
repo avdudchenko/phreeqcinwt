@@ -1,0 +1,264 @@
+Ag:
+  formula: Ag
+  species: Ag+
+  mw: 107.8682
+Al:
+  formula: Al
+  species: Al+3
+  mw: 26.9815385
+Alkalinity:
+  formula: CO3
+  species: CO3-2
+  mw: 60.008955
+As:
+  formula: H3AsO4
+  species: H3AsO4
+  mw: 141.943038
+As(+3):
+  formula: H3AsO3
+  species: H3AsO3
+  mw: 125.943633
+As(+5):
+  formula: H3AsO4
+  species: H3AsO4
+  mw: 141.943038
+B:
+  formula: H3BO3
+  species: H3BO3
+  mw: 61.833038
+Ba:
+  formula: Ba
+  species: Ba+2
+  mw: 137.327
+Br:
+  formula: Br
+  species: Br-
+  mw: 79.9035
+C:
+  formula: CO3
+  species: CO3-2
+  mw: 60.008955
+C(+4):
+  formula: CO3
+  species: CO3-2
+  mw: 60.008955
+C(-4):
+  formula: CH4
+  species: CH4
+  mw: 16.042504
+Ca:
+  formula: Ca
+  species: Ca+2
+  mw: 40.078
+Cd:
+  formula: Cd
+  species: Cd+2
+  mw: 112.414
+Cl:
+  formula: Cl
+  species: Cl-
+  mw: 35.4529
+Cs:
+  formula: Cs
+  species: Cs+
+  mw: 132.90545196
+Cu:
+  formula: Cu
+  species: Cu+2
+  mw: 63.546
+Cu(+1):
+  formula: Cu
+  species: Cu+1
+  mw: 63.546
+Cu(+2):
+  formula: Cu
+  species: Cu+2
+  mw: 63.546
+E:
+  formula: e
+  species: e-
+  mw: null
+F:
+  formula: F
+  species: F-
+  mw: 18.998403163
+Fe:
+  formula: Fe
+  species: Fe+2
+  mw: 55.845
+Fe(+2):
+  formula: Fe
+  species: Fe+2
+  mw: 55.845
+Fe(+3):
+  formula: Fe
+  species: Fe+3
+  mw: 55.845
+Fulvate:
+  formula: Fulvate
+  species: Fulvate-2
+  mw: null
+H:
+  formula: H
+  species: H+
+  mw: 1.007941
+H(0):
+  formula: H2
+  species: H2
+  mw: 2.015882
+H(1):
+  formula: H
+  species: H+
+  mw: 1.007941
+Humate:
+  formula: Humate
+  species: Humate-2
+  mw: null
+I:
+  formula: I
+  species: I-
+  mw: 126.90447
+K:
+  formula: K
+  species: K+
+  mw: 39.0983
+Li:
+  formula: Li
+  species: Li+
+  mw: 6.94
+Mg:
+  formula: Mg
+  species: Mg+2
+  mw: 24.3051
+Mn:
+  formula: Mn
+  species: Mn+2
+  mw: 54.938044
+Mn(2):
+  formula: Mn
+  species: Mn+2
+  mw: 54.938044
+Mn(3):
+  formula: Mn
+  species: Mn+3
+  mw: 54.938044
+Mn(6):
+  formula: MnO4
+  species: MnO4-2
+  mw: 118.935664
+Mn(7):
+  formula: MnO4
+  species: MnO4-
+  mw: 118.935664
+N:
+  formula: NO3
+  species: NO3-
+  mw: 62.004918
+N(-3):
+  formula: NH4
+  species: NH4+
+  mw: 18.038467
+N(0):
+  formula: N2
+  species: N2
+  mw: 28.013406
+N(+3):
+  formula: NO2
+  species: NO2-
+  mw: 46.005513
+N(+5):
+  formula: NO3
+  species: NO3-
+  mw: 62.004918
+Na:
+  formula: Na
+  species: Na+
+  mw: 22.98976928
+Ni:
+  formula: Ni
+  species: Ni+2
+  mw: 58.6934
+O:
+  formula: H2O
+  species: H2O
+  mw: 18.015287
+O(-2):
+  formula: H2O
+  species: H2O
+  mw: 18.015287
+O(0):
+  formula: O2
+  species: O2
+  mw: 31.99881
+P:
+  formula: PO4
+  species: PO4-3
+  mw: 94.971381998
+Pb:
+  formula: Pb
+  species: Pb+2
+  mw: 207.2
+Rb:
+  formula: Rb
+  species: Rb+
+  mw: 85.4678
+S:
+  formula: SO4
+  species: SO4-2
+  mw: 96.06242
+S(-2):
+  formula: H2S
+  species: H2S
+  mw: 34.080681999999996
+S(6):
+  formula: SO4
+  species: SO4-2
+  mw: 96.06242
+Se:
+  formula: SeO4
+  species: SeO4-2
+  mw: 142.96862
+Se(-2):
+  formula: HSe
+  species: HSe-
+  mw: 79.978941
+Se(4):
+  formula: SeO3
+  species: SeO3-2
+  mw: 126.969215
+Se(6):
+  formula: SeO4
+  species: SeO4-2
+  mw: 142.96862
+Si:
+  formula: H4SiO4
+  species: H4SiO4
+  mw: 96.11488399999999
+Sr:
+  formula: Sr
+  species: Sr+2
+  mw: 87.62
+Zn:
+  formula: Zn
+  species: Zn+2
+  mw: 65.38
+U:
+  formula: UO2
+  species: UO2+2
+  mw: 270.02772
+U(3):
+  formula: U
+  species: U+3
+  mw: 238.02891
+U(4):
+  formula: U
+  species: U+4
+  mw: 238.02891
+U(5):
+  formula: UO2
+  species: UO2+
+  mw: 270.02772
+U(6):
+  formula: UO2
+  species: UO2+2
+  mw: 270.02772

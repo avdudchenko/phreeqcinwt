@@ -57,11 +57,15 @@ class solution_utils:
                     ]
                     mw = self.db_metadata["SOLUTION_MASTER_SPECIES"][element]["mw"]
                 else:
+                    print(element)
                     normal_name = element
-                    mw = molmass.Formula(element).mass
+                    try:
+                        mw = molmass.Formula(element).mass
+                    except:
+                        mw = None
                 aque_species_comp["elements"][normal_name] = {
                     "mols": result[1][i + 2],
-                    "mass (g)": result[1][i + 2] * mw,
+                    "mass (g)": result[1][i + 2] * mw if mw is not None else None,
                     "mw (g/mol)": mw,
                 }
         for i in range(len(result[1])):

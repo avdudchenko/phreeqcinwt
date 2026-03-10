@@ -2,7 +2,7 @@ from phreeqcinwt.phreeqc_wt_api import phreeqcWTapi
 
 
 if __name__ == "__main__":
-    phreeqcWT = phreeqcWTapi(database="pitzer.dat")  # , ignore_phase_list=["Dolomite"])
+    phreeqcWT = phreeqcWTapi(database="llnl.dat")  # , ignore_phase_list=["Dolomite"])
     # phreeqcWT = phreeqcWTapi(database="phreeqc.dat")
     # phreeqcWT = phreeqcWTapi(database="minteq.v4.dat")
     # basic brackish water
