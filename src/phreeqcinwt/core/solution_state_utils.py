@@ -82,16 +82,16 @@ class solution_utils:
         transport_data = {"diffusion": {}, "transfer_number": {}}
         for i in range(len(result[1])):
             if isinstance(result[1][i], str) and "diffusion" in result[1][i]:
-                species = result[1][i + 1]
+                species = result[1][i].split(" ")[1]
                 transport_data["diffusion"][species] = {
-                    "value": result[1][i + 2],
+                    "value": result[1][i + 1],
                     "units": "m2/s",
                 }
         for i in range(len(result[1])):
-            if isinstance(result[1][i], str) and "specie" in result[1][i]:
-                species = result[1][i + 1]
+            if isinstance(result[1][i], str) and "transfer_number" in result[1][i]:
+                species = result[1][i].split(" ")[1]
                 transport_data["transfer_number"][species] = {
-                    "value": result[1][i + 2],
+                    "value": result[1][i + 1],
                     "units": "unitless",
                 }
         return transport_data

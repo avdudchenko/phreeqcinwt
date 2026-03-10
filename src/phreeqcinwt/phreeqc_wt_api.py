@@ -462,11 +462,15 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
         command += "-start\n"
         cur_count = 10
         for element in solution_composition["composition"]["species"].keys():
-            command += '{} PUNCH "diffusion" DIFF_C("{}")\n'.format(cur_count, element)
+            command += '{} PUNCH "diffusion\t{element}" DIFF_C("{element}")\n'.format(
+                cur_count, element=element
+            )
             cur_count += 10
         for element in solution_composition["composition"]["species"].keys():
-            command += '{} PUNCH "transfer_number" T_SC("{}")\n'.format(
-                cur_count, element
+            command += (
+                '{} PUNCH "transfer_number\t{element}" T_SC("{element}")\n'.format(
+                    cur_count, element=element
+                )
             )
             cur_count += 10
         command += "-end\n"
@@ -531,6 +535,23 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
                     SI,
                 )
 
+            print("diffusion------------------")
+            for scalant, SI in solution_composition["transport"]["diffusion"].items():
+                print(
+                    "\t",
+                    scalant,
+                    SI,
+                )
+
+            print("transfer number------------------")
+            for scalant, SI in solution_composition["transport"][
+                "transfer_number"
+            ].items():
+                print(
+                    "\t",
+                    scalant,
+                    SI,
+                )
             print("scaling tendendencies------------------")
             for scalant, SI in solution_composition["scaling_tendencies"].items():
                 if scalant == "max":
