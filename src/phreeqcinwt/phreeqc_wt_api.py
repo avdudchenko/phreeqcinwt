@@ -1,5 +1,6 @@
 import sys
 import os
+from unittest import result
 import phreeqpy.iphreeqc.phreeqc_dll as phreeqc_mod
 
 import csv
@@ -284,6 +285,7 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
         self.db_metadata["MAJOR_SOLUTION_COMPONENTS"] = (
             self.phreeqc.get_component_list()
         )
+        # assert False
         result = self.get_solution_state(report=report)
         return result
 
@@ -379,7 +381,6 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
         self,
         solution_number=None,
         report=False,
-        units=True,
         return_above=1e-16,
         return_input_names=True,
     ):
@@ -408,18 +409,27 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
         if solution_number == None:
             solution_number = self.current_solution
         command = "USE SOLUTION {}\n".format(str(solution_number))
-
         command += "EQUILIBRIUM_PHASES\n"
         command += "USER_PUNCH\n"
-        command += "-heading density h2o_vm solution_conductivity"
-        command += " ksp_{}\n".format(" ksp_".join(self.db_metadata["PHASES"]))
+        command += "-heading density h2o_vm solution_conductivity\n"
         command += "-start\n"
         command += "10 PUNCH RHO\n"
         command += "20 PUNCH VM('H2O')\n"
         command += "30 PUNCH SC\n"
-        start_point = 40
-        for i, g in enumerate(self.db_metadata["PHASES"]):
-            command += '{} PUNCH LK_PHASE("{}")\n'.format(int(start_point + i * 10), g)
+        cur_point = 40
+        command += f'{cur_point+10 } t = SYS("aq", count, name$, type$, moles)\n'
+        command += f"{cur_point+20} FOR i = 1 to count\n"
+        command += f"{cur_point+30}  PUNCH 'specie' PAD( name$(i), 1) moles[i]\n"
+        command += f"{cur_point+40} NEXT i\n"
+        command += f'{cur_point+50} t = SYS("elements", count, name$, type$, moles)\n'
+        command += f"{cur_point+60} FOR j = 1 to count\n"
+        command += f"{cur_point+70} PUNCH 'element' PAD( name$(j), 1) moles[j]\n"
+        command += f"{cur_point+80} NEXT j\n"
+        command += f'{cur_point+90} t = SYS("phases", count, name$, type$, moles)\n'
+        command += f"{cur_point+100} FOR k = 1 to count\n"
+        command += f"{cur_point+110}  PUNCH 'phase' PAD( name$(k), 1) moles[k]\n"
+        command += f"{cur_point+120} NEXT k\n"
+        command += f'{cur_point+130} PUNCH "volume" SOLN_VOL\n'
         command += "-end\n"
         command += "SELECTED_OUTPUT\n"
         command += " -alkalinity true\n"
@@ -427,27 +437,8 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
         command += " -ionic_strength true\n"
         command += " -charge_balance true\n"
         command += " -water true\n"
-
         command += " -percent_error true\n"
         command += " -user_punch true\n"
-        command += " -saturation_indices "
-
-        for key in self.db_metadata["CHECK_PHASE_LIST"]:
-            command += key + " "
-        command += "\n"
-        command += " -activities "
-        for element, name in self.return_dict.items():
-            command += " {} ".format(element)
-        command += " H2O "
-        command += "\n"
-        command += " -totals"
-        for element, name in self.forward_dict.items():
-            command += " {} ".format(name)
-        command += "\n"
-        command += " -molalities"
-        for element, name in self.return_dict.items():
-            for spc in self.db_metadata["SOLUTION_SPECIES"][element]["sub_species"]:
-                command += " {} ".format(spc)
 
         command += "\n"
         command += "END\n"
@@ -455,19 +446,43 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
         self.run_string(command)
 
         result = self.phreeqc.get_selected_output_array()
-
         solution_composition = {}
         solution_composition = self._get_scaling_tendencies(
             result,
         )
-        solution_composition["activities"] = self._process_activities(result)
+        # solution_composition["activities"] = self._process_activities(result)
 
         solution_composition["composition"] = self._get_solution_comp(
             result,
-            return_input_names=return_input_names,
-            units=units,
-            return_above=return_above,
         )
+        command = "USE SOLUTION {}\n".format(str(solution_number))
+
+        command += "EQUILIBRIUM_PHASES\n"
+        command += "USER_PUNCH\n"
+        command += "-start\n"
+        cur_count = 10
+        for element in solution_composition["composition"]["species"].keys():
+            command += '{} PUNCH "diffusion" DIFF_C("{}")\n'.format(cur_count, element)
+            cur_count += 10
+        for element in solution_composition["composition"]["species"].keys():
+            command += '{} PUNCH "transfer_number" T_SC("{}")\n'.format(
+                cur_count, element
+            )
+            cur_count += 10
+        command += "-end\n"
+        command += "SELECTED_OUTPUT\n"
+        command += " -user_punch true\n"
+        command += " -activities "
+        for element in solution_composition["composition"]["species"].keys():
+            command += " {} ".format(element)
+        command += " H2O\n"
+        command += "\n"
+        command += "END\n"
+        self.run_string(command)
+
+        result2 = self.phreeqc.get_selected_output_array()
+        solution_composition["activities"] = self._process_activities(result2)
+        solution_composition["transport"] = self._get_diffusion_transfer_number(result2)
         solution_composition["solution_state"].update(
             self.get_total_concetration(solution_composition)
         )
@@ -482,26 +497,46 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
             print("solution state--------------")
             for key, result in solution_composition["solution_state"].items():
                 print("\t", key, result["value"], result["units"])
-            print("ion composion------------------")
-            for ion, mass in solution_composition["composition"].items():
+            print("elemental composion------------------")
+            for ion, mass in solution_composition["composition"]["elements"].items():
                 print(
+                    "\t",
                     ion,
-                    mass["value"],
-                    mass["units"],
-                    "original input",
-                    self.input_composotion[self.forward_dict[ion]]["value"],
+                    mass["mass (g)"],
+                    "g",
+                    mass["mols"],
+                    "mols",
+                    mass["mw (g/mol)"],
+                    "g/mol",
                 )
-                for sub, values in mass["sub_species"].items():
-                    print("\t", sub, values["value"], values["units"])
+
+            print("species composion------------------")
+            for ion, mass in solution_composition["composition"]["species"].items():
+                print(
+                    "\t",
+                    ion,
+                    mass["mass (g)"],
+                    "g",
+                    mass["mols"],
+                    "mols",
+                    mass["mw (g/mol)"],
+                    "g/mol",
+                )
+
             print("activities------------------")
             for scalant, SI in solution_composition["activities"].items():
-                print("\t", scalant, SI["value"])
+                print(
+                    "\t",
+                    scalant,
+                    SI,
+                )
+
             print("scaling tendendencies------------------")
             for scalant, SI in solution_composition["scaling_tendencies"].items():
                 if scalant == "max":
                     print("\t", scalant, SI["value"], SI["scalant"])
                 else:
-                    print("\t", scalant, SI["value"], "log10 of Ksp =", SI["log10_ksp"])
+                    print("\t", scalant, SI["value"])
 
         return copy.deepcopy(solution_composition)
 

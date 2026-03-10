@@ -14,7 +14,6 @@ if __name__ == "__main__":
         "Mg": 0.090,
         "HCO3": 0.385,
         "SO4": 1.011,
-        # "C": 0.258,
         # "C": {"value": 0.385, "compound": "HCO3-"},
         # "Alkalinity": {"value": 0.381, "compound": "HCO3-"},
     }
@@ -30,16 +29,17 @@ if __name__ == "__main__":
         assume_alkalinity=False,
     )
     phreeqcWT.get_solution_state(report=True)
-    titrant_dict = phreeqcWT.perform_reaction(
-        ph_adjust={"pH": 5.0, "reactant": "HCl"}, pressure=1, report=True
-    )
-    phreeqcWT.get_solution_state(report=True)
-    titrant_dict = phreeqcWT.perform_reaction(
-        ph_adjust={"pH": 4.5, "reactant": "HCl"}, pressure=1, report=True
-    )
-    # titrant_dict = phreeqcWT.perform_reaction(pressure=100, report=True)
-    # # print(titrant_dict)
     # titrant_dict = phreeqcWT.perform_reaction(
-    #     ph_adjust={"pH": 7, "reactant": "NaOH"}, report=True
+    #     ph_adjust={"pH": 5.0, "reactant": "HCl"}, pressure=1, report=True
     # )
-    phreeqcWT.get_solution_state(report=True)
+    # phreeqcWT.get_solution_state(report=True)
+    # titrant_dict = phreeqcWT.perform_reaction(
+    #     ph_adjust={"pH": 4.5, "reactant": "HCl"}, pressure=1, report=True
+    # )
+    # # titrant_dict = phreeqcWT.perform_reaction(pressure=100, report=True)
+    # # # print(titrant_dict)
+    # # titrant_dict = phreeqcWT.perform_reaction(
+    # #     ph_adjust={"pH": 7, "reactant": "NaOH"}, report=True
+    # # )
+    # phreeqcWT.get_solution_state(report=True)
+    # phreeqcWT.print_log()

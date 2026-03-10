@@ -1,4 +1,8 @@
+from tkinter import NE
+
 import numpy as np
+
+import molmass
 
 
 class solution_utils:
@@ -28,7 +32,7 @@ class solution_utils:
 
     def _get_osmotic_pressure(self, result, solution_state, activities):
         idx = np.where("h2o_vm" == np.array(result[0]))[0]
-        print(idx, "h2o_vm")
+
         vm = result[1][idx[0]]  # cm3/mol
         activity = activities["H2O"]["value"]
         R = 8.31446261815324  # m3⋅Pa⋅K−1⋅mol−1
@@ -42,54 +46,62 @@ class solution_utils:
     def _get_solution_comp(
         self,
         result,
-        return_input_names=True,
-        units="g/kgw",
-        return_above=1e-60,
     ):
-        aque_species_comp = {}
-        for element, vals in self.return_dict.items():
-            aque_species_comp[vals["input_name"]] = {"sub_species": {}}
-            # total_mols = 0
-            for spc in self.db_metadata["SOLUTION_SPECIES"][element]["sub_species"]:
-                idx = np.where("m_" + spc + "(mol/kgw)" == np.array(result[0]))[0]
-                # print("m_" + items["species"] + "(mol/kgw)", idx)
-                if idx.size > 0:
-                    idx = idx[0]
-                    value = result[1][idx]
-                    unit = "mol/kgw"
-                    # print(value)
-                    # total_mols += value
-                    if value > return_above:
-                        aque_species_comp[vals["input_name"]]["sub_species"][spc] = {
-                            "value": value,
-                            "units": unit,
-                        }
-            idx = np.where(
-                self.forward_dict[vals["input_name"]] + "(mol/kgw)"
-                == np.array(result[0])
-            )[0][0]
-            # print(vals["input_name"], idx)
-            total_mols = result[1][idx]
-            # if self.return_dict.get(spc) is not None:
-            if units:
-                if isinstance(vals["mw"], float):
-                    unit = "g/kgw"
-                    total_mols = total_mols * vals["mw"]
-                    # print(element, vals["mw"])
-            # else:
-            aque_species_comp[vals["input_name"]]["value"] = total_mols
-            aque_species_comp[vals["input_name"]]["units"] = unit
+        aque_species_comp = {"elements": {}, "species": {}}
+        for i in range(len(result[1])):
+            if isinstance(result[1][i], str) and "element" in result[1][i]:
+                element = result[1][i + 1]
+                if element in self.db_metadata["SOLUTION_MASTER_SPECIES"]:
+                    normal_name = self.db_metadata["SOLUTION_MASTER_SPECIES"][element][
+                        "formula"
+                    ]
+                    mw = self.db_metadata["SOLUTION_MASTER_SPECIES"][element]["mw"]
+                else:
+                    normal_name = element
+                    mw = molmass.Formula(element).mass
+                aque_species_comp["elements"][normal_name] = {
+                    "mols": result[1][i + 2],
+                    "mass (g)": result[1][i + 2] * mw,
+                    "mw (g/mol)": mw,
+                }
+        for i in range(len(result[1])):
+            if isinstance(result[1][i], str) and "specie" in result[1][i]:
+                species = result[1][i + 1]
+                mw = molmass.Formula(species).mass
+                aque_species_comp["species"][species] = {
+                    "mols": result[1][i + 2],
+                    "mass (g)": result[1][i + 2] * mw,
+                    "mw (g/mol)": mw,
+                }
         return aque_species_comp
+
+    def _get_diffusion_transfer_number(
+        self,
+        result,
+    ):
+        transport_data = {"diffusion": {}, "transfer_number": {}}
+        for i in range(len(result[1])):
+            if isinstance(result[1][i], str) and "diffusion" in result[1][i]:
+                species = result[1][i + 1]
+                transport_data["diffusion"][species] = {
+                    "value": result[1][i + 2],
+                    "units": "m2/s",
+                }
+        for i in range(len(result[1])):
+            if isinstance(result[1][i], str) and "specie" in result[1][i]:
+                species = result[1][i + 1]
+                transport_data["transfer_number"][species] = {
+                    "value": result[1][i + 2],
+                    "units": "unitless",
+                }
+        return transport_data
 
     def _get_scaling_tendencies(self, result, report=False):
         result_dict = {}
-        self.db_metadata["PRESENT_PHASES_IN_SOLUTION"] = []
-        for phase in self.db_metadata["PHASES"].keys():
-
-            p_idx = np.where(np.array(result[0]) == "si_" + phase)[0]
-            ksp_idx = np.where(np.array(result[0]) == "ksp_" + phase)[0]
-            if p_idx.size > 0:
-                si = result[1][p_idx[0]]
+        for i in range(len(result[1])):
+            if isinstance(result[1][i], str) and "phase" in result[1][i]:
+                phase = result[1][i + 1]
+                si = result[1][i + 2]
                 if float(si) > -999:
                     try:
                         val = 10 ** (float(si))
@@ -97,11 +109,10 @@ class solution_utils:
                         val = 1e20
                     result_dict[phase] = {
                         "value": val,
-                        "log10_ksp": result[1][ksp_idx[0]],
                         "units": "dimensionless",
                     }
-                    self.db_metadata["PRESENT_PHASES_IN_SOLUTION"].append(phase)
-
+            if isinstance(result[1][i], str) and "volume" in result[1][i]:
+                volume = result[1][i + 1]
         results_dict = {}
         results_dict["scaling_tendencies"] = result_dict
         results_dict["solution_state"] = {}
@@ -137,7 +148,6 @@ class solution_utils:
                 formula = self.db_metadata["SOLUTION_MASTER_SPECIES"]["Alkalinity"][
                     "formula"
                 ]
-                print(val, multiplier, formula)
                 val = val * multiplier
                 unit = "g/kgw as {}".format(formula)
             # elif key == "density":
@@ -145,8 +155,12 @@ class solution_utils:
 
             results_dict["solution_state"][name] = {"value": val, "units": unit}
             # print(results_dict)
-
+        results_dict["solution_state"]["Solution volume"] = {
+            "value": volume,
+            "units": "L",
+        }
         self.water_mass = results_dict["solution_state"]["Water mass"]["value"]
+        self.water_volume = volume
         idx = np.where("pH" == np.array(result[0]))[0][0]
         self.solution_ph = result[1][idx]
 
@@ -159,9 +173,6 @@ class solution_utils:
 
         results_dict["scaling_tendencies"]["max"] = {
             "value": results_dict["scaling_tendencies"][max_scaling_key]["value"],
-            "log10_ksp": results_dict["scaling_tendencies"][max_scaling_key][
-                "log10_ksp"
-            ],
             "scalant": max_scaling_key,
         }
         return results_dict.copy()

@@ -22,7 +22,6 @@ class dataBaseManagment:
             "PHASES": {},
             "DEFINED_REACTANTS": {},
             "SOLUTION_MASTER_SPECIES": {},
-            "SOLUTION_SPECIES": {},
         }
         states = self.load_db_metadata()
         if (
@@ -32,8 +31,6 @@ class dataBaseManagment:
         ):
             if self.rebuild_metadata[0]:
                 self.db_metadata["SOLUTION_MASTER_SPECIES"] = {}
-            if self.rebuild_metadata[1]:
-                self.db_metadata["SOLUTION_SPECIES"] = {}
             if self.rebuild_metadata[2]:
                 self.db_metadata["PHASES"] = {}
             with open(db_file) as database:
@@ -97,36 +94,6 @@ class dataBaseManagment:
                                     "mw": mw,
                                 }
 
-                            # p#rint(self.db_metadata["SOLUTION_SPECIES"])
-                            # ass
-                    # print(row)
-                    if (found_species and self.rebuild_metadata[1]) or (
-                        found_species and states["SOLUTION_SPECIES"]
-                    ):
-                        if (
-                            "#" not in str(row)
-                            and "SOLUTION_SPECIES" not in str(row)
-                            and row != []
-                        ):
-                            # print(row)
-                            if row[0] != "":
-                                split_equation = row[0].split(" ")
-                                for comp in split_equation:
-                                    if comp != "+" or comp != "-" or comp != "=":
-                                        for specie, items in self.db_metadata[
-                                            "SOLUTION_SPECIES"
-                                        ].items():
-                                            if (
-                                                items["formula"] in comp
-                                                and comp
-                                                not in self.db_metadata[
-                                                    "SOLUTION_SPECIES"
-                                                ][specie]["sub_species"]
-                                            ):
-                                                self.db_metadata["SOLUTION_SPECIES"][
-                                                    specie
-                                                ]["sub_species"].append(comp)
-                                        # print("ss")
                     if (found_phases and self.rebuild_metadata[2]) or (
                         found_phases and states["PHASES"]
                     ):
@@ -163,9 +130,6 @@ class dataBaseManagment:
                                         "formula": formula,
                                         "mw": mw,
                                     }
-                                # else:
-                                #     assert False
-
                     if "SOLUTION_MASTER_SPECIES" in str(row):
                         # print(row)
                         found_master_species = True
@@ -175,44 +139,6 @@ class dataBaseManagment:
                         # print("fp")
                     if "PITZER" in str(row):
                         found_phases = False
-                    if "SOLUTION_SPECIES" in str(row):
-                        for name, item in self.db_metadata[
-                            "SOLUTION_MASTER_SPECIES"
-                        ].items():
-                            species = item["species"]
-                            if species != "e-":
-                                unched_specie = species
-                                for charge in range(-10, 0):
-                                    if charge < -1:
-                                        charge = str(charge)
-                                    elif charge == -1:
-                                        charge = "-"
-                                    elif charge == +1:
-                                        charge = "+"
-                                    else:
-                                        charge = "+" + str(charge)
-                                    unched_specie = unched_specie.replace(
-                                        str(charge), ""
-                                    )
-                                    # print(unched_specie, charge)
-                                for charge in list(range(0, 10))[::-1]:
-                                    if charge < -1:
-                                        charge = str(charge)
-                                    elif charge == -1:
-                                        charge = "-"
-                                    elif charge == +1:
-                                        charge = "+"
-                                    else:
-                                        charge = "+" + str(charge)
-                                    unched_specie = unched_specie.replace(
-                                        str(charge), ""
-                                    )
-
-                                self.db_metadata["SOLUTION_SPECIES"][species] = {
-                                    "formula": unched_specie,
-                                    "sub_species": [],
-                                }
-                        found_species = True
             self.save_db_metadata()
 
     # self.phreeqc.load_database(db_file.stirp(".dat") + "_mod.dat")
