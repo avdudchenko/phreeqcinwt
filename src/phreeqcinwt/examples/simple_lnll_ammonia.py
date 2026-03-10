@@ -18,5 +18,9 @@ if __name__ == "__main__":
     print(
         "\n ================================ Initial solution state: ====================================\n"
     )
-    phreeqcWT.print_log()
-    phreeqcWT.get_solution_state(report=True)
+    # print(phreeqcWT.db_metadata["SOLUTION_SPECIES"])
+    print(phreeqcWT.return_dict)
+    # phreeqcWT.print_log()
+    # result = phreeqcWT.get_solution_state(report=True)
+    # print(result["composition"])
+    # print(result["composition"]["N"])
