@@ -47,7 +47,6 @@ class solution_utils:
         return_above=1e-60,
     ):
         aque_species_comp = {}
-        print(self.return_dict)
         for element, vals in self.return_dict.items():
             aque_species_comp[vals["input_name"]] = {"sub_species": {}}
             # total_mols = 0
