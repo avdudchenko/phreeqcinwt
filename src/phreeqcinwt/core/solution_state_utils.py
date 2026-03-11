@@ -37,6 +37,8 @@ class solution_utils:
         activity = activities["H2O"]["value"]
         R = 8.31446261815324  # m3⋅Pa⋅K−1⋅mol−1
         T = solution_state["Temperature"]["value"] + 273.15
+        if vm == 0:
+            vm = 18.20  # cm3/mol, molar volume of water at 20C, used as a fallback if vm is not provided by phreeqcWT
         if vm > 0:
             osmotic_pressure = -R * T / (vm * 1e-6) * np.log(activity)
         else:

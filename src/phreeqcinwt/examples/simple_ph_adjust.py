@@ -29,10 +29,10 @@ if __name__ == "__main__":
         assume_alkalinity=False,
     )
     phreeqcWT.get_solution_state(report=True)
-    # titrant_dict = phreeqcWT.perform_reaction(
-    #     ph_adjust={"pH": 5.0, "reactant": "HCl"}, pressure=1, report=True
-    # )
-    # phreeqcWT.get_solution_state(report=True)
+    titrant_dict = phreeqcWT.perform_reaction(
+        ph_adjust={"pH": 5.0, "reactant": "HCl"}, pressure=1, report=True
+    )
+    phreeqcWT.get_solution_state(report=True)
     # titrant_dict = phreeqcWT.perform_reaction(
     #     ph_adjust={"pH": 4.5, "reactant": "HCl"}, pressure=1, report=True
     # )
