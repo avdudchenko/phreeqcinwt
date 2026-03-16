@@ -16,8 +16,8 @@ class dataBaseManagment:
             self.phreeqc.load_database_string(db_string)
         else:
             self.phreeqc.load_database(db_file)
-        result = self.phreeqc.get_component_list()
-
+        # result = self.phreeqc.get_component_list()
+        # print(result)
         self.db_metadata = {
             "PHASES": {},
             "DEFINED_REACTANTS": {},
@@ -154,7 +154,6 @@ class dataBaseManagment:
             return found
 
         db_string = ""
-        print(phase_list)
         with open(db_file) as database:
             lines = database.readlines()
             found = False
@@ -164,15 +163,21 @@ class dataBaseManagment:
                 if found == False:
                     found = check_ignore(l, phase_list)
                     if found == False:
-                        db_string += l
-                    else:
+                        found = check_ignore(l, phase_list)
+                        if found == False:
+                            db_string += l
+                        else:
+                            print("removed from db file: {}".format(l.strip("\n")))
+                    elif found and l[0:1].isspace():
                         print("removed from db file: {}".format(l.strip("\n")))
-                elif found and l[0:1].isspace():
-                    print("removed from db file: {}".format(l.strip("\n")))
-                else:
-                    found = False
+                    else:
+                        found = False
+                        db_string += l
+            else:
+                for l in lines:
                     db_string += l
         # )
+        print(db_string)
         return db_string
 
     def save_db_metadata(self):
