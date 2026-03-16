@@ -20,7 +20,7 @@ if __name__ == "__main__":
         track_phase_list=["Calcite", "Gypsum", "Barite", "Celestite"],
     )
 
-    input_composotion = {
+    input_composition = {
         "Na": 163 / 1000,
         # "K": 5.7 / 1000,
         "Ca": 100 / 1000,
@@ -36,7 +36,7 @@ if __name__ == "__main__":
     }
 
     result = phreeqcWT.build_water_composition(
-        input_composotion=input_composotion,
+        input_composition=input_composition,
         charge_balance="Cl",
         pH=7,
         pe=0,

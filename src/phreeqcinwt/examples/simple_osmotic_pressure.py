@@ -20,7 +20,7 @@ if __name__ == "__main__":
     # phreeqcWT = phreeqcWTapi(database="phreeqc.dat")
     # phreeqcWT = phreeqcWTapi(database="minteq.v4.dat")
     # basic brackish water
-    input_composotion = {
+    input_composition = {
         "Na": 2,
         "K": 0,
         "Cl": 2,
@@ -34,7 +34,7 @@ if __name__ == "__main__":
     }
 
     phreeqcWT.build_water_composition(
-        input_composotion=input_composotion,
+        input_composition=input_composition,
         charge_balance="Cl",
         pH=7,
         pe=0,

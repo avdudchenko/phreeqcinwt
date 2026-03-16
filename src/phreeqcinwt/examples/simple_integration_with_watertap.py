@@ -128,7 +128,7 @@ if __name__ == "__main__":
     phreeqc_pitzer = phreeqcWTapi(database="pitzer.dat")
 
     # basic brackish water
-    input_composotion = {
+    input_composition = {
         "Na": 0.4,
         "K": 0.009,
         "Cl": 0.2,
@@ -192,18 +192,18 @@ if __name__ == "__main__":
     }
 
     m = build(default)
-    out = get_netural_concetration(m, input_composotion)
+    out = get_netural_concetration(m, input_composition)
     # m.display()
-    ib = ion_balance(input_composotion.copy())
+    ib = ion_balance(input_composition.copy())
     print(out, ib)
     for ion, loading in out.items():
-        # input_composotion[ion] = loading
-        print(ion, "org", input_composotion[ion], "wt", loading, "m", ib[ion])
+        # input_composition[ion] = loading
+        print(ion, "org", input_composition[ion], "wt", loading, "m", ib[ion])
     for ion, loading in out.items():
-        input_composotion[ion] = loading
+        input_composition[ion] = loading
     # print(ion, "wt", loading, "m", ib[ion])
     phreeqc_pitzer.build_water_composition(
-        input_composotion=input_composotion,
+        input_composition=input_composition,
         charge_balance="Cl",
         pH=7,
         pe=0,

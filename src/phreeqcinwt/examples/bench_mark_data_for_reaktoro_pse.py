@@ -45,7 +45,7 @@ def setup_phreeqc(
             track_gas_phase_list=["H2O(g)"],
         )
         result = phreeqcWT.build_water_composition(
-            input_composotion=feed_comp,
+            input_composition=feed_comp,
             units="mol/kgw",
             pH=7.8,
             temperature=20,
@@ -58,7 +58,7 @@ def setup_phreeqc(
             track_phase_list=["Calcite", "Anhydrite", "Gypsum"],
         )
         result = phreeqcWT.build_water_composition(
-            input_composotion=feed_comp,
+            input_composition=feed_comp,
             units="mol/kgw",
             pH=7.8,
             temperature=20,
@@ -71,7 +71,7 @@ def setup_phreeqc(
             track_phase_list=["Calcite", "Anhydrite", "Gypsum"],
         )
         result = phreeqcWT.build_water_composition(
-            input_composotion=feed_comp,
+            input_composition=feed_comp,
             units="mol/kgw",
             pH=7.8,
             temperature=20,
@@ -80,7 +80,7 @@ def setup_phreeqc(
             solution_number=1,
         )
         result = phreeqcWT.build_water_composition(
-            input_composotion=feed_comp_2,
+            input_composition=feed_comp_2,
             units="mol/kgw",
             pH=ph_2,
             temperature=20,
@@ -94,7 +94,7 @@ def setup_phreeqc(
             database="pitzer.dat",
         )
         result = phreeqcWT.build_water_composition(
-            input_composotion=feed_comp,
+            input_composition=feed_comp,
             units="mol/kgw",
             pH=7.8,
             temperature=20,

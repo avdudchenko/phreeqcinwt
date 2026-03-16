@@ -17,7 +17,7 @@ if __name__ == "__main__":
     # phreeqcWT = phreeqcWTapi(database="phreeqc.dat")
     # phreeqcWT = phreeqcWTapi(database="minteq.v4.dat")
     # basic brackish water
-    input_composotion = {
+    input_composition = {
         "Na": 0.739,
         "K": 0.009,
         "Cl": 0.870,
@@ -35,7 +35,7 @@ if __name__ == "__main__":
 
     # result = phreeqcWT.build_water_composition(
     #     # solution_name="reconciled solution",
-    #     input_composotion=input_composotion,
+    #     input_composition=input_composition,
     #     charge_balance="Cl",
     #     pH=7,
     #     pe=0,
@@ -54,7 +54,7 @@ if __name__ == "__main__":
     print("-----Initial solution----------")
     r = phreeqcWT.build_water_composition(
         # solution_name="reconciled solution",
-        input_composotion=input_composotion,
+        input_composition=input_composition,
         charge_balance="Cl",
         pH=7,
         pe=0,
@@ -74,12 +74,12 @@ if __name__ == "__main__":
 
     # pH = post_form_result["solution_state"]["pH"]["value"]
     # new_sol = {}
-    # for ion in input_composotion.keys():
+    # for ion in input_composition.keys():
     #     new_sol[ion] = post_form_result["composition"][ion]["value"]
 
     # r = phreeqcWT.build_water_composition(
     #     # solution_name="reconciled solution",
-    #     input_composotion=new_sol,
+    #     input_composition=new_sol,
     #     charge_balance="Cl",
     #     pH=pH,
     #     pe=0,
@@ -97,9 +97,9 @@ if __name__ == "__main__":
     # print("-----HCL added solution----------")
     # phreeqcWT.perform_reaction(reactants={"HCl": 30.161})
     sol_2 = phreeqcWT.get_solution_state(report=True)
-    # for ion in input_composotion.keys():
+    # for ion in input_composition.keys():
     #     new_sol[ion] = sol_2["composition"][ion]["value"]
-    #     print(ion, input_composotion[ion], new_sol[ion])
+    #     print(ion, input_composition[ion], new_sol[ion])
     # print(new_sol)
     # for t in ["solution_state", "scaling_tendencies"]:
     #     for key in sol_2[t]:

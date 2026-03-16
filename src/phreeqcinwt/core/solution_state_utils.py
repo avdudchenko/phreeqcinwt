@@ -50,26 +50,41 @@ class solution_utils:
         result,
     ):
         aque_species_comp = {"elements": {}, "species": {}}
+        if self.initial_charge_balance_amount is not None:
+            charge_balance_element, concentration, units = (
+                self.initial_charge_balance_amount
+            )
         for i in range(len(result[1])):
             if isinstance(result[1][i], str) and "element" in result[1][i]:
                 element = result[1][i + 1]
-                if element in self.db_metadata["SOLUTION_MASTER_SPECIES"]:
-                    normal_name = self.db_metadata["SOLUTION_MASTER_SPECIES"][element][
-                        "formula"
-                    ]
-                    mw = self.db_metadata["SOLUTION_MASTER_SPECIES"][element]["mw"]
-                else:
-                    print(element)
-                    normal_name = element
-                    try:
-                        mw = molmass.Formula(element).mass
-                    except:
-                        mw = None
-                aque_species_comp["elements"][normal_name] = {
-                    "mols": result[1][i + 2],
-                    "mass (g)": result[1][i + 2] * mw if mw is not None else None,
-                    "mw (g/mol)": mw,
-                }
+
+                normal_name = self.reverse_dict.get(element, None)
+                if element == "H":
+                    normal_name = "H"
+                if element == "O":
+                    normal_name = "O"
+                if normal_name is not None or element == "H" or element == "O":
+
+                    mw = (
+                        molmass.Formula(normal_name).mass
+                        if normal_name is not None
+                        else None
+                    )
+                    aque_species_comp["elements"][normal_name] = {
+                        "mols": result[1][i + 2],
+                        "mass (g)": result[1][i + 2] * mw if mw is not None else None,
+                        "mw (g/mol)": mw,
+                        "concentration (g/L)": (
+                            result[1][i + 2] * mw / self.water_volume
+                            if mw is not None
+                            else None
+                        ),
+                    }
+                    if (
+                        self.initial_charge_balance_amount is not None
+                        and element == charge_balance_element
+                    ):
+                        final_mols = result[1][i + 2]
         for i in range(len(result[1])):
             if isinstance(result[1][i], str) and "specie" in result[1][i]:
                 species = result[1][i + 1]
@@ -78,6 +93,7 @@ class solution_utils:
                     "mols": result[1][i + 2],
                     "mass (g)": result[1][i + 2] * mw,
                     "mw (g/mol)": mw,
+                    "concentration (g/L)": result[1][i + 2] * mw / self.water_volume,
                 }
         return aque_species_comp
 

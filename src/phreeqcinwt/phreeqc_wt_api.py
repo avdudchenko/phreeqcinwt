@@ -162,13 +162,13 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
             for phase in self.db_metadata["CHECK_PHASE_LIST"]:
                 if "(g)" not in phase:
                     gasless_list.append(phase)
-                else:
-                    print("Ignoring gas phase {}".format(phase))
+                # else:
+                #    print("Ignoring gas phase {}".format(phase))
             self.db_metadata["CHECK_PHASE_LIST"] = gasless_list
 
     def build_water_composition(
         self,
-        input_composotion,
+        input_composition,
         solution_number=None,
         solution_name=None,
         pH=7,
@@ -208,7 +208,7 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
         For debuging solution composition please check the sent command by via print_log after building the solution
 
         Keyword arguments:
-        input_composotion -- dictionary for input compositon
+        input_composition -- dictionary for input composition
         solution_number -- solution number being generated (default None)
         solution_name -- name for the solution to save as (default None)
         pH -- solution pH (defualt 7)
@@ -225,9 +225,9 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
         note when CaCO3 phreeqc will use mw of 50.4 g/mol for it, and so will be mw in database (default True)
         report -- print report for solution state
         """
-        self.input_composotion_raw = input_composotion
-        self.input_composotion = self.build_ion_dict(
-            input_composotion, assume_alkalinity=assume_alkalinity
+        self.input_composition_raw = input_composition
+        self.input_composition = self.build_ion_dict(
+            input_composition, assume_alkalinity=assume_alkalinity
         )
         self.water_mass = water_mass
         if solution_number is not None:
@@ -245,11 +245,20 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
         self.composition += "   pe {}\n".format(pe)
         self.composition += "   units {}\n".format(units)
         self.composition += "   density {} calc\n".format(density)
-        # self.composition += "   alk {} calc\n".format(density)
-
-        for key, concentration in self.input_composotion.items():
+        self.initial_charge_balance_amount = None
+        if charge_balance != None:
+            if charge_balance not in self.reverse_dict:
+                charge_balance = self.forward_dict.get(charge_balance, False)
+            else:
+                charge_balance = self.reverse_dict.get(charge_balance, False)
+            if charge_balance == False:
+                raise TypeError(
+                    f"The Charge balance is not avaialbe in composition use {list(self.forward_dict.keys())}"
+                )
+        for key, concentration in self.input_composition.items():
             if key == charge_balance:
                 charge = "charge"
+                self.initial_charge_balance_amount = (key, concentration, units)
             else:
                 charge = ""
             # print("concentration", concentration)
@@ -506,6 +515,8 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
                 print(
                     "\t",
                     ion,
+                    mass["concentration (g/L)"],
+                    "g/L",
                     mass["mass (g)"],
                     "g",
                     mass["mols"],
@@ -519,6 +530,8 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
                 print(
                     "\t",
                     ion,
+                    mass["concentration (g/L)"],
+                    "g/L",
                     mass["mass (g)"],
                     "g",
                     mass["mols"],
@@ -535,23 +548,23 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
                     SI,
                 )
 
-            print("diffusion------------------")
-            for scalant, SI in solution_composition["transport"]["diffusion"].items():
-                print(
-                    "\t",
-                    scalant,
-                    SI,
-                )
+            # print("diffusion------------------")
+            # for scalant, SI in solution_composition["transport"]["diffusion"].items():
+            #     print(
+            #         "\t",
+            #         scalant,
+            #         SI,
+            #     )
 
-            print("transfer number------------------")
-            for scalant, SI in solution_composition["transport"][
-                "transfer_number"
-            ].items():
-                print(
-                    "\t",
-                    scalant,
-                    SI,
-                )
+            # print("transfer number------------------")
+            # for scalant, SI in solution_composition["transport"][
+            #     "transfer_number"
+            # ].items():
+            #     print(
+            #         "\t",
+            #         scalant,
+            #         SI,
+            #     )
             print("scaling tendendencies------------------")
             for scalant, SI in solution_composition["scaling_tendencies"].items():
                 if scalant == "max":

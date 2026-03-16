@@ -5,11 +5,11 @@ import numpy as np
 class utilities:
     def get_total_concetration(self, results_dict):
         total_solid_mass = 0
-        total_solution_mass= 0
+        total_solution_mass = 0
         for key, mass in results_dict["composition"]["species"].items():
             if key not in ["H2O", "H+", "OH-"]:
                 total_solid_mass += mass["mass (g)"]
-            total_solution_mass+=mass['mass (g)']
+            total_solution_mass += mass["mass (g)"]
         result_dict = {}
         result_dict["Total dissolved solids"] = {
             "value": total_solid_mass / self.water_volume,
@@ -105,6 +105,7 @@ class utilities:
         phreeqc_ion_dict = {}
         self.return_dict = {}
         self.forward_dict = {}
+        self.reverse_dict = {}
         for name, loading in input_dict.items():
             phreeqc_ion_dict, phreeqc_name = self.set_dict(
                 phreeqc_ion_dict, name, loading, assume_alkalinity
@@ -117,7 +118,7 @@ class utilities:
                 "mw": self.db_metadata["SOLUTION_MASTER_SPECIES"][phreeqc_name]["mw"],
             }
             self.forward_dict[name] = phreeqc_name
-
+            self.reverse_dict[phreeqc_name] = name
         # prs
         return phreeqc_ion_dict
 
