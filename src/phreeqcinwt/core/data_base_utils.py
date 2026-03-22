@@ -156,12 +156,11 @@ class dataBaseManagment:
         db_string = ""
         with open(db_file) as database:
             lines = database.readlines()
-            found = False
-            pass_lines = 0
-            for l in lines:
-                # print(found)
-                if found == False:
-                    found = check_ignore(l, phase_list)
+            if phase_list is not None:
+                found = False
+                pass_lines = 0
+                for l in lines:
+                    # print(found)
                     if found == False:
                         found = check_ignore(l, phase_list)
                         if found == False:
