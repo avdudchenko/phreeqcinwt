@@ -1,0 +1,1526 @@
+{
+  "scaling_tendencies": {
+    "Dolomite-ord": {
+      "value": 40.19661434768102,
+      "units": "dimensionless"
+    },
+    "Dolomite": {
+      "value": 39.39045019279843,
+      "units": "dimensionless"
+    },
+    "Calcite": {
+      "value": 2.2090903989984016,
+      "units": "dimensionless"
+    },
+    "Aragonite": {
+      "value": 1.5790501466425877,
+      "units": "dimensionless"
+    },
+    "Dolomite-dis": {
+      "value": 1.048207115982764,
+      "units": "dimensionless"
+    },
+    "Ice": {
+      "value": 0.7575888803256426,
+      "units": "dimensionless"
+    },
+    "Magnesite": {
+      "value": 0.3943585385235089,
+      "units": "dimensionless"
+    },
+    "Monohydrocalcite": {
+      "value": 0.32096461438081403,
+      "units": "dimensionless"
+    },
+    "Gypsum": {
+      "value": 0.18810899137997175,
+      "units": "dimensionless"
+    },
+    "Anhydrite": {
+      "value": 0.11116709176223585,
+      "units": "dimensionless"
+    },
+    "Bassanite": {
+      "value": 0.025159981371856568,
+      "units": "dimensionless"
+    },
+    "H2O(g)": {
+      "value": 0.01911335191498827,
+      "units": "dimensionless"
+    },
+    "CO2(g)": {
+      "value": 0.0187929653243839,
+      "units": "dimensionless"
+    },
+    "CaSO4:0.5H2O(beta)": {
+      "value": 0.016737736037097307,
+      "units": "dimensionless"
+    },
+    "Huntite": {
+      "value": 0.0033351847992370404,
+      "units": "dimensionless"
+    },
+    "Lansfordite": {
+      "value": 0.0014330516466301779,
+      "units": "dimensionless"
+    },
+    "Nahcolite": {
+      "value": 0.0004493524177116229,
+      "units": "dimensionless"
+    },
+    "Nesquehonite": {
+      "value": 0.0003669729727889069,
+      "units": "dimensionless"
+    },
+    "Epsomite": {
+      "value": 0.0002904859992225398,
+      "units": "dimensionless"
+    },
+    "Mirabilite": {
+      "value": 0.00021522302871206697,
+      "units": "dimensionless"
+    },
+    "Hexahydrite": {
+      "value": 0.0001693987208927347,
+      "units": "dimensionless"
+    },
+    "Halite": {
+      "value": 8.709291577138738e-05,
+      "units": "dimensionless"
+    },
+    "Pentahydrite": {
+      "value": 7.773114199052356e-05,
+      "units": "dimensionless"
+    },
+    "Starkeyite": {
+      "value": 3.195802776373988e-05,
+      "units": "dimensionless"
+    },
+    "Thenardite": {
+      "value": 2.0248423354438708e-05,
+      "units": "dimensionless"
+    },
+    "Glauberite": {
+      "value": 1.5150427771533608e-05,
+      "units": "dimensionless"
+    },
+    "Brucite": {
+      "value": 8.085540373829894e-06,
+      "units": "dimensionless"
+    },
+    "Kieserite": {
+      "value": 5.9639601677957434e-06,
+      "units": "dimensionless"
+    },
+    "Sylvite": {
+      "value": 1.5096072629502219e-06,
+      "units": "dimensionless"
+    },
+    "Kalicinite": {
+      "value": 4.38580083757276e-07,
+      "units": "dimensionless"
+    },
+    "Gaylussite": {
+      "value": 3.376244395972523e-07,
+      "units": "dimensionless"
+    },
+    "Artinite": {
+      "value": 3.197505841380964e-07,
+      "units": "dimensionless"
+    },
+    "Pirssonite": {
+      "value": 2.3625915200878558e-07,
+      "units": "dimensionless"
+    },
+    "Natron": {
+      "value": 9.916588628155198e-08,
+      "units": "dimensionless"
+    },
+    "Na2CO3:7H2O": {
+      "value": 3.827332915359233e-08,
+      "units": "dimensionless"
+    },
+    "Syngenite": {
+      "value": 1.7107420482577405e-08,
+      "units": "dimensionless"
+    },
+    "Bloedite": {
+      "value": 8.723478043564905e-09,
+      "units": "dimensionless"
+    },
+    "Mg1.25SO4(OH)0.5:0.5H2O": {
+      "value": 7.991479227870485e-09,
+      "units": "dimensionless"
+    },
+    "Arcanite": {
+      "value": 6.231430803959754e-09,
+      "units": "dimensionless"
+    },
+    "Thermonatrite": {
+      "value": 2.6904705444483834e-09,
+      "units": "dimensionless"
+    },
+    "Na2CO3": {
+      "value": 1.4747793725205405e-09,
+      "units": "dimensionless"
+    },
+    "Mg1.5SO4(OH)": {
+      "value": 4.839380512677955e-10,
+      "units": "dimensionless"
+    },
+    "Antarcticite": {
+      "value": 4.779991327508375e-10,
+      "units": "dimensionless"
+    },
+    "Na4Ca(SO4)3:2H2O": {
+      "value": 3.6388550385255315e-10,
+      "units": "dimensionless"
+    },
+    "Bischofite": {
+      "value": 1.3712971445763054e-10,
+      "units": "dimensionless"
+    },
+    "Kainite": {
+      "value": 5.910888173390992e-11,
+      "units": "dimensionless"
+    },
+    "Periclase": {
+      "value": 5.643448404537291e-11,
+      "units": "dimensionless"
+    },
+    "C": {
+      "value": 4.79612289821199e-11,
+      "units": "dimensionless"
+    },
+    "KNaCO3:6H2O": {
+      "value": 4.431382578490709e-11,
+      "units": "dimensionless"
+    },
+    "MgSO4": {
+      "value": 2.5643497842946682e-11,
+      "units": "dimensionless"
+    },
+    "Portlandite": {
+      "value": 6.8489714306619875e-12,
+      "units": "dimensionless"
+    },
+    "Picromerite": {
+      "value": 6.652186024935384e-12,
+      "units": "dimensionless"
+    },
+    "Oxychloride-Mg": {
+      "value": 5.228060877342112e-12,
+      "units": "dimensionless"
+    },
+    "Leonite": {
+      "value": 3.1494464507001188e-12,
+      "units": "dimensionless"
+    },
+    "H2(g)": {
+      "value": 2.6681019289431136e-12,
+      "units": "dimensionless"
+    },
+    "Polyhalite": {
+      "value": 1.6111443658671298e-12,
+      "units": "dimensionless"
+    },
+    "Hydromagnesite": {
+      "value": 7.729001941085399e-13,
+      "units": "dimensionless"
+    },
+    "Mercallite": {
+      "value": 7.428174746387845e-13,
+      "units": "dimensionless"
+    },
+    "MgCl2:4H2O": {
+      "value": 1.2417749224670776e-13,
+      "units": "dimensionless"
+    },
+    "MgOHCl": {
+      "value": 6.067071918969189e-14,
+      "units": "dimensionless"
+    },
+    "Aphthitalite": {
+      "value": 1.544671876614984e-14,
+      "units": "dimensionless"
+    },
+    "Carnallite": {
+      "value": 1.627868890348111e-15,
+      "units": "dimensionless"
+    },
+    "HCl(g)": {
+      "value": 9.570410793607593e-16,
+      "units": "dimensionless"
+    },
+    "Na3H(SO4)2": {
+      "value": 6.598109768892295e-16,
+      "units": "dimensionless"
+    },
+    "S": {
+      "value": 6.111792422360008e-16,
+      "units": "dimensionless"
+    },
+    "K2CO3:1.5H2O": {
+      "value": 9.876286295677184e-17,
+      "units": "dimensionless"
+    },
+    "CO(g)": {
+      "value": 1.5924100819907617e-17,
+      "units": "dimensionless"
+    },
+    "Burkeite": {
+      "value": 7.622473129646705e-18,
+      "units": "dimensionless"
+    },
+    "Hydrophilite": {
+      "value": 6.156934821431775e-18,
+      "units": "dimensionless"
+    },
+    "Trona-K": {
+      "value": 1.768592740922518e-18,
+      "units": "dimensionless"
+    },
+    "MgCl2:2H2O": {
+      "value": 3.3504429812120067e-19,
+      "units": "dimensionless"
+    },
+    "Ca2Cl2(OH)2:H2O": {
+      "value": 1.8067043945541703e-20,
+      "units": "dimensionless"
+    },
+    "K3H(SO4)2": {
+      "value": 8.640450185398356e-21,
+      "units": "dimensionless"
+    },
+    "H2S(g)": {
+      "value": 1.4224155877878448e-21,
+      "units": "dimensionless"
+    },
+    "Lime": {
+      "value": 4.172170696434726e-22,
+      "units": "dimensionless"
+    },
+    "MgCl2:H2O": {
+      "value": 1.2731711005558406e-22,
+      "units": "dimensionless"
+    },
+    "SO2(g)": {
+      "value": 4.021925251724299e-24,
+      "units": "dimensionless"
+    },
+    "CH4(g)": {
+      "value": 4.440854459038479e-25,
+      "units": "dimensionless"
+    },
+    "KMgCl3:2H2O": {
+      "value": 1.9984698298717064e-25,
+      "units": "dimensionless"
+    },
+    "Chloromagnesite": {
+      "value": 1.7593132404801042e-28,
+      "units": "dimensionless"
+    },
+    "KMgCl3": {
+      "value": 7.122141881979284e-33,
+      "units": "dimensionless"
+    },
+    "Tachyhydrite": {
+      "value": 4.959064774876229e-34,
+      "units": "dimensionless"
+    },
+    "Ca4Cl2(OH)6:13H2O": {
+      "value": 5.481997238080302e-39,
+      "units": "dimensionless"
+    },
+    "S2(g)": {
+      "value": 1.974344234598397e-45,
+      "units": "dimensionless"
+    },
+    "Na": {
+      "value": 4.0757127547669203e-47,
+      "units": "dimensionless"
+    },
+    "Cl2(g)": {
+      "value": 3.9487269938181584e-53,
+      "units": "dimensionless"
+    },
+    "K": {
+      "value": 2.6972411389032135e-53,
+      "units": "dimensionless"
+    },
+    "Na2O": {
+      "value": 3.201574467662256e-57,
+      "units": "dimensionless"
+    },
+    "K8H4(CO3)6:3H2O": {
+      "value": 5.4863431341978336e-58,
+      "units": "dimensionless"
+    },
+    "Na(g)": {
+      "value": 6.329254278001639e-61,
+      "units": "dimensionless"
+    },
+    "O2(g)": {
+      "value": 2.158358784473394e-62,
+      "units": "dimensionless"
+    },
+    "K(g)": {
+      "value": 3.659181001677858e-64,
+      "units": "dimensionless"
+    },
+    "K2O": {
+      "value": 3.862896091986398e-79,
+      "units": "dimensionless"
+    },
+    "Misenite": {
+      "value": 3.538725944356256e-81,
+      "units": "dimensionless"
+    },
+    "Mg": {
+      "value": 1.0900321396244245e-81,
+      "units": "dimensionless"
+    },
+    "Ca": {
+      "value": 5.4809940552448475e-99,
+      "units": "dimensionless"
+    },
+    "Mg(g)": {
+      "value": 7.492577876305451e-102,
+      "units": "dimensionless"
+    },
+    "Ca(g)": {
+      "value": 9.310061692223464e-125,
+      "units": "dimensionless"
+    },
+    "C(g)": {
+      "value": 8.385721264736535e-131,
+      "units": "dimensionless"
+    },
+    "max": {
+      "value": 40.19661434768102,
+      "scalant": "Dolomite-ord"
+    }
+  },
+  "solution_state": {
+    "pH": {
+      "value": 7.218632558574408,
+      "units": "dimensionless"
+    },
+    "pe": {
+      "value": -1.4897431590082082,
+      "units": "dimensionless"
+    },
+    "Temperature": {
+      "value": 20.0,
+      "units": "C"
+    },
+    "Alkalinity": {
+      "value": 0.3598472193222429,
+      "units": "g/kgw as Ca0.5(CO3)0.5"
+    },
+    "Charge balance": {
+      "value": -1.2793585635328952e-14,
+      "units": "eq"
+    },
+    "Error in charge": {
+      "value": -6.864198358733277e-12,
+      "units": "%"
+    },
+    "Water mass": {
+      "value": 0.9999991088160142,
+      "units": "kg"
+    },
+    "Solution density": {
+      "value": 1.0061492907612044,
+      "units": "kg/L"
+    },
+    "Ionic strength": {
+      "value": 0.10907193520376425,
+      "units": "M"
+    },
+    "Solution conductivity": {
+      "value": 0.0,
+      "units": "uS/cm"
+    },
+    "Solution volume": {
+      "value": 0.9999991088160143,
+      "units": "L"
+    },
+    "Total dissolved solids": {
+      "value": 6.149637574799142,
+      "units": "g/L"
+    },
+    "Solution mass": {
+      "value": 6.149634580930538,
+      "units": "kg"
+    },
+    "Osmotic pressure": {
+      "units": "Pa",
+      "value": 396227.8345730987
+    }
+  },
+  "composition": {
+    "elements": {
+      "H": {
+        "mols": 111.05768500466682,
+        "mass (g)": 111.93959408128887,
+        "mw (g/mol)": 1.007941,
+        "concentration (g/L)": 111.93969384015139
+      },
+      "O": {
+        "mols": 55.5903231289454,
+        "mass (g)": 889.4120938208647,
+        "mw (g/mol)": 15.999405,
+        "concentration (g/L)": 889.4128864513858
+      },
+      "Na": {
+        "mols": 0.07848045655029652,
+        "mass (g)": 1.8042475890803817,
+        "mw (g/mol)": 22.98976928,
+        "concentration (g/L)": 1.8042491969983723
+      },
+      "Cl": {
+        "mols": 0.07074694889589371,
+        "mass (g)": 2.50818450451123,
+        "mw (g/mol)": 35.4529,
+        "concentration (g/L)": 2.5081867397670856
+      },
+      "SO4": {
+        "mols": 0.010526644592990566,
+        "mass (g)": 1.0112149540825888,
+        "mw (g/mol)": 96.06242,
+        "concentration (g/L)": 1.011215855261965
+      },
+      "Ca": {
+        "mols": 0.0064374469783921315,
+        "mass (g)": 0.25799999999999984,
+        "mw (g/mol)": 40.078,
+        "concentration (g/L)": 0.25800022992567306
+      },
+      "Mg": {
+        "mols": 0.003702941781526443,
+        "mass (g)": 0.09000037029417834,
+        "mw (g/mol)": 24.3051,
+        "concentration (g/L)": 0.09000045050113854
+      },
+      "K": {
+        "mols": 0.00023018903635196435,
+        "mass (g)": 0.009000000000000008,
+        "mw (g/mol)": 39.0983,
+        "concentration (g/L)": 0.009000008020663027
+      }
+    },
+    "species": {
+      "Na+": {
+        "mols": 0.07617148747106106,
+        "mass (g)": 1.7511231365264344,
+        "mw (g/mol)": 22.989220700090936,
+        "concentration (g/L)": 1.7511246971007215
+      },
+      "Cl-": {
+        "mols": 0.07012011826588778,
+        "mass (g)": 2.486000007356795,
+        "mw (g/mol)": 35.453448579909065,
+        "concentration (g/L)": 2.4860022228421643
+      },
+      "SO4-2": {
+        "mols": 0.007649920232900452,
+        "mass (g)": 0.7348782435644725,
+        "mw (g/mol)": 96.06351715981813,
+        "concentration (g/L)": 0.7348788984767782
+      },
+      "HCO3-": {
+        "mols": 0.0064229485631547125,
+        "mass (g)": 0.39191190799189923,
+        "mw (g/mol)": 61.01744457990907,
+        "concentration (g/L)": 0.3919122572578267
+      },
+      "Ca+2": {
+        "mols": 0.005436868921627253,
+        "mass (g)": 0.2178928675268598,
+        "mw (g/mol)": 40.07690284018187,
+        "concentration (g/L)": 0.217893061709667
+      },
+      "Mg+2": {
+        "mols": 0.002785175413644314,
+        "mass (g)": 0.06769091116361613,
+        "mw (g/mol)": 24.30400284018187,
+        "concentration (g/L)": 0.0676909714887259
+      },
+      "NaSO4-": {
+        "mols": 0.0013236327941069871,
+        "mass (g)": 0.15758210805959813,
+        "mw (g/mol)": 119.05273785990907,
+        "concentration (g/L)": 0.1575822484943744
+      },
+      "CaSO4": {
+        "mols": 0.0007912944759673111,
+        "mass (g)": 0.10772716230186966,
+        "mw (g/mol)": 136.14042,
+        "concentration (g/L)": 0.10772725830667708
+      },
+      "MgSO4": {
+        "mols": 0.0007572008037234288,
+        "mass (g)": 0.09114238288619589,
+        "mw (g/mol)": 120.36752,
+        "concentration (g/L)": 0.09114246411090032
+      },
+      "CO2": {
+        "mols": 0.0007269000316038432,
+        "mass (g)": 0.031990543285870914,
+        "mw (g/mol)": 44.00955,
+        "concentration (g/L)": 0.03199057179535619
+      },
+      "NaCl": {
+        "mols": 0.0005264626656102741,
+        "mass (g)": 0.030767883454528484,
+        "mw (g/mol)": 58.442669280000004,
+        "concentration (g/L)": 0.030767910874397928
+      },
+      "NaHCO3": {
+        "mols": 0.00045787116331287813,
+        "mass (g)": 0.03846422955778917,
+        "mw (g/mol)": 84.00666528,
+        "concentration (g/L)": 0.038464263836525125
+      },
+      "K+": {
+        "mols": 0.00022533775580387997,
+        "mass (g)": 0.008810199561981253,
+        "mw (g/mol)": 39.09775142009094,
+        "concentration (g/L)": 0.00881020741349701
+      },
+      "CaHCO3+": {
+        "mols": 0.00016226303797120547,
+        "mass (g)": 0.016403875934100455,
+        "mw (g/mol)": 101.09434742009094,
+        "concentration (g/L)": 0.01640389055298502
+      },
+      "MgHCO3+": {
+        "mols": 9.04458416419336e-05,
+        "mass (g)": 0.007716970122018109,
+        "mw (g/mol)": 85.32144742009093,
+        "concentration (g/L)": 0.007716976999264429
+      },
+      "MgCl+": {
+        "mols": 6.613044082562521e-05,
+        "mass (g)": 0.0039517866050264965,
+        "mw (g/mol)": 59.75745142009093,
+        "concentration (g/L)": 0.003951790126798573
+      },
+      "CaCl+": {
+        "mols": 3.084301149949507e-05,
+        "mass (g)": 0.0023295834974107685,
+        "mw (g/mol)": 75.53035142009094,
+        "concentration (g/L)": 0.002329585573500125
+      },
+      "CaCO3": {
+        "mols": 1.4610658963755149e-05,
+        "mass (g)": 0.0014623363662257082,
+        "mw (g/mol)": 100.086955,
+        "concentration (g/L)": 0.001462337669437621
+      },
+      "CO3-2": {
+        "mols": 9.197939699537137e-06,
+        "mass (g)": 0.0005519688411320855,
+        "mw (g/mol)": 60.01005215981813,
+        "concentration (g/L)": 0.0005519693330383157
+      },
+      "KSO4-": {
+        "mols": 4.578210967144359e-06,
+        "mass (g)": 0.000618796802145684,
+        "mw (g/mol)": 135.16126857990906,
+        "concentration (g/L)": 0.0006187973536079759
+      },
+      "MgCO3": {
+        "mols": 3.989281691141134e-06,
+        "mass (g)": 0.0003363525159173666,
+        "mw (g/mol)": 84.314055,
+        "concentration (g/L)": 0.0003363528156696095
+      },
+      "CaCl2": {
+        "mols": 1.5603693762896791e-06,
+        "mass (g)": 0.0001731757227842585,
+        "mw (g/mol)": 110.9838,
+        "concentration (g/L)": 0.00017317587711582688
+      },
+      "NaCO3-": {
+        "mols": 1.0013458121545384e-06,
+        "mass (g)": 8.311097429014179e-05,
+        "mw (g/mol)": 82.99927285990907,
+        "concentration (g/L)": 8.311104835737713e-05
+      },
+      "KCl": {
+        "mols": 2.7305969727644265e-07,
+        "mass (g)": 2.035692810359553e-05,
+        "mw (g/mol)": 74.5512,
+        "concentration (g/L)": 2.035694624538002e-05
+      },
+      "OH-": {
+        "mols": 1.4189243960479644e-07,
+        "mass (g)": 2.4132916544844917e-06,
+        "mw (g/mol)": 17.007894579909063,
+        "concentration (g/L)": 2.4132938051732836e-06
+      },
+      "H+": {
+        "mols": 7.27603911631002e-08,
+        "mass (g)": 7.32982665405586e-08,
+        "mw (g/mol)": 1.007392420090935,
+        "concentration (g/L)": 7.329833186285814e-08
+      },
+      "HSO4-": {
+        "mols": 1.8075168749616623e-08,
+        "mass (g)": 1.7545730713356334e-06,
+        "mw (g/mol)": 97.07090957990907,
+        "concentration (g/L)": 1.7545746349844499e-06
+      },
+      "CaOH+": {
+        "mols": 6.502986822502759e-09,
+        "mass (g)": 3.7122168538809084e-07,
+        "mw (g/mol)": 57.084797420090936,
+        "concentration (g/L)": 3.7122201621520684e-07
+      },
+      "NaOH": {
+        "mols": 1.110393147573099e-09,
+        "mass (g)": 4.441252272960329e-08,
+        "mw (g/mol)": 39.99711528,
+        "concentration (g/L)": 4.441256230936759e-08
+      },
+      "HCl": {
+        "mols": 7.136206801362721e-10,
+        "mass (g)": 2.6019210152760477e-08,
+        "mw (g/mol)": 36.460841,
+        "concentration (g/L)": 2.601923334068455e-08
+      },
+      "KOH": {
+        "mols": 9.727177444557071e-12,
+        "mass (g)": 5.457495742835037e-10,
+        "mw (g/mol)": 56.105646,
+        "concentration (g/L)": 5.457500606472179e-10
+      },
+      "KHSO4": {
+        "mols": 1.5648611289359297e-13,
+        "mass (g)": 2.1308504457815393e-11,
+        "mw (g/mol)": 136.16866100000001,
+        "concentration (g/L)": 2.1308523447630248e-11
+      },
+      "H2": {
+        "mols": 2.121875844481508e-15,
+        "mass (g)": 4.277451321125072e-15,
+        "mw (g/mol)": 2.015882,
+        "concentration (g/L)": 4.277455133124586e-15
+      },
+      "SO3-2": {
+        "mols": 5.1088825988060285e-18,
+        "mass (g)": 4.09038149402149e-16,
+        "mw (g/mol)": 80.06411215981814,
+        "concentration (g/L)": 4.0903851393072217e-16
+      },
+      "HSO3-": {
+        "mols": 2.289386626814557e-18,
+        "mass (g)": 1.8560401840097893e-16,
+        "mw (g/mol)": 81.07150457990907,
+        "concentration (g/L)": 1.8560418380845522e-16
+      },
+      "H2SO4": {
+        "mols": 9.158188493102926e-19,
+        "mass (g)": 8.982195767994737e-17,
+        "mw (g/mol)": 98.07830200000001,
+        "concentration (g/L)": 8.982203772790895e-17
+      },
+      "CO": {
+        "mols": 1.735278077847299e-20,
+        "mass (g)": 4.860539057582413e-19,
+        "mw (g/mol)": 28.010145,
+        "concentration (g/L)": 4.860543389220844e-19
+      },
+      "Mg4(OH)4+4": {
+        "mols": 1.432180239822006e-21,
+        "mass (g)": 2.3666433261843176e-19,
+        "mw (g/mol)": 165.24758968036372,
+        "concentration (g/L)": 2.366645435300829e-19
+      },
+      "HS-": {
+        "mols": 3.0477245857297463e-22,
+        "mass (g)": 1.007982777836483e-20,
+        "mw (g/mol)": 33.073289579909066,
+        "concentration (g/L)": 1.007983676135393e-20
+      },
+      "H2S": {
+        "mols": 1.6817668885087685e-22,
+        "mass (g)": 5.731576252539679e-21,
+        "mw (g/mol)": 34.080681999999996,
+        "concentration (g/L)": 5.7315813604332e-21
+      },
+      "H2SO3": {
+        "mols": 1.090500851773299e-23,
+        "mass (g)": 8.95071070911129e-22,
+        "mw (g/mol)": 82.07889700000001,
+        "concentration (g/L)": 8.950718685848443e-22
+      },
+      "SO2": {
+        "mols": 7.256710235882681e-24,
+        "mass (g)": 4.648910544345961e-22,
+        "mw (g/mol)": 64.06361,
+        "concentration (g/L)": 4.648914687384281e-22
+      },
+      "S2O3-2": {
+        "mols": 7.511815776211331e-27,
+        "mass (g)": 8.422917313315364e-25,
+        "mw (g/mol)": 112.12891215981813,
+        "concentration (g/L)": 8.422924819691076e-25
+      },
+      "S-2": {
+        "mols": 8.753419380913925e-28,
+        "mass (g)": 2.806862456651448e-26,
+        "mw (g/mol)": 32.06589715981813,
+        "concentration (g/L)": 2.806864958084549e-26
+      },
+      "CH4": {
+        "mols": 7.005823080551799e-28,
+        "mass (g)": 1.1239094479304457e-26,
+        "mw (g/mol)": 16.042504,
+        "concentration (g/L)": 1.1239104495414396e-26
+      },
+      "HS2O3-": {
+        "mols": 2.0890828874766053e-33,
+        "mass (g)": 2.363511178502291e-31,
+        "mw (g/mol)": 113.13630457990907,
+        "concentration (g/L)": 2.3635132848274804e-31
+      },
+      "S2O6-2": {
+        "mols": 4.929573272758035e-40,
+        "mass (g)": 7.893584062905668e-38,
+        "mw (g/mol)": 160.12712715981814,
+        "concentration (g/L)": 7.893591097547644e-38
+      },
+      "S2O5-2": {
+        "mols": 1.3796509062851806e-40,
+        "mass (g)": 1.9884594249861177e-38,
+        "mw (g/mol)": 144.12772215981812,
+        "concentration (g/L)": 1.988461197070893e-38
+      },
+      "O2": {
+        "mols": 0.0,
+        "mass (g)": 0.0,
+        "mw (g/mol)": 31.99881,
+        "concentration (g/L)": 0.0
+      },
+      "ClO3-": {
+        "mols": 0.0,
+        "mass (g)": 0.0,
+        "mw (g/mol)": 83.45166357990907,
+        "concentration (g/L)": 0.0
+      },
+      "ClO4-": {
+        "mols": 0.0,
+        "mass (g)": 0.0,
+        "mw (g/mol)": 99.45106857990906,
+        "concentration (g/L)": 0.0
+      },
+      "S2-2": {
+        "mols": 0.0,
+        "mass (g)": 0.0,
+        "mw (g/mol)": 64.13069715981813,
+        "concentration (g/L)": 0.0
+      },
+      "ClO-": {
+        "mols": 0.0,
+        "mass (g)": 0.0,
+        "mw (g/mol)": 51.45285357990906,
+        "concentration (g/L)": 0.0
+      },
+      "S2O4-2": {
+        "mols": 0.0,
+        "mass (g)": 0.0,
+        "mw (g/mol)": 128.12831715981812,
+        "concentration (g/L)": 0.0
+      },
+      "HClO2": {
+        "mols": 0.0,
+        "mass (g)": 0.0,
+        "mw (g/mol)": 68.459651,
+        "concentration (g/L)": 0.0
+      },
+      "C2H6": {
+        "mols": 0.0,
+        "mass (g)": 0.0,
+        "mw (g/mol)": 30.069126,
+        "concentration (g/L)": 0.0
+      },
+      "HSO5-": {
+        "mols": 0.0,
+        "mass (g)": 0.0,
+        "mw (g/mol)": 113.07031457990907,
+        "concentration (g/L)": 0.0
+      },
+      "S2O8-2": {
+        "mols": 0.0,
+        "mass (g)": 0.0,
+        "mw (g/mol)": 192.12593715981814,
+        "concentration (g/L)": 0.0
+      },
+      "S3-2": {
+        "mols": 0.0,
+        "mass (g)": 0.0,
+        "mw (g/mol)": 96.19549715981813,
+        "concentration (g/L)": 0.0
+      },
+      "S3O6-2": {
+        "mols": 0.0,
+        "mass (g)": 0.0,
+        "mw (g/mol)": 192.19192715981814,
+        "concentration (g/L)": 0.0
+      },
+      "S4-2": {
+        "mols": 0.0,
+        "mass (g)": 0.0,
+        "mw (g/mol)": 128.26029715981812,
+        "concentration (g/L)": 0.0
+      },
+      "S4O6-2": {
+        "mols": 0.0,
+        "mass (g)": 0.0,
+        "mw (g/mol)": 224.25672715981813,
+        "concentration (g/L)": 0.0
+      },
+      "S5-2": {
+        "mols": 0.0,
+        "mass (g)": 0.0,
+        "mw (g/mol)": 160.3250971598181,
+        "concentration (g/L)": 0.0
+      },
+      "S5O6-2": {
+        "mols": 0.0,
+        "mass (g)": 0.0,
+        "mw (g/mol)": 256.3215271598181,
+        "concentration (g/L)": 0.0
+      },
+      "ClO2-": {
+        "mols": 0.0,
+        "mass (g)": 0.0,
+        "mw (g/mol)": 67.45225857990906,
+        "concentration (g/L)": 0.0
+      },
+      "HClO": {
+        "mols": 0.0,
+        "mass (g)": 0.0,
+        "mw (g/mol)": 52.460246,
+        "concentration (g/L)": 0.0
+      },
+      "C2H4": {
+        "mols": 0.0,
+        "mass (g)": 0.0,
+        "mw (g/mol)": 28.053244,
+        "concentration (g/L)": 0.0
+      }
+    }
+  },
+  "activities": {
+    "Na+": {
+      "value": 0.05877157241197085,
+      "units": "dimensionless"
+    },
+    "log10_Na+": {
+      "value": -1.2308326897397972,
+      "units": "dimensionless"
+    },
+    "K+": {
+      "value": 0.0001700746509724876,
+      "units": "dimensionless"
+    },
+    "log10_K+": {
+      "value": -3.769360411626417,
+      "units": "dimensionless"
+    },
+    "Cl-": {
+      "value": 0.05292346414685947,
+      "units": "dimensionless"
+    },
+    "log10_Cl-": {
+      "value": -1.2763517364681591,
+      "units": "dimensionless"
+    },
+    "Ca+2": {
+      "value": 0.002153476369879417,
+      "units": "dimensionless"
+    },
+    "log10_Ca+2": {
+      "value": -2.666859889393501,
+      "units": "dimensionless"
+    },
+    "Mg+2": {
+      "value": 0.0012298285580123547,
+      "units": "dimensionless"
+    },
+    "log10_Mg+2": {
+      "value": -2.9101554263644087,
+      "units": "dimensionless"
+    },
+    "HCO3-": {
+      "value": 0.0049557491800488376,
+      "units": "dimensionless"
+    },
+    "log10_HCO3-": {
+      "value": -2.304890682214712,
+      "units": "dimensionless"
+    },
+    "SO4-2": {
+      "value": 0.002630117082958113,
+      "units": "dimensionless"
+    },
+    "log10_SO4-2": {
+      "value": -2.5800249179167727,
+      "units": "dimensionless"
+    },
+    "H2O": {
+      "value": 0.9970457313692388,
+      "units": "dimensionless"
+    },
+    "log10_H2O": {
+      "value": -0.0012849215019600552,
+      "units": "dimensionless"
+    }
+  },
+  "transport": {
+    "diffusion": {
+      "Na+": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "Cl-": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "SO4-2": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "HCO3-": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "Ca+2": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "Mg+2": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "NaSO4-": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "CaSO4": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "MgSO4": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "CO2": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "NaCl": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "NaHCO3": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "K+": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "CaHCO3+": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "MgHCO3+": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "MgCl+": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "CaCl+": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "CaCO3": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "CO3-2": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "KSO4-": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "MgCO3": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "CaCl2": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "NaCO3-": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "KCl": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "OH-": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "H+": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "HSO4-": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "CaOH+": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "NaOH": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "HCl": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "KOH": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "KHSO4": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "H2": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "SO3-2": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "HSO3-": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "H2SO4": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "CO": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "Mg4(OH)4+4": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "HS-": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "H2S": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "H2SO3": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "SO2": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "S2O3-2": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "S-2": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "CH4": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "HS2O3-": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "S2O6-2": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "S2O5-2": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "O2": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "ClO3-": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "ClO4-": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "S2-2": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "ClO-": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "S2O4-2": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "HClO2": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "C2H6": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "HSO5-": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "S2O8-2": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "S3-2": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "S3O6-2": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "S4-2": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "S4O6-2": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "S5-2": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "S5O6-2": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "ClO2-": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "HClO": {
+        "value": 0.0,
+        "units": "m2/s"
+      },
+      "C2H4": {
+        "value": 0.0,
+        "units": "m2/s"
+      }
+    },
+    "transfer_number": {
+      "Na+": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "Cl-": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "SO4-2": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "HCO3-": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "Ca+2": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "Mg+2": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "NaSO4-": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "CaSO4": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "MgSO4": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "CO2": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "NaCl": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "NaHCO3": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "K+": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "CaHCO3+": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "MgHCO3+": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "MgCl+": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "CaCl+": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "CaCO3": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "CO3-2": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "KSO4-": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "MgCO3": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "CaCl2": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "NaCO3-": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "KCl": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "OH-": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "H+": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "HSO4-": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "CaOH+": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "NaOH": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "HCl": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "KOH": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "KHSO4": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "H2": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "SO3-2": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "HSO3-": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "H2SO4": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "CO": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "Mg4(OH)4+4": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "HS-": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "H2S": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "H2SO3": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "SO2": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "S2O3-2": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "S-2": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "CH4": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "HS2O3-": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "S2O6-2": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "S2O5-2": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "O2": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "ClO3-": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "ClO4-": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "S2-2": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "ClO-": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "S2O4-2": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "HClO2": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "C2H6": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "HSO5-": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "S2O8-2": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "S3-2": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "S3O6-2": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "S4-2": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "S4O6-2": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "S5-2": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "S5O6-2": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "ClO2-": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "HClO": {
+        "value": 0.0,
+        "units": "unitless"
+      },
+      "C2H4": {
+        "value": 0.0,
+        "units": "unitless"
+      }
+    }
+  }
+}

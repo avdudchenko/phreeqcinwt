@@ -1,0 +1,58 @@
+{
+  "CO2(g)": {
+    "value": 0.0126101826720373,
+    "units": "atm"
+  },
+  "H2O(g)": {
+    "value": 0.02321514259871712,
+    "units": "atm"
+  },
+  "O2(g)": {
+    "value": 2.6647645193251456e-14,
+    "units": "atm"
+  },
+  "H2(g)": {
+    "value": 1.9554192594268228e-36,
+    "units": "atm"
+  },
+  "N2(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "H2S(g)": {
+    "value": 3.484521210946636e-118,
+    "units": "atm"
+  },
+  "CH4(g)": {
+    "value": 7.061424772728227e-119,
+    "units": "atm"
+  },
+  "NH3(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "Oxg(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "Hdg(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "Ntg(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "Mtg(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "H2Sg(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "total_fugacity": {
+    "value": 0.03582532527078106,
+    "units": "atm"
+  }
+}

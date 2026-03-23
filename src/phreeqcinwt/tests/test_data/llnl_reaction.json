@@ -1,0 +1,73 @@
+{
+  "reaction": {
+    "HCl": {
+      "value": 183.61949803119035,
+      "units": "mg/kgw"
+    },
+    "NaOH": {
+      "value": -0.0,
+      "units": "mg/kgw"
+    },
+    "pH": {
+      "value": 5.0
+    }
+  },
+  "solution_state_after": {
+    "pH": {
+      "value": 5.0,
+      "units": "dimensionless"
+    },
+    "pe": {
+      "value": -0.11279246610913315,
+      "units": "dimensionless"
+    },
+    "Temperature": {
+      "value": 20.0,
+      "units": "C"
+    },
+    "Alkalinity": {
+      "value": 0.015546003672022392,
+      "units": "g/kgw as Ca0.5(CO3)0.5"
+    },
+    "Charge balance": {
+      "value": -3.6136371672768064e-13,
+      "units": "eq"
+    },
+    "Error in charge": {
+      "value": -3.7930718122453234e-10,
+      "units": "%"
+    },
+    "Water mass": {
+      "value": 1.0000901827029158,
+      "units": "kg"
+    },
+    "Solution density": {
+      "value": 1.0034993114861435,
+      "units": "kg/L"
+    },
+    "Ionic strength": {
+      "value": 0.06337589335055141,
+      "units": "M"
+    },
+    "Solution conductivity": {
+      "value": 0.0,
+      "units": "uS/cm"
+    },
+    "Solution volume": {
+      "value": 1.0000901827029156,
+      "units": "L"
+    },
+    "Total dissolved solids": {
+      "value": 3.4995885452737023,
+      "units": "g/L"
+    },
+    "Solution mass": {
+      "value": 3.499916019962773,
+      "units": "kg"
+    },
+    "Osmotic pressure": {
+      "units": "Pa",
+      "value": 199830.71157386765
+    }
+  }
+}

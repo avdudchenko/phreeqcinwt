@@ -78,7 +78,10 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
                 "phreeqc_com\\3_8_6-1700\\IPhreeqc.dll",
             )
         elif sys.platform == "linux":
-            raise Exception("Unsupported platform: {}".format(sys.platform))
+            dll_path = os.path.join(
+                os.path.dirname(__file__),
+                "phreeqc_com\\3_8_6-1700\\libIPhreeqc.so",
+            )
         elif sys.platform == "darwin":
             raise Exception("Unsupported platform: {}".format(sys.platform))
         self.phreeqc = phreeqc_mod.IPhreeqc(dll_path=dll_path)
@@ -679,8 +682,7 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
         command += "GAS_PHASE 1\n"
         command += "   -fixed_volume\n"
         for g in gas_phases:
-            command += "    {}\n".format(g)
-        command += "   -fixed_volume\n"
+            command += "    {} 0\n".format(g)
         command += "USER_PUNCH\n"
         command += "-start\n"
         command += "-headings {}\n".format(" ".join(gas_header))
@@ -688,7 +690,7 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
             command += '{} PUNCH SR("{}")\n'.format(int(i * 10), g)
         command += "-end\n"
         command += "SELECTED_OUTPUT\n"
-        command += "   -gases {}".format(" ".join(gas_phases))
+        command += "   -gases {}\n".format(" ".join(gas_phases))
         command += "   -user_punch True\n"
         if store_solution:
             self.current_solution += 1

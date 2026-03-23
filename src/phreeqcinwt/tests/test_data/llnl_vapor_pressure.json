@@ -1,0 +1,378 @@
+{
+  "Ag(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "Al(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "Am(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "AmF3(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "Ar(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "B(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "BF3(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "Be(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "Br2(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "C(g)": {
+    "value": 1.0435340155397035e-133,
+    "units": "atm"
+  },
+  "Ethylene(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "CH4(g)": {
+    "value": 1.0541658554254158e-30,
+    "units": "atm"
+  },
+  "CO(g)": {
+    "value": 4.544260607939136e-19,
+    "units": "atm"
+  },
+  "CO2(g)": {
+    "value": 0.01229831881454987,
+    "units": "atm"
+  },
+  "Ca(g)": {
+    "value": 6.721383971022532e-126,
+    "units": "atm"
+  },
+  "Cd(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "Cl2(g)": {
+    "value": 9.315441291552006e-53,
+    "units": "atm"
+  },
+  "Cs(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "Cu(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "F2(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "H2(g)": {
+    "value": 1.1653074571349464e-13,
+    "units": "atm"
+  },
+  "H2O(g)": {
+    "value": 0.019143312486373153,
+    "units": "atm"
+  },
+  "H2S(g)": {
+    "value": 4.2397946025780326e-27,
+    "units": "atm"
+  },
+  "HBr(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "HCl(g)": {
+    "value": 3.0720112104180816e-16,
+    "units": "atm"
+  },
+  "HF(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "HI(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "He(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "Hf(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "Hg(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "I2(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "K(g)": {
+    "value": 9.808209016990009e-65,
+    "units": "atm"
+  },
+  "Kr(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "Li(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "Mg(g)": {
+    "value": 5.158046973650906e-103,
+    "units": "atm"
+  },
+  "N2(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "NH3(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "NO(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "NO2(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "Na(g)": {
+    "value": 6.9322124817431e-62,
+    "units": "atm"
+  },
+  "Ne(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "O2(g)": {
+    "value": 1.135031427210165e-59,
+    "units": "atm"
+  },
+  "Pb(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "Rb(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "Rn(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "RuCl3(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "RuO3(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "S2(g)": {
+    "value": 9.195668095638682e-54,
+    "units": "atm"
+  },
+  "SO2(g)": {
+    "value": 1.4434390429955433e-25,
+    "units": "atm"
+  },
+  "Si(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "SiF4(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "Sn(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "Tc2O7(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "Th(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "Ti(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "TiBr4(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "TiCl4(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "TiO(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "U(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "U2Cl10(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "U2Cl8(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "U2F10(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "UBr(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "UBr2(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "UBr3(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "UBr4(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "UBr5(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "UCl(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "UCl2(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "UCl3(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "UCl4(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "UCl5(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "UCl6(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "UF(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "UF2(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "UF3(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "UF4(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "UF5(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "UF6(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "UI(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "UI2(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "UI3(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "UI4(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "UO(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "UO2(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "UO2Cl2(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "UO2F2(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "UO3(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "UOF4(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "Xe(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "Zn(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "Zr(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "ZrF4(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "total_fugacity": {
+    "value": 0.03144163130103986,
+    "units": "atm"
+  }
+}

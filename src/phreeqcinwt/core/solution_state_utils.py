@@ -11,15 +11,22 @@ class solution_utils:
         activities = {}
         for element, name in self.return_dict.items():
             idx = np.where("la_" + element == np.array(result[0]))[0]
-            # print(idx, "la_" + element)
-            activities[element] = {
-                "value": 10 ** result[1][idx[0]],
-                "units": "dimensionless",
-            }
-            activities["log10_{}".format(element)] = {
-                "value": result[1][idx[0]],
-                "units": "dimensionless",
-            }
+            print(idx, "la_" + element)
+            if len(idx) > 0:
+                activities[element] = {
+                    "value": 10 ** result[1][idx[0]],
+                    "units": "dimensionless",
+                }
+                activities["log10_{}".format(element)] = {
+                    "value": result[1][idx[0]],
+                    "units": "dimensionless",
+                }
+            else:
+                activities[element] = {"value": None, "units": "dimensionless"}
+                activities["log10_{}".format(element)] = {
+                    "value": None,
+                    "units": "dimensionless",
+                }
         idx = np.where("la_H2O" == np.array(result[0]))[0]
         # print(idx)
         activities["H2O"] = {"value": 10 ** result[1][idx[0]], "units": "dimensionless"}
