@@ -1,0 +1,58 @@
+{
+  "CH4(g)": {
+    "value": 1.2143729601057229e-22,
+    "units": "atm"
+  },
+  "CO2(g)": {
+    "value": 0.011977150709631143,
+    "units": "atm"
+  },
+  "O2(g)": {
+    "value": 3.558465121961615e-64,
+    "units": "atm"
+  },
+  "Hg(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "Hg2(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "Hg(CH3)2(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "HgBr(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "HgCl(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "HgF(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "HgI(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "HgBr2(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "HgF2(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "HgI2(g)": {
+    "value": 0.0,
+    "units": "atm"
+  },
+  "total_fugacity": {
+    "value": 0.011977150709631143,
+    "units": "atm"
+  }
+}

@@ -41,6 +41,7 @@ src/phreeqcinwt/databases/metadata/minteq.v4_PHASES.yaml
 src/phreeqcinwt/databases/metadata/minteq.v4_SOLUTION_MASTER_SPECIES.yaml
 src/phreeqcinwt/databases/metadata/minteq_PHASES.yaml
 src/phreeqcinwt/databases/metadata/minteq_SOLUTION_MASTER_SPECIES.yaml
+src/phreeqcinwt/databases/metadata/phreeqc_SOLUTION_MASTER_SPECIES.yaml
 src/phreeqcinwt/databases/metadata/pitzer_PHASES.yaml
 src/phreeqcinwt/databases/metadata/pitzer_SOLUTION_MASTER_SPECIES.yaml
 src/phreeqcinwt/databases/metadata/wateq4f_PHASES.yaml
@@ -69,3 +70,6 @@ src/phreeqcinwt/examples/examples_for_api_dev/simple_soft_sweep.py
 src/phreeqcinwt/examples/examples_for_api_dev/simple_water_reconciliation.py
 src/phreeqcinwt/examples/examples_for_api_dev/test_api.py
 src/phreeqcinwt/examples/examples_for_api_dev/test_api_sr_br.py
+src/phreeqcinwt/tests/__init__.py
+src/phreeqcinwt/tests/generate_test_data.py
+src/phreeqcinwt/tests/test_solution_build.py

@@ -1,16 +1,11 @@
 import sys
 import os
-from unittest import result
 import phreeqpy.iphreeqc.phreeqc_dll as phreeqc_mod
 
-import csv
 import numpy as np
 
 import copy
 
-
-import molmass
-import yaml
 
 from phreeqcinwt.core.data_base_utils import dataBaseManagment
 from phreeqcinwt.core.utility_functions import utilities
@@ -34,6 +29,7 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
         track_gas_phase_list=None,
         remove_phase_list=None,
         exclude_gases_in_phases=True,
+        com_dll_path=None,
     ):
         """this is main class for phreeqcAPI that will handle working with a single or multiple solutions
         this class is a higher level api for phreeqpy and abstraction method for phreeqc with
@@ -74,7 +70,25 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
             rebuild_soluton_species,
             rebuild_phases,
         ]
-        self.phreeqc = phreeqc_mod.IPhreeqc()
+        if com_dll_path is not None:
+            dll_path = com_dll_path
+        elif sys.platform == "win32":
+            dll_path = os.path.join(
+                os.path.dirname(__file__),
+                "phreeqc_com",
+                "3_8_6-1700",
+                "IPhreeqc.dll",
+            )
+        elif sys.platform == "linux":
+            dll_path = os.path.join(
+                os.path.dirname(__file__),
+                "phreeqc_com",
+                "3_8_6-1700",
+                "libIPhreeqc.so.3.8.6",
+            )
+        elif sys.platform == "darwin":
+            raise Exception("Unsupported platform: {}".format(sys.platform))
+        self.phreeqc = phreeqc_mod.IPhreeqc(dll_path=dll_path)
         self.database = database
         self.load_database(remove_phase_list)
 
@@ -289,7 +303,6 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
         self.composition += "   -water  {} # kg\n".format(water_mass)
         self.composition += "SAVE SOLUTION {}\n".format(self.current_solution)
         self.composition += "END\n"
-        print(self.composition)
         self.run_string(self.composition)
         self.db_metadata["MAJOR_SOLUTION_COMPONENTS"] = (
             self.phreeqc.get_component_list()
@@ -464,6 +477,7 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
         solution_composition["composition"] = self._get_solution_comp(
             result,
         )
+
         command = "USE SOLUTION {}\n".format(str(solution_number))
 
         command += "EQUILIBRIUM_PHASES\n"
@@ -506,6 +520,7 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
                 solution_composition["activities"],
             )
         )
+        self.current_state = solution_composition
         if report:
             print("solution state--------------")
             for key, result in solution_composition["solution_state"].items():
@@ -672,8 +687,7 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
         command += "GAS_PHASE 1\n"
         command += "   -fixed_volume\n"
         for g in gas_phases:
-            command += "    {}\n".format(g)
-        command += "   -fixed_volume\n"
+            command += "    {} 0\n".format(g)
         command += "USER_PUNCH\n"
         command += "-start\n"
         command += "-headings {}\n".format(" ".join(gas_header))
@@ -681,7 +695,7 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
             command += '{} PUNCH SR("{}")\n'.format(int(i * 10), g)
         command += "-end\n"
         command += "SELECTED_OUTPUT\n"
-        command += "   -gases {}".format(" ".join(gas_phases))
+        command += "   -gases {}\n".format(" ".join(gas_phases))
         command += "   -user_punch True\n"
         if store_solution:
             self.current_solution += 1
@@ -705,6 +719,93 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
                 print("\t", comp, vapor["value"], vapor["units"])
         # print("vapor", out_dict)  # , result[1][idx])
         return out_dict
+
+    def solution_modify(
+        self,
+        absolute=None,
+        relative=None,
+        temperature=None,
+        pressure=None,
+        solution_number=None,
+        solution_name=None,
+        report=False,
+    ):
+        """Modify an existing solution using PHREEQC SOLUTION_MODIFY.
+
+        Allows direct manipulation of elemental totals (in moles),
+        temperature, and pressure.  Changes can be absolute (set the total
+        to the given value) or relative (add/subtract from the current
+        total stored in ``self.current_state``).
+
+        Keyword arguments:
+        absolute -- dict of element totals to set, ``{element: mols}``
+            (default None)
+        relative -- dict of element deltas to apply, ``{element: delta_mols}``;
+            uses the stored state from the last ``get_solution_state`` call
+            (default None)
+        temperature -- new temperature in degrees C (default None, keep current)
+        pressure -- new pressure in atm (default None, keep current)
+        solution_number -- solution number to modify (default current_solution)
+        solution_name -- name for the saved solution (default None)
+        report -- print the updated solution state (default False)
+
+        returns:
+        dict -- updated solution state from ``get_solution_state``
+        """
+        if solution_number is None:
+            solution_number = self.current_solution
+
+        if absolute is None:
+            absolute = {}
+        if relative is None:
+            relative = {}
+
+        # Build the merged totals dict (all in moles)
+        totals = {}
+        for element, mols in absolute.items():
+            phreeqc_name = self.forward_dict.get(element, element)
+            totals[phreeqc_name] = mols
+
+        if relative:
+            if not hasattr(self, "current_state") or self.current_state is None:
+                raise ValueError(
+                    "No stored solution state. Call get_solution_state before "
+                    "using relative changes."
+                )
+            elements = self.current_state["composition"]["elements"]
+            for element, delta in relative.items():
+                phreeqc_name = self.forward_dict.get(element, element)
+                # Look up current moles using the user-facing name
+                current = elements.get(element, elements.get(phreeqc_name))
+                if current is None:
+                    raise KeyError(
+                        f"Element '{element}' not found in current solution state."
+                    )
+                new_mols = current["mols"] + delta
+                if new_mols < 0:
+                    raise ValueError(
+                        f"Relative change for '{element}' would result in "
+                        f"negative moles ({new_mols:.6e})."
+                    )
+                totals[phreeqc_name] = new_mols
+
+        command = "SOLUTION_MODIFY {}\n".format(solution_number)
+        if temperature is not None:
+            command += "   -temp {}\n".format(temperature)
+        if pressure is not None:
+            command += "   -pressure {}\n".format(pressure)
+        if totals:
+            command += "   -totals\n"
+            for phreeqc_name, mols in totals.items():
+                command += "      {}  {:.15e}\n".format(phreeqc_name, mols)
+        command += "END\n"
+
+        self.run_string(command)
+
+        self.current_solution = solution_number
+        self.store_solution_name(solution_name)
+        result = self.get_solution_state(report=report)
+        return result
 
     def mix_solutions(
         self,

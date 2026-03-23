@@ -1,0 +1,14 @@
+{
+  "Calcite": {
+    "value": 4.6127547617689165e-05,
+    "units": "mol/kgw"
+  },
+  "Gypsum": {
+    "value": 0.0,
+    "units": "mol/kgw"
+  },
+  "Aragonite": {
+    "value": 0.0,
+    "units": "mol/kgw"
+  }
+}
