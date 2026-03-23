@@ -10,6 +10,7 @@ A Python wrapper around [PHREEQC](https://www.usgs.gov/software/phreeqc-version-
 - Calculate vapor pressures (gas-phase fugacities)
 - Simulate mineral precipitation (form phases)
 - Mix solutions at arbitrary ratios
+- Directly modify solution composition, temperature, and pressure
 - Compare results across multiple thermodynamic databases
 
 ## Prerequisites
@@ -159,6 +160,26 @@ wt.build_water_composition(
 
 wt.mix_solutions({1: 1, 2: 1}, new_solution_number=3)
 mixed_state = wt.get_solution_state(report=True)
+```
+
+### Modifying a solution
+
+Directly manipulate an existing solution's elemental totals (in moles),
+temperature, or pressure using PHREEQC's `SOLUTION_MODIFY`:
+
+```python
+# Absolute: set Na to exactly 0.05 mol and change temperature to 40 °C
+result = wt.solution_modify(absolute={"Na": 0.05}, temperature=40)
+
+# Relative: add 0.01 mol Ca to the current amount
+result = wt.solution_modify(relative={"Ca": 0.01})
+
+# Both at once
+result = wt.solution_modify(
+    absolute={"Na": 0.05},
+    relative={"Ca": 0.01},
+    pressure=2,
+)
 ```
 
 ## Testing

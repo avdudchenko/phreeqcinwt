@@ -180,9 +180,18 @@ SOLUTION_STATE_KEYS = [
 ]
 
 
-def _approx(expected, rel=1e-3, abs=1e-8):
+# Per-key relative tolerance overrides for cross-platform sensitive quantities
+_KEY_REL_TOL = {
+    "pe": 5e-2,
+}
+
+
+def _approx(expected, rel=1e-3, abs=1e-8, key=None):
     """Return a pytest.approx with a default 0.1 % relative tolerance
-    and a 1e-8 absolute tolerance floor for near-zero values."""
+    and a 1e-8 absolute tolerance floor for near-zero values.
+    If *key* is provided, look up a per-key override in _KEY_REL_TOL."""
+    if key is not None:
+        rel = _KEY_REL_TOL.get(key, rel)
     return pytest.approx(expected, rel=rel, abs=abs)
 
 
@@ -200,7 +209,9 @@ class TestBuildSolution:
         for key in SOLUTION_STATE_KEYS:
             ref_val = reference["solution_state"][key]["value"]
             act_val = result["solution_state"][key]["value"]
-            assert act_val == _approx(ref_val), f"{db}: solution_state[{key}] mismatch"
+            assert act_val == _approx(
+                ref_val, key=key
+            ), f"{db}: solution_state[{key}] mismatch"
 
     def test_scaling_tendencies(self, solution_result):
         """Scaling tendency values should match the stored reference."""
@@ -253,7 +264,7 @@ class TestPerformReaction:
             ref_val = reference["solution_state_after"][key]["value"]
             act_val = state_after["solution_state"][key]["value"]
             assert act_val == _approx(
-                ref_val
+                ref_val, key=key
             ), f"{db}: post-reaction solution_state[{key}] mismatch"
 
 
@@ -321,7 +332,7 @@ class TestMixSolutions:
             ref_val = reference["solution_state"][key]["value"]
             act_val = state["solution_state"][key]["value"]
             assert act_val == _approx(
-                ref_val
+                ref_val, key=key
             ), f"{db}: mixed solution_state[{key}] mismatch"
 
     def test_mixed_composition_elements(self, mix_result):

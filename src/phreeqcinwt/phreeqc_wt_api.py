@@ -721,6 +721,93 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
         # print("vapor", out_dict)  # , result[1][idx])
         return out_dict
 
+    def solution_modify(
+        self,
+        absolute=None,
+        relative=None,
+        temperature=None,
+        pressure=None,
+        solution_number=None,
+        solution_name=None,
+        report=False,
+    ):
+        """Modify an existing solution using PHREEQC SOLUTION_MODIFY.
+
+        Allows direct manipulation of elemental totals (in moles),
+        temperature, and pressure.  Changes can be absolute (set the total
+        to the given value) or relative (add/subtract from the current
+        total stored in ``self.current_state``).
+
+        Keyword arguments:
+        absolute -- dict of element totals to set, ``{element: mols}``
+            (default None)
+        relative -- dict of element deltas to apply, ``{element: delta_mols}``;
+            uses the stored state from the last ``get_solution_state`` call
+            (default None)
+        temperature -- new temperature in degrees C (default None, keep current)
+        pressure -- new pressure in atm (default None, keep current)
+        solution_number -- solution number to modify (default current_solution)
+        solution_name -- name for the saved solution (default None)
+        report -- print the updated solution state (default False)
+
+        returns:
+        dict -- updated solution state from ``get_solution_state``
+        """
+        if solution_number is None:
+            solution_number = self.current_solution
+
+        if absolute is None:
+            absolute = {}
+        if relative is None:
+            relative = {}
+
+        # Build the merged totals dict (all in moles)
+        totals = {}
+        for element, mols in absolute.items():
+            phreeqc_name = self.forward_dict.get(element, element)
+            totals[phreeqc_name] = mols
+
+        if relative:
+            if not hasattr(self, "current_state") or self.current_state is None:
+                raise ValueError(
+                    "No stored solution state. Call get_solution_state before "
+                    "using relative changes."
+                )
+            elements = self.current_state["composition"]["elements"]
+            for element, delta in relative.items():
+                phreeqc_name = self.forward_dict.get(element, element)
+                # Look up current moles using the user-facing name
+                current = elements.get(element, elements.get(phreeqc_name))
+                if current is None:
+                    raise KeyError(
+                        f"Element '{element}' not found in current solution state."
+                    )
+                new_mols = current["mols"] + delta
+                if new_mols < 0:
+                    raise ValueError(
+                        f"Relative change for '{element}' would result in "
+                        f"negative moles ({new_mols:.6e})."
+                    )
+                totals[phreeqc_name] = new_mols
+
+        command = "SOLUTION_MODIFY {}\n".format(solution_number)
+        if temperature is not None:
+            command += "   -temp {}\n".format(temperature)
+        if pressure is not None:
+            command += "   -pressure {}\n".format(pressure)
+        if totals:
+            command += "   -totals\n"
+            for phreeqc_name, mols in totals.items():
+                command += "      {}  {:.15e}\n".format(phreeqc_name, mols)
+        command += "END\n"
+
+        self.run_string(command)
+
+        self.current_solution = solution_number
+        self.store_solution_name(solution_name)
+        result = self.get_solution_state(report=report)
+        return result
+
     def mix_solutions(
         self,
         solutin_dict,
