@@ -536,6 +536,41 @@ class TestSolutionModify:
             cl_before + cl_delta
         ), f"{db}: large combined Cl mismatch"
 
+    # -- H and O via total_h / total_o -------------------------------------
+
+    def test_absolute_h_and_o(self, modify_base):
+        """Modifying H and O should use -total_h / -total_o internally."""
+        wt, initial_state, db = modify_base
+        elems = initial_state["composition"]["elements"]
+        h_before = elems["H"]["mols"]
+        o_before = elems["O"]["mols"]
+        # Small 2 % bump to both — no charge issue for H2O bulk totals
+        target_h = h_before * 1.02
+        target_o = o_before * 1.02
+        result = wt.solution_modify(absolute={"H": target_h, "O": target_o})
+        assert result["composition"]["elements"]["H"]["mols"] == _approx(
+            target_h
+        ), f"{db}: absolute H mols mismatch"
+        assert result["composition"]["elements"]["O"]["mols"] == _approx(
+            target_o
+        ), f"{db}: absolute O mols mismatch"
+
+    def test_relative_h_and_o(self, modify_base):
+        """Relative H and O changes should apply via -total_h / -total_o."""
+        wt, initial_state, db = modify_base
+        elems = initial_state["composition"]["elements"]
+        h_before = elems["H"]["mols"]
+        o_before = elems["O"]["mols"]
+        h_delta = h_before * 0.05
+        o_delta = o_before * 0.05
+        result = wt.solution_modify(relative={"H": h_delta, "O": o_delta})
+        assert result["composition"]["elements"]["H"]["mols"] == _approx(
+            h_before + h_delta
+        ), f"{db}: relative H mols mismatch"
+        assert result["composition"]["elements"]["O"]["mols"] == _approx(
+            o_before + o_delta
+        ), f"{db}: relative O mols mismatch"
+
     # -- error handling (single-database, no fixture) -----------------------
 
     def test_relative_without_state_raises(self):
