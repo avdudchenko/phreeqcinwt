@@ -75,12 +75,16 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
         elif sys.platform == "win32":
             dll_path = os.path.join(
                 os.path.dirname(__file__),
-                "phreeqc_com\\3_8_6-1700\\IPhreeqc.dll",
+                "phreeqc_com",
+                "3_8_6-1700",
+                "IPhreeqc.dll",
             )
         elif sys.platform == "linux":
             dll_path = os.path.join(
                 os.path.dirname(__file__),
-                "phreeqc_com\\3_8_6-1700\\libIPhreeqc.so",
+                "phreeqc_com",
+                "3_8_6-1700",
+                "libIPhreeqc.so",
             )
         elif sys.platform == "darwin":
             raise Exception("Unsupported platform: {}".format(sys.platform))
