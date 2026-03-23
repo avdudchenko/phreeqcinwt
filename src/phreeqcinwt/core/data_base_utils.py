@@ -176,7 +176,7 @@ class dataBaseManagment:
                 for l in lines:
                     db_string += l
         # )
-        print(db_string)
+        # print(db_string)
         return db_string
 
     def save_db_metadata(self):
@@ -200,12 +200,12 @@ class dataBaseManagment:
                     + key
                     + ".yaml"
                 )
-            print(dbm_dir)
+            # print(dbm_dir)
             try:
                 with open(dbm_dir, "r") as file_save:
                     self.db_metadata[key] = yaml.safe_load(file_save)
 
-                    print("Loaded file", key)
+                    # print("Loaded file", key)
             except:
                 print("Failed to load {}".format(key))
             if self.db_metadata[key] == {}:

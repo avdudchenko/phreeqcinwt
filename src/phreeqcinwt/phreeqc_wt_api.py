@@ -303,7 +303,6 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
         self.composition += "   -water  {} # kg\n".format(water_mass)
         self.composition += "SAVE SOLUTION {}\n".format(self.current_solution)
         self.composition += "END\n"
-        print(self.composition)
         self.run_string(self.composition)
         self.db_metadata["MAJOR_SOLUTION_COMPONENTS"] = (
             self.phreeqc.get_component_list()
