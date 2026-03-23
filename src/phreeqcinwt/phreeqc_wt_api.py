@@ -1,16 +1,11 @@
 import sys
 import os
-from unittest import result
 import phreeqpy.iphreeqc.phreeqc_dll as phreeqc_mod
 
-import csv
 import numpy as np
 
 import copy
 
-
-import molmass
-import yaml
 
 from phreeqcinwt.core.data_base_utils import dataBaseManagment
 from phreeqcinwt.core.utility_functions import utilities
@@ -34,6 +29,7 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
         track_gas_phase_list=None,
         remove_phase_list=None,
         exclude_gases_in_phases=True,
+        com_dll_path=None,
     ):
         """this is main class for phreeqcAPI that will handle working with a single or multiple solutions
         this class is a higher level api for phreeqpy and abstraction method for phreeqc with
@@ -74,7 +70,18 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
             rebuild_soluton_species,
             rebuild_phases,
         ]
-        self.phreeqc = phreeqc_mod.IPhreeqc()
+        if com_dll_path is not None:
+            dll_path = com_dll_path
+        elif sys.platform == "win32":
+            dll_path = os.path.join(
+                os.path.dirname(__file__),
+                "phreeqc_com\\3_8_6-1700\\IPhreeqc.dll",
+            )
+        elif sys.platform == "linux":
+            raise Exception("Unsupported platform: {}".format(sys.platform))
+        elif sys.platform == "darwin":
+            raise Exception("Unsupported platform: {}".format(sys.platform))
+        self.phreeqc = phreeqc_mod.IPhreeqc(dll_path=dll_path)
         self.database = database
         self.load_database(remove_phase_list)
 
