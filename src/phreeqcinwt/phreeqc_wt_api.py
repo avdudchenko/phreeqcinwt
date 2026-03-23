@@ -84,7 +84,7 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
                 os.path.dirname(__file__),
                 "phreeqc_com",
                 "3_8_6-1700",
-                "libIPhreeqc.so",
+                "libIPhreeqc.so.3.8.6",
             )
         elif sys.platform == "darwin":
             raise Exception("Unsupported platform: {}".format(sys.platform))
