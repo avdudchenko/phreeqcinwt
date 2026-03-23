@@ -33,13 +33,3 @@ if __name__ == "__main__":
         ph_adjust={"pH": 5.0, "reactant": "HCl"}, pressure=1, report=True
     )
     phreeqcWT.get_solution_state(report=True)
-    # titrant_dict = phreeqcWT.perform_reaction(
-    #     ph_adjust={"pH": 4.5, "reactant": "HCl"}, pressure=1, report=True
-    # )
-    # # titrant_dict = phreeqcWT.perform_reaction(pressure=100, report=True)
-    # # # print(titrant_dict)
-    # # titrant_dict = phreeqcWT.perform_reaction(
-    # #     ph_adjust={"pH": 7, "reactant": "NaOH"}, report=True
-    # # )
-    # phreeqcWT.get_solution_state(report=True)
-    # phreeqcWT.print_log()

@@ -14,9 +14,7 @@ A Python wrapper around [PHREEQC](https://www.usgs.gov/software/phreeqc-version-
 
 ## Prerequisites
 
-- **Windows** (PHREEQC COM DLL; Linux/Mac support is aspirational)
-- **PHREEQC** — install the COM module (32-bit and 64-bit) from the USGS:
-  <https://water.usgs.gov/water-resources/software/PHREEQC/index.html>
+- **Windows** (PHREEQC COM DLL; Linux SO is included, but MAC is not)
 - **Conda** (recommended) or any Python 3.10–3.13 environment
 
 ## Installation
