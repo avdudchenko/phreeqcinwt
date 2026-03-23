@@ -78,7 +78,7 @@ jobs:
           channels: conda-forge
           activate-environment: phreeqcinwt
       - if: matrix.install-mode == 'dev'
-        name: Install via conda.yaml
+        name: Install via conda.yml
         run: |
           conda env update --file phreeqcinwt.yaml
           pip list
