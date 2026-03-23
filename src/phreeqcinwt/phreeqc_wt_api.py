@@ -478,6 +478,7 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
         solution_composition["composition"] = self._get_solution_comp(
             result,
         )
+
         command = "USE SOLUTION {}\n".format(str(solution_number))
 
         command += "EQUILIBRIUM_PHASES\n"
@@ -520,6 +521,7 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
                 solution_composition["activities"],
             )
         )
+        self.current_state = solution_composition
         if report:
             print("solution state--------------")
             for key, result in solution_composition["solution_state"].items():
