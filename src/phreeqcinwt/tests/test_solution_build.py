@@ -180,9 +180,10 @@ SOLUTION_STATE_KEYS = [
 ]
 
 
-def _approx(expected, rel=1e-3):
-    """Return a pytest.approx with a default 0.1 % relative tolerance."""
-    return pytest.approx(expected, rel=rel)
+def _approx(expected, rel=1e-3, abs=1e-8):
+    """Return a pytest.approx with a default 0.1 % relative tolerance
+    and a 1e-8 absolute tolerance floor for near-zero values."""
+    return pytest.approx(expected, rel=rel, abs=abs)
 
 
 # ---------------------------------------------------------------------------
