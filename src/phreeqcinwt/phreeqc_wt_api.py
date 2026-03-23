@@ -794,6 +794,11 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
             command += "   -temp {}\n".format(temperature)
         if pressure is not None:
             command += "   -pressure {}\n".format(pressure)
+        # H and O must use dedicated keywords, not -totals
+        if "H" in totals:
+            command += "   -total_h {:.15e}\n".format(totals.pop("H"))
+        if "O" in totals:
+            command += "   -total_o {:.15e}\n".format(totals.pop("O"))
         if totals:
             command += "   -totals\n"
             for phreeqc_name, mols in totals.items():
