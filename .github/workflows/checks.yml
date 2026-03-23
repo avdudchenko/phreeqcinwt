@@ -80,7 +80,7 @@ jobs:
       - if: matrix.install-mode == 'dev'
         name: Install via conda.yml
         run: |
-          conda env update --file phreeqcinwt.yaml
+          conda env update --file phreeqcinwt.yml
           pip list
       - if: matrix.install-mode == 'standard'
         name: Install (standard)
