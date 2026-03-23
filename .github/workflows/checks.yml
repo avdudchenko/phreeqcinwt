@@ -61,7 +61,7 @@ jobs:
           - win64
         include:
           - os: linux
-            os-version: ubuntu-22.04 #
+            os-version: ubuntu-24.04
           # - os: mac
           #   os-version: macos-15
           - os: win64
