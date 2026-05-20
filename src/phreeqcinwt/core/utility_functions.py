@@ -38,18 +38,18 @@ class utilities:
                     )
                 )
 
-    def check_formula_consistent(self, db_name, input_fomrula, input_mw=None):
+    def check_formula_consistent(self, db_name, input_formula, input_mw=None):
         db_formula = self.db_metadata["SOLUTION_MASTER_SPECIES"][db_name]["formula"]
-        if db_formula != input_fomrula:
+        if db_formula != input_formula:
             self.db_metadata["SOLUTION_MASTER_SPECIES"][db_name][
                 "formula"
-            ] = input_fomrula
+            ] = input_formula
         db_mw = self.db_metadata["SOLUTION_MASTER_SPECIES"][db_name]["mw"]
 
         try:
             if input_mw == None:
                 self.db_metadata["SOLUTION_MASTER_SPECIES"][db_name]["mw"] = (
-                    molmass.Formula(input_fomrula).mass
+                    molmass.Formula(input_formula).mass
                 )
             else:
                 self.db_metadata["SOLUTION_MASTER_SPECIES"][db_name]["mw"] = input_mw
@@ -86,6 +86,24 @@ class utilities:
                     "compound": input_formula,
                 }
                 self.check_formula_consistent("Alkalinity", input_formula, mw)
+        elif name == "Alkalinity":
+            phreeqc_name = self.find_input_in_db(name, input_loading)
+            mw = None
+            if isinstance(input_loading, dict):
+                input_formula = input_loading.get(
+                    "formula",
+                    self.db_metadata["SOLUTION_MASTER_SPECIES"][phreeqc_name]["formula"],
+                )
+                mw = input_loading.get("mw")
+            else:
+                input_formula = self.db_metadata["SOLUTION_MASTER_SPECIES"][phreeqc_name][
+                    "formula"
+                ]
+            self.check_formula_consistent(phreeqc_name, input_formula, mw)
+            phreeqc_ion_dict[phreeqc_name] = {
+                "value": input_loading,
+                "compound": input_formula,
+            }
         else:
             phreeqc_name = self.find_input_in_db(name, input_loading)
             mw = None
