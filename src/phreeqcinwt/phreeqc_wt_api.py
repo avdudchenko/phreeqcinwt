@@ -460,6 +460,7 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
         command += " -charge_balance true\n"
         command += " -water true\n"
         command += " -percent_error true\n"
+        command += " -activities H2O\n"
         command += " -user_punch true\n"
 
         command += "\n"
@@ -477,39 +478,6 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
         solution_composition["composition"] = self._get_solution_comp(
             result,
         )
-
-        command = "USE SOLUTION {}\n".format(str(solution_number))
-
-        command += "EQUILIBRIUM_PHASES\n"
-        command += "USER_PUNCH\n"
-        command += "-start\n"
-        cur_count = 10
-        for element in solution_composition["composition"]["species"].keys():
-            command += '{} PUNCH "diffusion\t{element}" DIFF_C("{element}")\n'.format(
-                cur_count, element=element
-            )
-            cur_count += 10
-        for element in solution_composition["composition"]["species"].keys():
-            command += (
-                '{} PUNCH "transfer_number\t{element}" T_SC("{element}")\n'.format(
-                    cur_count, element=element
-                )
-            )
-            cur_count += 10
-        command += "-end\n"
-        command += "SELECTED_OUTPUT\n"
-        command += " -user_punch true\n"
-        command += " -activities "
-        for element in solution_composition["composition"]["species"].keys():
-            command += " {} ".format(element)
-        command += " H2O\n"
-        command += "\n"
-        command += "END\n"
-        self.run_string(command)
-
-        result2 = self.phreeqc.get_selected_output_array()
-        solution_composition["activities"] = self._process_activities(result2)
-        solution_composition["transport"] = self._get_diffusion_transfer_number(result2)
         solution_composition["solution_state"].update(
             self.get_total_concetration(solution_composition)
         )
@@ -517,7 +485,6 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
             self._get_osmotic_pressure(
                 result,
                 solution_composition["solution_state"],
-                solution_composition["activities"],
             )
         )
         self.current_state = solution_composition
@@ -554,32 +521,6 @@ class phreeqcWTapi(dataBaseManagment, utilities, reaction_utils, solution_utils)
                     mass["mw (g/mol)"],
                     "g/mol",
                 )
-
-            print("activities------------------")
-            for scalant, SI in solution_composition["activities"].items():
-                print(
-                    "\t",
-                    scalant,
-                    SI,
-                )
-
-            # print("diffusion------------------")
-            # for scalant, SI in solution_composition["transport"]["diffusion"].items():
-            #     print(
-            #         "\t",
-            #         scalant,
-            #         SI,
-            #     )
-
-            # print("transfer number------------------")
-            # for scalant, SI in solution_composition["transport"][
-            #     "transfer_number"
-            # ].items():
-            #     print(
-            #         "\t",
-            #         scalant,
-            #         SI,
-            #     )
             print("scaling tendendencies------------------")
             for scalant, SI in solution_composition["scaling_tendencies"].items():
                 if scalant == "max":

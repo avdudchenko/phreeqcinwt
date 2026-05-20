@@ -6,41 +6,15 @@ import molmass
 
 
 class solution_utils:
-    def _process_activities(self, result):
-        # print(result)
-        activities = {}
-        for element, name in self.return_dict.items():
-            idx = np.where("la_" + element == np.array(result[0]))[0]
-            if len(idx) > 0:
-                activities[element] = {
-                    "value": 10 ** result[1][idx[0]],
-                    "units": "dimensionless",
-                }
-                activities["log10_{}".format(element)] = {
-                    "value": result[1][idx[0]],
-                    "units": "dimensionless",
-                }
-            else:
-                activities[element] = {"value": None, "units": "dimensionless"}
-                activities["log10_{}".format(element)] = {
-                    "value": None,
-                    "units": "dimensionless",
-                }
-        idx = np.where("la_H2O" == np.array(result[0]))[0]
-        # print(idx)
-        activities["H2O"] = {"value": 10 ** result[1][idx[0]], "units": "dimensionless"}
-        activities["log10_{}".format("H2O")] = {
-            "value": result[1][idx[0]],
-            "units": "dimensionless",
-        }
-        # print(activities)
-        return activities
-
-    def _get_osmotic_pressure(self, result, solution_state, activities):
+    def _get_osmotic_pressure(self, result, solution_state):
         idx = np.where("h2o_vm" == np.array(result[0]))[0]
+        activity_idx = np.where("la_H2O" == np.array(result[0]))[0]
+
+        if len(idx) == 0 or len(activity_idx) == 0:
+            return {"units": "Pa", "value": None}
 
         vm = result[1][idx[0]]  # cm3/mol
-        activity = activities["H2O"]["value"]
+        activity = 10 ** result[1][activity_idx[0]]
         R = 8.31446261815324  # m3⋅Pa⋅K−1⋅mol−1
         T = solution_state["Temperature"]["value"] + 273.15
         if vm == 0:
@@ -102,27 +76,6 @@ class solution_utils:
                     "concentration (g/L)": result[1][i + 2] * mw / self.water_volume,
                 }
         return aque_species_comp
-
-    def _get_diffusion_transfer_number(
-        self,
-        result,
-    ):
-        transport_data = {"diffusion": {}, "transfer_number": {}}
-        for i in range(len(result[1])):
-            if isinstance(result[1][i], str) and "diffusion" in result[1][i]:
-                species = result[1][i].split(" ")[1]
-                transport_data["diffusion"][species] = {
-                    "value": result[1][i + 1],
-                    "units": "m2/s",
-                }
-        for i in range(len(result[1])):
-            if isinstance(result[1][i], str) and "transfer_number" in result[1][i]:
-                species = result[1][i].split(" ")[1]
-                transport_data["transfer_number"][species] = {
-                    "value": result[1][i + 1],
-                    "units": "unitless",
-                }
-        return transport_data
 
     def _get_scaling_tendencies(self, result, report=False):
         result_dict = {}
