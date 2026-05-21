@@ -293,6 +293,38 @@ class TestBuildSolution:
         assert "\n   C(4)" not in command
         assert "\n   C(+4)" not in command
 
+    def test_direct_alkalinity_reuses_metadata_mw_quietly(self, capsys):
+        """Direct Alkalinity input should reuse the stored MW without console output."""
+        wt = phreeqcWTapi(database="phreeqc.dat")
+        metadata = wt.db_metadata["SOLUTION_MASTER_SPECIES"]["Alkalinity"].copy()
+
+        wt.build_water_composition(
+            input_composition=ALKALINITY_SCREENING_COMPOSITION.copy(),
+            pH=7.2,
+            charge_balance="Cl",
+            pe=4,
+            units="mg/L",
+            pressure=1,
+            temperature=25,
+            assume_alkalinity=False,
+        )
+
+        captured = capsys.readouterr()
+
+        assert captured.out == ""
+        assert captured.err == ""
+        assert wt.db_metadata["SOLUTION_MASTER_SPECIES"]["Alkalinity"] == metadata
+
+    def test_repeated_instantiation_is_quiet_by_default(self, capsys):
+        """Repeated API construction should not print database loading messages."""
+        for _ in range(3):
+            phreeqcWTapi(database="phreeqc.dat")
+
+        captured = capsys.readouterr()
+
+        assert captured.out == ""
+        assert captured.err == ""
+
     def test_cahco3_still_generates_coupled_carbon_and_alkalinity(self):
         """CaHCO3 helper should keep emitting both inorganic carbon and alkalinity."""
         wt = phreeqcWTapi(database="phreeqc.dat", log_phreeqc_commands=True)
