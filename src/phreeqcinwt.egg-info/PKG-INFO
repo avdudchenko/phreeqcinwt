@@ -1,8 +1,0 @@
-Metadata-Version: 2.4
-Name: phreeqcinwt
-Version: 0.0.0
-Description-Content-Type: text/markdown
-Requires-Dist: numpy
-Requires-Dist: pyyaml
-Requires-Dist: molmass
-Requires-Dist: phreeqpy
