@@ -92,13 +92,15 @@ class utilities:
             if isinstance(input_loading, dict):
                 input_formula = input_loading.get(
                     "formula",
-                    self.db_metadata["SOLUTION_MASTER_SPECIES"][phreeqc_name]["formula"],
+                    self.db_metadata["SOLUTION_MASTER_SPECIES"][phreeqc_name][
+                        "formula"
+                    ],
                 )
                 mw = input_loading.get("mw")
             else:
-                input_formula = self.db_metadata["SOLUTION_MASTER_SPECIES"][phreeqc_name][
-                    "formula"
-                ]
+                input_formula = self.db_metadata["SOLUTION_MASTER_SPECIES"][
+                    phreeqc_name
+                ]["formula"]
             self.check_formula_consistent(phreeqc_name, input_formula, mw)
             phreeqc_ion_dict[phreeqc_name] = {
                 "value": input_loading,
