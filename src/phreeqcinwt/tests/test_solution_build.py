@@ -40,6 +40,36 @@ BUILD_KWARGS = dict(
     assume_alkalinity=False,
 )
 
+ALKALINITY_SCREENING_COMPOSITION = {
+    "Alkalinity": 182,
+    "Na": 41200,
+    "Cl": 77400,
+    "Ca": 5500,
+    "Mg": 840,
+    "K": 935,
+    "Ba": 3.91,
+    "Sr": 834,
+    "SO4": 290,
+    "SiO2": 31.5,
+    "B": 65.5,
+    "Fe": 32.9,
+}
+
+CAHCO3_SCREENING_COMPOSITION = {
+    "CaHCO3": 182,
+    "Na": 41200,
+    "Cl": 77400,
+    "Ca": 5500,
+    "Mg": 840,
+    "K": 935,
+    "Ba": 3.91,
+    "Sr": 834,
+    "SO4": 290,
+    "SiO2": 31.5,
+    "B": 65.5,
+    "Fe": 32.9,
+}
+
 FORM_PHASES_LIST = ["Calcite", "Gypsum", "Aragonite"]
 
 DATABASES = [
@@ -241,6 +271,81 @@ class TestBuildSolution:
             assert act_elements[element]["mols"] == _approx(
                 ref_data["mols"]
             ), f"{db}: element {element} mols mismatch"
+
+    def test_direct_alkalinity_generates_only_alkalinity_line(self):
+        """Explicit Alkalinity input should not emit coupled inorganic carbon lines."""
+        wt = phreeqcWTapi(database="phreeqc.dat", log_phreeqc_commands=True)
+
+        wt.build_water_composition(
+            input_composition=ALKALINITY_SCREENING_COMPOSITION.copy(),
+            pH=7.2,
+            charge_balance="Cl",
+            pe=4,
+            units="mg/L",
+            pressure=1,
+            temperature=25,
+            assume_alkalinity=False,
+        )
+
+        command = wt.command_log["Action #0"]["command"]
+
+        assert "   Alkalinity   182 as" in command
+        assert "\n   C(4)" not in command
+        assert "\n   C(+4)" not in command
+
+    def test_direct_alkalinity_reuses_metadata_mw_quietly(self, capsys):
+        """Direct Alkalinity input should reuse the stored MW without console output."""
+        wt = phreeqcWTapi(database="phreeqc.dat")
+        metadata = wt.db_metadata["SOLUTION_MASTER_SPECIES"]["Alkalinity"].copy()
+
+        wt.build_water_composition(
+            input_composition=ALKALINITY_SCREENING_COMPOSITION.copy(),
+            pH=7.2,
+            charge_balance="Cl",
+            pe=4,
+            units="mg/L",
+            pressure=1,
+            temperature=25,
+            assume_alkalinity=False,
+        )
+
+        captured = capsys.readouterr()
+
+        assert captured.out == ""
+        assert captured.err == ""
+        assert wt.db_metadata["SOLUTION_MASTER_SPECIES"]["Alkalinity"] == metadata
+
+    def test_repeated_instantiation_is_quiet_by_default(self, capsys):
+        """Repeated API construction should not print database loading messages."""
+        for _ in range(3):
+            phreeqcWTapi(database="phreeqc.dat")
+
+        captured = capsys.readouterr()
+
+        assert captured.out == ""
+        assert captured.err == ""
+
+    def test_cahco3_still_generates_coupled_carbon_and_alkalinity(self):
+        """CaHCO3 helper should keep emitting both inorganic carbon and alkalinity."""
+        wt = phreeqcWTapi(database="phreeqc.dat", log_phreeqc_commands=True)
+
+        wt.build_water_composition(
+            input_composition=CAHCO3_SCREENING_COMPOSITION.copy(),
+            pH=7.2,
+            charge_balance="Cl",
+            pe=4,
+            units="mg/L",
+            pressure=1,
+            temperature=25,
+            assume_alkalinity=True,
+        )
+
+        command = wt.command_log["Action #0"]["command"]
+
+        assert "   Alkalinity   182 as Ca0.5(CO3)0.5" in command
+        assert ("\n   C(4)   182 as Ca0.5(CO3)0.5" in command) or (
+            "\n   C(+4)   182 as Ca0.5(CO3)0.5" in command
+        )
 
 
 class TestPerformReaction:

@@ -1,8 +1,21 @@
-import yaml
 import csv
-import molmass
-import phreeqcinwt.phreeqc_wt_api as phapi
+import logging
 import os
+
+import molmass
+import yaml
+
+import phreeqcinwt.phreeqc_wt_api as phapi
+
+
+LOGGER = logging.getLogger(__name__)
+SPECIAL_FORMULA_MW = {"Ca0.5(CO3)0.5": 50.05}
+
+
+def _get_formula_mw(formula):
+    if formula in SPECIAL_FORMULA_MW:
+        return SPECIAL_FORMULA_MW[formula]
+    return molmass.Formula(formula).mass
 
 
 class dataBaseManagment:
@@ -10,7 +23,7 @@ class dataBaseManagment:
         if self.cwd is None:
             self.cwd = os.path.dirname(phapi.__file__) + "/"
         db_file = self.cwd + "databases/" + self.database
-        print("Loading database file: {}".format(db_file))
+        LOGGER.debug("Loading database file: %s", db_file)
         if remove_phase_list is not None:
             db_string = self.remove_phases_from_db(db_file, remove_phase_list)
             self.phreeqc.load_database_string(db_string)
@@ -82,11 +95,9 @@ class dataBaseManagment:
                                     mw = float(row[-1])
                                 except:
                                     try:
-                                        mw = molmass.Formula(formula).mass
+                                        mw = _get_formula_mw(formula)
                                     except:
                                         mw = None
-                                        if formula == "Ca0.5(CO3)0.5":
-                                            mw = 50.04
 
                                 self.db_metadata["SOLUTION_MASTER_SPECIES"][ion] = {
                                     "formula": formula,

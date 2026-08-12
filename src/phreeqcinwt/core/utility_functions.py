@@ -1,8 +1,19 @@
+import logging
+
 import molmass
 import numpy as np
 
 
+LOGGER = logging.getLogger(__name__)
+SPECIAL_FORMULA_MW = {"Ca0.5(CO3)0.5": 50.05}
+
+
 class utilities:
+    def _get_formula_mw(self, formula):
+        if formula in SPECIAL_FORMULA_MW:
+            return SPECIAL_FORMULA_MW[formula]
+        return molmass.Formula(formula).mass
+
     def get_total_concetration(self, results_dict):
         total_solid_mass = 0
         total_solution_mass = 0
@@ -38,27 +49,32 @@ class utilities:
                     )
                 )
 
-    def check_formula_consistent(self, db_name, input_fomrula, input_mw=None):
-        db_formula = self.db_metadata["SOLUTION_MASTER_SPECIES"][db_name]["formula"]
-        if db_formula != input_fomrula:
-            self.db_metadata["SOLUTION_MASTER_SPECIES"][db_name][
-                "formula"
-            ] = input_fomrula
-        db_mw = self.db_metadata["SOLUTION_MASTER_SPECIES"][db_name]["mw"]
+    def check_formula_consistent(self, db_name, input_formula, input_mw=None):
+        species_metadata = self.db_metadata["SOLUTION_MASTER_SPECIES"][db_name]
+        db_formula = species_metadata["formula"]
+        db_mw = species_metadata["mw"]
+
+        if db_formula != input_formula:
+            species_metadata["formula"] = input_formula
+
+        if input_mw is not None:
+            species_metadata["mw"] = input_mw
+            return
+
+        if db_formula == input_formula and db_mw is not None:
+            return
 
         try:
-            if input_mw == None:
-                self.db_metadata["SOLUTION_MASTER_SPECIES"][db_name]["mw"] = (
-                    molmass.Formula(input_fomrula).mass
+            species_metadata["mw"] = self._get_formula_mw(input_formula)
+        except Exception:
+            if db_mw is not None:
+                LOGGER.debug(
+                    "Unable to derive molecular weight for %s; keeping existing %s g/mol",
+                    input_formula,
+                    db_mw,
                 )
-            else:
-                self.db_metadata["SOLUTION_MASTER_SPECIES"][db_name]["mw"] = input_mw
-        except:
-            print(
-                "failed to update db mw, please vefiy, useing {} g/mol for {}".format(
-                    db_mw, input_formula
-                )
-            )
+                return
+            raise
 
     def set_dict(self, phreeqc_ion_dict, name, input_loading, assume_alkalinity):
         if name == "HCO3" or name == "CaHCO3":
@@ -86,6 +102,26 @@ class utilities:
                     "compound": input_formula,
                 }
                 self.check_formula_consistent("Alkalinity", input_formula, mw)
+        elif name == "Alkalinity":
+            phreeqc_name = self.find_input_in_db(name, input_loading)
+            mw = None
+            if isinstance(input_loading, dict):
+                input_formula = input_loading.get(
+                    "formula",
+                    self.db_metadata["SOLUTION_MASTER_SPECIES"][phreeqc_name][
+                        "formula"
+                    ],
+                )
+                mw = input_loading.get("mw")
+            else:
+                input_formula = self.db_metadata["SOLUTION_MASTER_SPECIES"][
+                    phreeqc_name
+                ]["formula"]
+            self.check_formula_consistent(phreeqc_name, input_formula, mw)
+            phreeqc_ion_dict[phreeqc_name] = {
+                "value": input_loading,
+                "compound": input_formula,
+            }
         else:
             phreeqc_name = self.find_input_in_db(name, input_loading)
             mw = None
